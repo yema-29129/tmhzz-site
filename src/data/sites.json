@@ -1,5 +1,1805 @@
 [
   {
+    "id": 659,
+    "slug": "小宇宙播客",
+    "title": "小宇宙播客",
+    "url": "https://www.xiaoyuzhoufm.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.xiaoyuzhoufm.com%2F",
+    "summary": "中文头部播客与商业访谈内容平台，营销人、创业者获取深度对谈与行业一线思考必备。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 637,
+        "name": "营销工具",
+        "slug": "营销工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>中文头部播客与商业访谈内容平台，营销人、创业者获取深度对谈与行业一线思考必备。</p>"
+  },
+  {
+    "id": 658,
+    "slug": "剪映",
+    "title": "剪映",
+    "url": "https://www.capcut.cn/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.capcut.cn%2F",
+    "summary": "字节跳动官方全能短视频剪辑工具，支持 AI 自动字幕、一键成片与抖音/小红书热门模板。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 637,
+        "name": "营销工具",
+        "slug": "营销工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>字节跳动官方全能短视频剪辑工具，支持 AI 自动字幕、一键成片与抖音/小红书热门模板。</p>"
+  },
+  {
+    "id": 657,
+    "slug": "namecheap",
+    "title": "Namecheap",
+    "url": "https://www.namecheap.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.namecheap.com%2F",
+    "summary": "海外口碑极佳的域名注册商，价格透明且免费赠送 WHOIS 隐私保护，独立站常用。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 632,
+        "name": "建站相关",
+        "slug": "建站相关"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>海外口碑极佳的域名注册商，价格透明且免费赠送 WHOIS 隐私保护，独立站常用。</p>"
+  },
+  {
+    "id": 656,
+    "slug": "semrush",
+    "title": "Semrush",
+    "url": "https://www.semrush.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.semrush.com%2F",
+    "summary": "全球顶级 SEO、关键词挖掘、竞品广告监控与内容营销分析 SaaS 平台。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 632,
+        "name": "建站相关",
+        "slug": "建站相关"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>全球顶级 SEO、关键词挖掘、竞品广告监控与内容营销分析 SaaS 平台。</p>"
+  },
+  {
+    "id": 655,
+    "slug": "pagespeed-insights",
+    "title": "PageSpeed Insights",
+    "url": "https://pagespeed.web.dev/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fpagespeed.web.dev%2F",
+    "summary": "Google 官方网页速度与 Core Web Vitals 性能体检工具，SEO 提速优化必备。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 632,
+        "name": "建站相关",
+        "slug": "建站相关"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>Google 官方网页速度与 Core Web Vitals 性能体检工具，SEO 提速优化必备。</p>"
+  },
+  {
+    "id": 654,
+    "slug": "netlify",
+    "title": "Netlify",
+    "url": "https://www.netlify.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.netlify.com%2F",
+    "summary": "知名静态网站与前端自动化托管平台，支持 GitHub 推送自动构建与全球 CDN 加速。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 632,
+        "name": "建站相关",
+        "slug": "建站相关"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>知名静态网站与前端自动化托管平台，支持 GitHub 推送自动构建与全球 CDN 加速。</p>"
+  },
+  {
+    "id": 653,
+    "slug": "pitch",
+    "title": "Pitch",
+    "url": "https://pitch.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fpitch.com%2F",
+    "summary": "新一代团队协作演示文稿制作平台，自带极简高级商业提案模板与数据展示组件。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 631,
+        "name": "PPT模板",
+        "slug": "PPT模板"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>新一代团队协作演示文稿制作平台，自带极简高级商业提案模板与数据展示组件。</p>"
+  },
+  {
+    "id": 652,
+    "slug": "wps-稻壳儿",
+    "title": "WPS 稻壳儿",
+    "url": "https://www.docer.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.docer.com%2F",
+    "summary": "金山 WPS 官方办公模板商城，覆盖年度总结、营销提案、商业计划书与图表素材。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 631,
+        "name": "PPT模板",
+        "slug": "PPT模板"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>金山 WPS 官方办公模板商城，覆盖年度总结、营销提案、商业计划书与图表素材。</p>"
+  },
+  {
+    "id": 651,
+    "slug": "slidesgo",
+    "title": "Slidesgo",
+    "url": "https://slidesgo.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fslidesgo.com%2F",
+    "summary": "全球高颜值免费 PPT 与 Google Slides 商业演示模板下载站，风格现代国际化。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 631,
+        "name": "PPT模板",
+        "slug": "PPT模板"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>全球高颜值免费 PPT 与 Google Slides 商业演示模板下载站，风格现代国际化。</p>"
+  },
+  {
+    "id": 650,
+    "slug": "字客网",
+    "title": "字客网",
+    "url": "https://www.fontke.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.fontke.com%2F",
+    "summary": "支持在线字体识别、字形预览与海量中英文字体查询的专业字库社区。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 626,
+        "name": "字体网站",
+        "slug": "字体网站"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>支持在线字体识别、字形预览与海量中英文字体查询的专业字库社区。</p>"
+  },
+  {
+    "id": 649,
+    "slug": "字魂网",
+    "title": "字魂网",
+    "url": "https://izihun.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fizihun.com%2F",
+    "summary": "国内商用创意字库平台，涵盖国潮、电商促销、海报标题等多种营销场景字体。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 626,
+        "name": "字体网站",
+        "slug": "字体网站"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>国内商用创意字库平台，涵盖国潮、电商促销、海报标题等多种营销场景字体。</p>"
+  },
+  {
+    "id": 648,
+    "slug": "100font-免费字体网",
+    "title": "100font 免费字体网",
+    "url": "https://www.100font.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.100font.com%2F",
+    "summary": "专门收集整理免费可商用中英文字体的导航站，清晰标注版权来源，运营放心用。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 626,
+        "name": "字体网站",
+        "slug": "字体网站"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>专门收集整理免费可商用中英文字体的导航站，清晰标注版权来源，运营放心用。</p>"
+  },
+  {
+    "id": 647,
+    "slug": "改图鸭",
+    "title": "改图鸭",
+    "url": "https://www.gaituya.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.gaituya.com%2F",
+    "summary": "轻量化在线图片编辑、尺寸裁剪、拼图、加水印与格式转换工具箱。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 624,
+        "name": "作图网站",
+        "slug": "作图网站"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>轻量化在线图片编辑、尺寸裁剪、拼图、加水印与格式转换工具箱。</p>"
+  },
+  {
+    "id": 646,
+    "slug": "爱给网",
+    "title": "爱给网",
+    "url": "https://www.aigei.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.aigei.com%2F",
+    "summary": "国内免费音效、配乐、3D 模型、视频特效与平面设计素材综合下载站。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 624,
+        "name": "作图网站",
+        "slug": "作图网站"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>国内免费音效、配乐、3D 模型、视频特效与平面设计素材综合下载站。</p>"
+  },
+  {
+    "id": 645,
+    "slug": "佐糖-picwish",
+    "title": "佐糖 PicWish",
+    "url": "https://picwish.cn/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fpicwish.cn%2F",
+    "summary": "支持批量 AI 抠图、图片变清晰、去水印与电商白底图生成的轻量在线作图工具。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 624,
+        "name": "作图网站",
+        "slug": "作图网站"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>支持批量 AI 抠图、图片变清晰、去水印与电商白底图生成的轻量在线作图工具。</p>"
+  },
+  {
+    "id": 644,
+    "slug": "excalidraw",
+    "title": "Excalidraw",
+    "url": "https://excalidraw.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fexcalidraw.com%2F",
+    "summary": "极简手绘风格在线白板与架构图工具，画营销干货配图、增长漏斗图极具辨识度。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 624,
+        "name": "作图网站",
+        "slug": "作图网站"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>极简手绘风格在线白板与架构图工具，画营销干货配图、增长漏斗图极具辨识度。</p>"
+  },
+  {
+    "id": 643,
+    "slug": "photopea",
+    "title": "Photopea",
+    "url": "https://www.photopea.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.photopea.com%2F",
+    "summary": "免安装浏览器在线版 Photoshop，直接打开编辑 PSD/Sketch/AI 文件，临时改图神器。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 624,
+        "name": "作图网站",
+        "slug": "作图网站"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>免安装浏览器在线版 Photoshop，直接打开编辑 PSD/Sketch/AI 文件，临时改图神器。</p>"
+  },
+  {
+    "id": 642,
+    "slug": "mastergo",
+    "title": "MasterGo",
+    "url": "https://mastergo.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fmastergo.com%2F",
+    "summary": "国产高性能在线界面与平面协作设计工具，浏览器打开即可完成海报与原型设计。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 624,
+        "name": "作图网站",
+        "slug": "作图网站"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>国产高性能在线界面与平面协作设计工具，浏览器打开即可完成海报与原型设计。</p>"
+  },
+  {
+    "id": 641,
+    "slug": "千图网",
+    "title": "千图网",
+    "url": "https://www.58pic.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.58pic.com%2F",
+    "summary": "国内老牌营销海报、电商详情页、主图与节日宣传设计模板素材下载站。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 618,
+        "name": "高清图片素材网站",
+        "slug": "高清图片素材网站"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>国内老牌营销海报、电商详情页、主图与节日宣传设计模板素材下载站。</p>"
+  },
+  {
+    "id": 640,
+    "slug": "视觉中国",
+    "title": "视觉中国",
+    "url": "https://www.vcg.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.vcg.com%2F",
+    "summary": "国内头部正版视觉素材平台，适合企业级商业广告、新闻配图与品牌合规用图。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 618,
+        "name": "高清图片素材网站",
+        "slug": "高清图片素材网站"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>国内头部正版视觉素材平台，适合企业级商业广告、新闻配图与品牌合规用图。</p>"
+  },
+  {
+    "id": 639,
+    "slug": "站酷海洛",
+    "title": "站酷海洛",
+    "url": "https://www.hellorf.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.hellorf.com%2F",
+    "summary": "站酷旗下正版商业图库，提供高质量品牌视觉摄影、矢量插画与短视频授权。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 618,
+        "name": "高清图片素材网站",
+        "slug": "高清图片素材网站"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>站酷旗下正版商业图库，提供高质量品牌视觉摄影、矢量插画与短视频授权。</p>"
+  },
+  {
+    "id": 638,
+    "slug": "摄图网",
+    "title": "摄图网",
+    "url": "https://699pic.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2F699pic.com%2F",
+    "summary": "国内主流正版商业图片、电商海报与视频素材库，覆盖各类中国本土营销场景。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 618,
+        "name": "高清图片素材网站",
+        "slug": "高清图片素材网站"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>国内主流正版商业图片、电商海报与视频素材库，覆盖各类中国本土营销场景。</p>"
+  },
+  {
+    "id": 637,
+    "slug": "freepik",
+    "title": "Freepik",
+    "url": "https://www.freepik.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.freepik.com%2F",
+    "summary": "海量高质量矢量素材、PSD 样机、海报模板与高清摄影图片下载平台。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 618,
+        "name": "高清图片素材网站",
+        "slug": "高清图片素材网站"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>海量高质量矢量素材、PSD 样机、海报模板与高清摄影图片下载平台。</p>"
+  },
+  {
+    "id": 636,
+    "slug": "pixabay",
+    "title": "Pixabay",
+    "url": "https://pixabay.com/zh/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fpixabay.com%2Fzh%2F",
+    "summary": "全球知名免费正版高清图片、插画、矢量图与短视频素材库，支持中文搜索且可商用。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 618,
+        "name": "高清图片素材网站",
+        "slug": "高清图片素材网站"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>全球知名免费正版高清图片、插画、矢量图与短视频素材库，支持中文搜索且可商用。</p>"
+  },
+  {
+    "id": 635,
+    "slug": "创意人-topdesign",
+    "title": "创意人 TopDesign",
+    "url": "https://www.topdesignmag.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.topdesignmag.com%2F",
+    "summary": "聚合全球平面设计、插画、品牌视觉与摄影创意灵感的精选设计杂志。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 612,
+        "name": "广告创意/策划营销案例",
+        "slug": "广告创意/策划营销案例"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>聚合全球平面设计、插画、品牌视觉与摄影创意灵感的精选设计杂志。</p>"
+  },
+  {
+    "id": 634,
+    "slug": "小红书商业动态",
+    "title": "小红书商业动态",
+    "url": "https://www.xiaohongshu.com/business",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.xiaohongshu.com%2Fbusiness",
+    "summary": "小红书官方营销方法论与优秀品牌种草案例展示窗口。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 612,
+        "name": "广告创意/策划营销案例",
+        "slug": "广告创意/策划营销案例"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>小红书官方营销方法论与优秀品牌种草案例展示窗口。</p>"
+  },
+  {
+    "id": 633,
+    "slug": "站酷高高手",
+    "title": "站酷高高手",
+    "url": "https://www.gogoup.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.gogoup.com%2F",
+    "summary": "站酷旗下创意设计与商业视觉学习平台，涵盖品牌设计、电商视觉与短视频创作。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 612,
+        "name": "广告创意/策划营销案例",
+        "slug": "广告创意/策划营销案例"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>站酷旗下创意设计与商业视觉学习平台，涵盖品牌设计、电商视觉与短视频创作。</p>"
+  },
+  {
+    "id": 632,
+    "slug": "古田路9号",
+    "title": "古田路9号",
+    "url": "https://www.gtn9.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.gtn9.com%2F",
+    "summary": "国内知名品牌包装、字体与视觉设计作品交流平台，适合做消费品包装创意参考。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 612,
+        "name": "广告创意/策划营销案例",
+        "slug": "广告创意/策划营销案例"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>国内知名品牌包装、字体与视觉设计作品交流平台，适合做消费品包装创意参考。</p>"
+  },
+  {
+    "id": 631,
+    "slug": "ads-of-the-world",
+    "title": "Ads of the World",
+    "url": "https://www.adsoftheworld.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.adsoftheworld.com%2F",
+    "summary": "全球最大的创意广告作品库，收录来自世界各地的平面、视频与户外获奖广告案例。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 612,
+        "name": "广告创意/策划营销案例",
+        "slug": "广告创意/策划营销案例"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>全球最大的创意广告作品库，收录来自世界各地的平面、视频与户外获奖广告案例。</p>"
+  },
+  {
+    "id": 630,
+    "slug": "awwwards",
+    "title": "Awwwards",
+    "url": "https://www.awwwards.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.awwwards.com%2F",
+    "summary": "全球顶级创意网页设计与数字品牌体验奖项平台，寻找高端品牌官网设计灵感。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 612,
+        "name": "广告创意/策划营销案例",
+        "slug": "广告创意/策划营销案例"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>全球顶级创意网页设计与数字品牌体验奖项平台，寻找高端品牌官网设计灵感。</p>"
+  },
+  {
+    "id": 629,
+    "slug": "fbif-食品饮料创新",
+    "title": "FBIF 食品饮料创新",
+    "url": "https://www.foodtalks.cn/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.foodtalks.cn%2F",
+    "summary": "快消与食品行业深度内容与资源对接平台，拆解头部快消品牌增长密码。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 65,
+        "name": "每月必看",
+        "slug": "每月必看"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>快消与食品行业深度内容与资源对接平台，拆解头部快消品牌增长密码。</p>"
+  },
+  {
+    "id": 628,
+    "slug": "foodaily-每日食品",
+    "title": "Foodaily 每日食品",
+    "url": "https://www.foodaily.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.foodaily.com%2F",
+    "summary": "食品饮料与快消行业创新门户，聚焦新品灵感、包装趋势与爆品营销案例。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 65,
+        "name": "每月必看",
+        "slug": "每月必看"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>食品饮料与快消行业创新门户，聚焦新品灵感、包装趋势与爆品营销案例。</p>"
+  },
+  {
+    "id": 627,
+    "slug": "mba智库百科",
+    "title": "MBA智库百科",
+    "url": "https://wiki.mbalib.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwiki.mbalib.com%2F",
+    "summary": "中文世界最全的经济管理与市场营销专业词典，速查 4P/STP/AARRR 等经典模型。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 65,
+        "name": "每月必看",
+        "slug": "每月必看"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>中文世界最全的经济管理与市场营销专业词典，速查 4P/STP/AARRR 等经典模型。</p>"
+  },
+  {
+    "id": 626,
+    "slug": "中欧商业评论",
+    "title": "中欧商业评论",
+    "url": "https://www.ceibs.edu/media",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.ceibs.edu%2Fmedia",
+    "summary": "中欧国际工商学院商业洞察与管理案例专栏，系统提升商业认知与战略格局。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 65,
+        "name": "每月必看",
+        "slug": "每月必看"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>中欧国际工商学院商业洞察与管理案例专栏，系统提升商业认知与战略格局。</p>"
+  },
+  {
+    "id": 625,
+    "slug": "第一财经",
+    "title": "第一财经",
+    "url": "https://www.yicai.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.yicai.com%2F",
+    "summary": "权威财经与商业深度媒体，洞察宏观消费周期、零售变革与头部企业财报解读。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 65,
+        "name": "每月必看",
+        "slug": "每月必看"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>权威财经与商业深度媒体，洞察宏观消费周期、零售变革与头部企业财报解读。</p>"
+  },
+  {
+    "id": 624,
+    "slug": "哈佛商业评论",
+    "title": "哈佛商业评论",
+    "url": "https://www.hbrchina.org/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.hbrchina.org%2F",
+    "summary": "全球顶级管理与商业战略期刊中文版，深度探讨品牌战略、组织管理与营销思维。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 65,
+        "name": "每月必看",
+        "slug": "每月必看"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>全球顶级管理与商业战略期刊中文版，深度探讨品牌战略、组织管理与营销思维。</p>"
+  },
+  {
+    "id": 623,
+    "slug": "爱范儿",
+    "title": "爱范儿",
+    "url": "https://www.ifanr.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.ifanr.com%2F",
+    "summary": "关注消费科技、新生活方式、品牌设计与 AI 硬件趋势的精品媒体。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 64,
+        "name": "每周必看",
+        "slug": "每周必看"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>关注消费科技、新生活方式、品牌设计与 AI 硬件趋势的精品媒体。</p>"
+  },
+  {
+    "id": 622,
+    "slug": "钛媒体",
+    "title": "钛媒体",
+    "url": "https://www.tmtpost.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.tmtpost.com%2F",
+    "summary": "专注科技、商业与消费产业深度分析的财经科技信息平台。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 64,
+        "name": "每周必看",
+        "slug": "每周必看"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>专注科技、商业与消费产业深度分析的财经科技信息平台。</p>"
+  },
+  {
+    "id": 621,
+    "slug": "创业邦",
+    "title": "创业邦",
+    "url": "https://www.cyzone.cn/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.cyzone.cn%2F",
+    "summary": "聚焦创业创新、商业模式拆解与新消费品牌案例的商业资讯平台。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 64,
+        "name": "每周必看",
+        "slug": "每周必看"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>聚焦创业创新、商业模式拆解与新消费品牌案例的商业资讯平台。</p>"
+  },
+  {
+    "id": 620,
+    "slug": "派代网",
+    "title": "派代网",
+    "url": "https://www.paidai.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.paidai.com%2F",
+    "summary": "中国老牌电商卖家交流与干货分享社区，聚焦店铺运营、流量转化与电商实战经验。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 64,
+        "name": "每周必看",
+        "slug": "每周必看"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>中国老牌电商卖家交流与干货分享社区，聚焦店铺运营、流量转化与电商实战经验。</p>"
+  },
+  {
+    "id": 619,
+    "slug": "雨果跨境",
+    "title": "雨果跨境",
+    "url": "https://www.cifnews.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.cifnews.com%2F",
+    "summary": "跨境电商与品牌出海垂直门户，涵盖亚马逊、TikTok Shop、独立站运营与海外营销。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 64,
+        "name": "每周必看",
+        "slug": "每周必看"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>跨境电商与品牌出海垂直门户，涵盖亚马逊、TikTok Shop、独立站运营与海外营销。</p>"
+  },
+  {
+    "id": 618,
+    "slug": "亿邦动力",
+    "title": "亿邦动力",
+    "url": "https://www.ebrun.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.ebrun.com%2F",
+    "summary": "中国电商与零售产业权威媒体，深度覆盖淘宝、抖音电商、拼多多与跨境电商动态。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 64,
+        "name": "每周必看",
+        "slug": "每周必看"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>中国电商与零售产业权威媒体，深度覆盖淘宝、抖音电商、拼多多与跨境电商动态。</p>"
+  },
+  {
+    "id": 617,
+    "slug": "少数派",
+    "title": "少数派",
+    "url": "https://sspai.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fsspai.com%2F",
+    "summary": "高质量数字生活与效率工具测评社区，发现实用软件、AI 工作流与内容创作技巧。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 63,
+        "name": "每日必看",
+        "slug": "每日必看"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>高质量数字生活与效率工具测评社区，发现实用软件、AI 工作流与内容创作技巧。</p>"
+  },
+  {
+    "id": 616,
+    "slug": "极客公园",
+    "title": "极客公园",
+    "url": "https://www.geekpark.net/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.geekpark.net%2F",
+    "summary": "聚焦前沿科技、AI 产品创新与科技商业趋势的优质媒体社区。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 63,
+        "name": "每日必看",
+        "slug": "每日必看"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>聚焦前沿科技、AI 产品创新与科技商业趋势的优质媒体社区。</p>"
+  },
+  {
+    "id": 615,
+    "slug": "澎湃新闻",
+    "title": "澎湃新闻",
+    "url": "https://www.thepaper.cn/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.thepaper.cn%2F",
+    "summary": "主流时政、社会与财经深度新闻平台，适合营销人把握社会情绪与热点借势边界。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 63,
+        "name": "每日必看",
+        "slug": "每日必看"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>主流时政、社会与财经深度新闻平台，适合营销人把握社会情绪与热点借势边界。</p>"
+  },
+  {
+    "id": 614,
+    "slug": "晚点-latepost",
+    "title": "晚点 LatePost",
+    "url": "https://www.latepost.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.latepost.com%2F",
+    "summary": "极具影响力的互联网与商业深度报道媒体，追踪大厂战略、电商格局与 AI 竞争。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 63,
+        "name": "每日必看",
+        "slug": "每日必看"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>极具影响力的互联网与商业深度报道媒体，追踪大厂战略、电商格局与 AI 竞争。</p>"
+  },
+  {
+    "id": 613,
+    "slug": "界面新闻",
+    "title": "界面新闻",
+    "url": "https://www.jiemian.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.jiemian.com%2F",
+    "summary": "高质量原创商业、消费与职场新闻媒体，关注消费品牌动态与宏观趋势。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 63,
+        "name": "每日必看",
+        "slug": "每日必看"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>高质量原创商业、消费与职场新闻媒体，关注消费品牌动态与宏观趋势。</p>"
+  },
+  {
+    "id": 612,
+    "slug": "财联社",
+    "title": "财联社",
+    "url": "https://www.cls.cn/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.cls.cn%2F",
+    "summary": "7×24 小时滚动财经与商业快讯平台，第一时间捕捉市场热点与行业突发动态。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 63,
+        "name": "每日必看",
+        "slug": "每日必看"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>7×24 小时滚动财经与商业快讯平台，第一时间捕捉市场热点与行业突发动态。</p>"
+  },
+  {
+    "id": 611,
+    "slug": "36氪研究院",
+    "title": "36氪研究院",
+    "url": "https://36kr.com/academe",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2F36kr.com%2Facademe",
+    "summary": "36氪旗下行业研究机构，持续输出新消费、AI 产业、出海电商等细分赛道研报。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 616,
+        "name": "行业报告/数据报告",
+        "slug": "行业报告/数据报告"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>36氪旗下行业研究机构，持续输出新消费、AI 产业、出海电商等细分赛道研报。</p>"
+  },
+  {
+    "id": 610,
+    "slug": "蝉魔方",
+    "title": "蝉魔方",
+    "url": "https://www.chanmofang.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.chanmofang.com%2F",
+    "summary": "蝉妈妈旗下电商行业宏观趋势与细分品类市场洞察平台，辅助品牌选品与赛道分析。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 616,
+        "name": "行业报告/数据报告",
+        "slug": "行业报告/数据报告"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>蝉妈妈旗下电商行业宏观趋势与细分品类市场洞察平台，辅助品牌选品与赛道分析。</p>"
+  },
+  {
+    "id": 609,
+    "slug": "cnnic-互联网络中心",
+    "title": "CNNIC 互联网络中心",
+    "url": "https://www.cnnic.cn/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.cnnic.cn%2F",
+    "summary": "中国互联网络信息中心官网，权威发布《中国互联网络发展状况统计报告》。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 616,
+        "name": "行业报告/数据报告",
+        "slug": "行业报告/数据报告"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>中国互联网络信息中心官网，权威发布《中国互联网络发展状况统计报告》。</p>"
+  },
+  {
+    "id": 608,
+    "slug": "国家统计局",
+    "title": "国家统计局",
+    "url": "https://www.stats.gov.cn/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.stats.gov.cn%2F",
+    "summary": "中国最权威的官方宏观经济、社零消费、人口结构与行业统计数据查询官网。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 616,
+        "name": "行业报告/数据报告",
+        "slug": "行业报告/数据报告"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>中国最权威的官方宏观经济、社零消费、人口结构与行业统计数据查询官网。</p>"
+  },
+  {
+    "id": 607,
+    "slug": "阿里研究院",
+    "title": "阿里研究院",
+    "url": "https://www.aliresearch.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.aliresearch.com%2F",
+    "summary": "阿里巴巴官方智库，聚焦新零售、电商消费升级、平台经济与 AI 商业应用研究。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 616,
+        "name": "行业报告/数据报告",
+        "slug": "行业报告/数据报告"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>阿里巴巴官方智库，聚焦新零售、电商消费升级、平台经济与 AI 商业应用研究。</p>"
+  },
+  {
+    "id": 606,
+    "slug": "普华永道-pwc",
+    "title": "普华永道 PwC",
+    "url": "https://www.pwccn.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.pwccn.com%2F",
+    "summary": "普华永道中国洞察库，发布全球消费者调研、娱乐传媒与电商零售年度报告。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 616,
+        "name": "行业报告/数据报告",
+        "slug": "行业报告/数据报告"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>普华永道中国洞察库，发布全球消费者调研、娱乐传媒与电商零售年度报告。</p>"
+  },
+  {
+    "id": 605,
+    "slug": "德勤中国",
+    "title": "德勤中国",
+    "url": "https://www2.deloitte.com/cn/zh.html",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww2.deloitte.com%2Fcn%2Fzh.html",
+    "summary": "德勤官方行业研究与商业洞察中心，覆盖零售快消、科技传媒与金融消费趋势。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 616,
+        "name": "行业报告/数据报告",
+        "slug": "行业报告/数据报告"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>德勤官方行业研究与商业洞察中心，覆盖零售快消、科技传媒与金融消费趋势。</p>"
+  },
+  {
+    "id": 604,
+    "slug": "波士顿咨询-bcg",
+    "title": "波士顿咨询 BCG",
+    "url": "https://www.bcg.com/zh-cn/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.bcg.com%2Fzh-cn%2F",
+    "summary": "BCG 中文洞察平台，涵盖全球消费趋势、数字化转型与企业增长战略白皮书。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 616,
+        "name": "行业报告/数据报告",
+        "slug": "行业报告/数据报告"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>BCG 中文洞察平台，涵盖全球消费趋势、数字化转型与企业增长战略白皮书。</p>"
+  },
+  {
+    "id": 603,
+    "slug": "贝恩公司",
+    "title": "贝恩公司",
+    "url": "https://www.bain.cn/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.bain.cn%2F",
+    "summary": "贝恩咨询中文官网，定期发布中国购物者报告、奢侈品消费与品牌增长深度研究。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 616,
+        "name": "行业报告/数据报告",
+        "slug": "行业报告/数据报告"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>贝恩咨询中文官网，定期发布中国购物者报告、奢侈品消费与品牌增长深度研究。</p>"
+  },
+  {
+    "id": 602,
+    "slug": "麦肯锡中国",
+    "title": "麦肯锡中国",
+    "url": "https://www.mckinsey.com.cn/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.mckinsey.com.cn%2F",
+    "summary": "全球顶级管理咨询机构麦肯锡中文官网，发布中国消费者调研、零售与 AI 商业洞察报告。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 616,
+        "name": "行业报告/数据报告",
+        "slug": "行业报告/数据报告"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>全球顶级管理咨询机构麦肯锡中文官网，发布中国消费者调研、零售与 AI 商业洞察报告。</p>"
+  },
+  {
+    "id": 601,
+    "slug": "小报童",
+    "title": "小报童",
+    "url": "https://xiaobot.net/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fxiaobot.net%2F",
+    "summary": "创作者与营销人常用的轻量专栏订阅与内容变现工具平台。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 637,
+        "name": "营销工具",
+        "slug": "营销工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>创作者与营销人常用的轻量专栏订阅与内容变现工具平台。</p>"
+  },
+  {
+    "id": 600,
+    "slug": "convertio",
+    "title": "Convertio",
+    "url": "https://convertio.co/zh/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fconvertio.co%2Fzh%2F",
+    "summary": "支持 300+ 种格式的在线文件转换工具，轻松互转 PDF、视频、音频、图片与文档。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 637,
+        "name": "营销工具",
+        "slug": "营销工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>支持 300+ 种格式的在线文件转换工具，轻松互转 PDF、视频、音频、图片与文档。</p>"
+  },
+  {
+    "id": 599,
+    "slug": "问卷星",
+    "title": "问卷星",
+    "url": "https://www.wjx.cn/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.wjx.cn%2F",
+    "summary": "国内老牌专业在线问卷调查、市场调研、投票评选与在线考试平台。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 637,
+        "name": "营销工具",
+        "slug": "营销工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>国内老牌专业在线问卷调查、市场调研、投票评选与在线考试平台。</p>"
+  },
+  {
+    "id": 598,
+    "slug": "幕布",
+    "title": "幕布",
+    "url": "https://mubu.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fmubu.com%2F",
+    "summary": "极简大纲笔记与一键转思维导图工具，适合快速整理直播逐字稿与选题大纲。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 637,
+        "name": "营销工具",
+        "slug": "营销工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>极简大纲笔记与一键转思维导图工具，适合快速整理直播逐字稿与选题大纲。</p>"
+  },
+  {
+    "id": 597,
+    "slug": "xmind",
+    "title": "Xmind",
+    "url": "https://xmind.cn/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fxmind.cn%2F",
+    "summary": "经典思维导图与头脑风暴软件，梳理营销策略框架、活动方案与知识体系必备。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 637,
+        "name": "营销工具",
+        "slug": "营销工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>经典思维导图与头脑风暴软件，梳理营销策略框架、活动方案与知识体系必备。</p>"
+  },
+  {
+    "id": 596,
+    "slug": "语雀",
+    "title": "语雀",
+    "url": "https://www.yuque.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.yuque.com%2F",
+    "summary": "蚂蚁集团出品的专业云端知识库，结构清晰、阅读体验佳，适合沉淀社群课程与文档。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 637,
+        "name": "营销工具",
+        "slug": "营销工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>蚂蚁集团出品的专业云端知识库，结构清晰、阅读体验佳，适合沉淀社群课程与文档。</p>"
+  },
+  {
+    "id": 595,
+    "slug": "notion",
+    "title": "Notion",
+    "url": "https://www.notion.so/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.notion.so%2F",
+    "summary": "全球领先的一体化知识库与项目管理工具，适合搭建个人营销笔记库与团队 SOP 系统。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 637,
+        "name": "营销工具",
+        "slug": "营销工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>全球领先的一体化知识库与项目管理工具，适合搭建个人营销笔记库与团队 SOP 系统。</p>"
+  },
+  {
+    "id": 594,
+    "slug": "腾讯文档",
+    "title": "腾讯文档",
+    "url": "https://docs.qq.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fdocs.qq.com%2F",
+    "summary": "微信生态无缝协作的在线文档、表格与收集表，适合团队同步投放排期与方案评审。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 637,
+        "name": "营销工具",
+        "slug": "营销工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>微信生态无缝协作的在线文档、表格与收集表，适合团队同步投放排期与方案评审。</p>"
+  },
+  {
+    "id": 593,
+    "slug": "蓝湖",
+    "title": "蓝湖",
+    "url": "https://lanhuapp.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Flanhuapp.com%2F",
+    "summary": "产品、设计与研发协作平台，高效管理营销专题页设计稿、切图与标注交付。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 637,
+        "name": "营销工具",
+        "slug": "营销工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>产品、设计与研发协作平台，高效管理营销专题页设计稿、切图与标注交付。</p>"
+  },
+  {
+    "id": 592,
+    "slug": "墨刀",
+    "title": "墨刀",
+    "url": "https://modao.cc/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fmodao.cc%2F",
+    "summary": "国内常用的在线产品原型、营销活动页交互设计与团队协作评审工具。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 637,
+        "name": "营销工具",
+        "slug": "营销工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>国内常用的在线产品原型、营销活动页交互设计与团队协作评审工具。</p>"
+  },
+  {
+    "id": 591,
+    "slug": "小墨鹰编辑器",
+    "title": "小墨鹰编辑器",
+    "url": "https://www.xmyeditor.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.xmyeditor.com%2F",
+    "summary": "轻量好用的微信公众号图文排版与 AI 辅助写作编辑器。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 637,
+        "name": "营销工具",
+        "slug": "营销工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>轻量好用的微信公众号图文排版与 AI 辅助写作编辑器。</p>"
+  },
+  {
+    "id": 590,
+    "slug": "壹伴助手",
+    "title": "壹伴助手",
+    "url": "https://yiban.io/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fyiban.io%2F",
+    "summary": "微信公众号运营必备浏览器插件，提供海量排版样式、数据导出、永久链接与配图增强。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 637,
+        "name": "营销工具",
+        "slug": "营销工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>微信公众号运营必备浏览器插件，提供海量排版样式、数据导出、永久链接与配图增强。</p>"
+  },
+  {
+    "id": 589,
+    "slug": "阿里妈妈",
+    "title": "阿里妈妈",
+    "url": "https://www.alimama.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.alimama.com%2F",
+    "summary": "阿里巴巴官方全域数智营销平台，整合淘宝天猫直通车、引力魔方与万相台无界版。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 614,
+        "name": "媒介/渠道后台数据平台",
+        "slug": "媒介/渠道后台数据平台"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>阿里巴巴官方全域数智营销平台，整合淘宝天猫直通车、引力魔方与万相台无界版。</p>"
+  },
+  {
+    "id": 588,
+    "slug": "知乎芝士平台",
+    "title": "知乎芝士平台",
+    "url": "https://zhishi.zhihu.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fzhishi.zhihu.com%2F",
+    "summary": "知乎官方商业内容合作平台，支持品牌种草、知乎好物测评与答主邀约。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 614,
+        "name": "媒介/渠道后台数据平台",
+        "slug": "媒介/渠道后台数据平台"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>知乎官方商业内容合作平台，支持品牌种草、知乎好物测评与答主邀约。</p>"
+  },
+  {
+    "id": 587,
+    "slug": "微博微任务",
+    "title": "微博微任务",
+    "url": "https://weirenwu.weibo.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fweirenwu.weibo.com%2F",
+    "summary": "新浪微博官方商业内容投放与 KOL 营销任务撮合平台。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 614,
+        "name": "媒介/渠道后台数据平台",
+        "slug": "媒介/渠道后台数据平台"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>新浪微博官方商业内容投放与 KOL 营销任务撮合平台。</p>"
+  },
+  {
+    "id": 586,
+    "slug": "b站花火平台",
+    "title": "B站花火平台",
+    "url": "https://huahuo.bilibili.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fhuahuo.bilibili.com%2F",
+    "summary": "哔哩哔哩官方 UP 主商业合作平台，支持 UP 主粉丝画像分析与品牌商单投放。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 614,
+        "name": "媒介/渠道后台数据平台",
+        "slug": "媒介/渠道后台数据平台"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>哔哩哔哩官方 UP 主商业合作平台，支持 UP 主粉丝画像分析与品牌商单投放。</p>"
+  },
+  {
+    "id": 585,
+    "slug": "快手磁力聚星",
+    "title": "快手磁力聚星",
+    "url": "https://k.kuaishou.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fk.kuaishou.com%2F",
+    "summary": "快手官方达人生态营销与商单合作平台，提供达人筛选、投前测算与效果追踪。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 614,
+        "name": "媒介/渠道后台数据平台",
+        "slug": "媒介/渠道后台数据平台"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>快手官方达人生态营销与商单合作平台，提供达人筛选、投前测算与效果追踪。</p>"
+  },
+  {
+    "id": 584,
+    "slug": "快手磁力引擎",
+    "title": "快手磁力引擎",
+    "url": "https://e.kuaishou.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fe.kuaishou.com%2F",
+    "summary": "快手官方商业化广告投放平台，覆盖快手短视频信息流、搜索与电商直播推广。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 614,
+        "name": "媒介/渠道后台数据平台",
+        "slug": "媒介/渠道后台数据平台"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>快手官方商业化广告投放平台，覆盖快手短视频信息流、搜索与电商直播推广。</p>"
+  },
+  {
+    "id": 583,
+    "slug": "google-trends",
+    "title": "Google Trends",
+    "url": "https://trends.google.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Ftrends.google.com%2F",
+    "summary": "Google 官方全球搜索趋势分析工具，出海营销选品、关键词热度对比与地域洞察必备。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 614,
+        "name": "媒介/渠道后台数据平台",
+        "slug": "媒介/渠道后台数据平台"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>Google 官方全球搜索趋势分析工具，出海营销选品、关键词热度对比与地域洞察必备。</p>"
+  },
+  {
+    "id": 582,
+    "slug": "达多多",
+    "title": "达多多",
+    "url": "https://www.daduoduo.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.daduoduo.com%2F",
+    "summary": "抖音电商达人带货、商品排行与投流素材监测数据分析平台。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 614,
+        "name": "媒介/渠道后台数据平台",
+        "slug": "媒介/渠道后台数据平台"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>抖音电商达人带货、商品排行与投流素材监测数据分析平台。</p>"
+  },
+  {
+    "id": 581,
+    "slug": "考古加",
+    "title": "考古加",
+    "url": "https://www.kaogujia.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.kaogujia.com%2F",
+    "summary": "抖音直播电商与短视频带货数据分析工具，追踪直播间实时转化与爆品榜单。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 614,
+        "name": "媒介/渠道后台数据平台",
+        "slug": "媒介/渠道后台数据平台"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>抖音直播电商与短视频带货数据分析工具，追踪直播间实时转化与爆品榜单。</p>"
+  },
+  {
+    "id": 580,
+    "slug": "千瓜数据",
+    "title": "千瓜数据",
+    "url": "https://www.qian-gua.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.qian-gua.com%2F",
+    "summary": "专业小红书数据分析与种草投放监测平台，支持达人评估、品牌声量与笔记舆情追踪。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 614,
+        "name": "媒介/渠道后台数据平台",
+        "slug": "媒介/渠道后台数据平台"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>专业小红书数据分析与种草投放监测平台，支持达人评估、品牌声量与笔记舆情追踪。</p>"
+  },
+  {
+    "id": 579,
+    "slug": "巨量算数",
+    "title": "巨量算数",
+    "url": "https://trendinsight.oceanengine.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Ftrendinsight.oceanengine.com%2F",
+    "summary": "字节跳动官方内容消费趋势与关键词指数平台，洞察抖音/头条热点与人群画像。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 614,
+        "name": "媒介/渠道后台数据平台",
+        "slug": "媒介/渠道后台数据平台"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>字节跳动官方内容消费趋势与关键词指数平台，洞察抖音/头条热点与人群画像。</p>"
+  },
+  {
+    "id": 578,
+    "slug": "巨量引擎",
+    "title": "巨量引擎",
+    "url": "https://www.oceanengine.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.oceanengine.com%2F",
+    "summary": "字节跳动旗下综合数字化营销服务平台，覆盖抖音、今日头条、西瓜视频全域广告投放。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 614,
+        "name": "媒介/渠道后台数据平台",
+        "slug": "媒介/渠道后台数据平台"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>字节跳动旗下综合数字化营销服务平台，覆盖抖音、今日头条、西瓜视频全域广告投放。</p>"
+  },
+  {
+    "id": 577,
+    "slug": "lovart",
+    "title": "Lovart",
+    "url": "https://www.lovart.ai/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.lovart.ai%2F",
+    "summary": "专注品牌视觉与广告设计工作流的 AI 设计 Agent，一站式生成海报、包装与品牌物料。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 635,
+        "name": "AI工具",
+        "slug": "AI工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>专注品牌视觉与广告设计工作流的 AI 设计 Agent，一站式生成海报、包装与品牌物料。</p>"
+  },
+  {
+    "id": 576,
+    "slug": "v0-by-vercel",
+    "title": "v0 by Vercel",
+    "url": "https://v0.dev/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fv0.dev%2F",
+    "summary": "Vercel 推出的 AI 前端界面生成工具，快速把产品想法变成高颜值网页组件与落地页。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 635,
+        "name": "AI工具",
+        "slug": "AI工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>Vercel 推出的 AI 前端界面生成工具，快速把产品想法变成高颜值网页组件与落地页。</p>"
+  },
+  {
+    "id": 575,
+    "slug": "bolt.new",
+    "title": "Bolt.new",
+    "url": "https://bolt.new/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fbolt.new%2F",
+    "summary": "浏览器内全栈 AI 应用生成工具，一句话即可快速生成可运行的营销活动页与小工具。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 635,
+        "name": "AI工具",
+        "slug": "AI工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>浏览器内全栈 AI 应用生成工具，一句话即可快速生成可运行的营销活动页与小工具。</p>"
+  },
+  {
+    "id": 574,
+    "slug": "manus",
+    "title": "Manus",
+    "url": "https://manus.im/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fmanus.im%2F",
+    "summary": "通用型自主 AI Agent 平台，可自动完成市场调研、数据分析与报告生成等复杂任务。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 635,
+        "name": "AI工具",
+        "slug": "AI工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>通用型自主 AI Agent 平台，可自动完成市场调研、数据分析与报告生成等复杂任务。</p>"
+  },
+  {
+    "id": 573,
+    "slug": "天工-ai",
+    "title": "天工 AI",
+    "url": "https://www.tiangong.cn/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.tiangong.cn%2F",
+    "summary": "昆仑万维推出的 AI 搜索与创作助手，支持深度研报检索、AI 音乐与文档总结。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 635,
+        "name": "AI工具",
+        "slug": "AI工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>昆仑万维推出的 AI 搜索与创作助手，支持深度研报检索、AI 音乐与文档总结。</p>"
+  },
+  {
+    "id": 572,
+    "slug": "讯飞星火",
+    "title": "讯飞星火",
+    "url": "https://xinghuo.xfyun.cn/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fxinghuo.xfyun.cn%2F",
+    "summary": "科大讯飞大模型平台，擅长中文长文写作、语音交互与办公文档效率处理。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 635,
+        "name": "AI工具",
+        "slug": "AI工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>科大讯飞大模型平台，擅长中文长文写作、语音交互与办公文档效率处理。</p>"
+  },
+  {
+    "id": 571,
+    "slug": "文心一言",
+    "title": "文心一言",
+    "url": "https://yiyan.baidu.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fyiyan.baidu.com%2F",
+    "summary": "百度官方知识增强大语言模型，擅长中文营销文案、公文润色与百度生态检索。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 635,
+        "name": "AI工具",
+        "slug": "AI工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>百度官方知识增强大语言模型，擅长中文营销文案、公文润色与百度生态检索。</p>"
+  },
+  {
+    "id": 570,
+    "slug": "智谱清言",
+    "title": "智谱清言",
+    "url": "https://chatglm.cn/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fchatglm.cn%2F",
+    "summary": "智谱 AI 官方大模型助手，支持智能体、数据分析、PPT 生成与长文档阅读。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 635,
+        "name": "AI工具",
+        "slug": "AI工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>智谱 AI 官方大模型助手，支持智能体、数据分析、PPT 生成与长文档阅读。</p>"
+  },
+  {
+    "id": 569,
+    "slug": "vidu-ai",
+    "title": "Vidu AI",
+    "url": "https://www.vidu.cn/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.vidu.cn%2F",
+    "summary": "国产领先的 AI 视频生成平台，支持多主体参考生视频，适合广告短片与动画分镜。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 635,
+        "name": "AI工具",
+        "slug": "AI工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>国产领先的 AI 视频生成平台，支持多主体参考生视频，适合广告短片与动画分镜。</p>"
+  },
+  {
+    "id": 568,
+    "slug": "海螺-ai",
+    "title": "海螺 AI",
+    "url": "https://hailuoai.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fhailuoai.com%2F",
+    "summary": "MiniMax 旗下多模态 AI 助手与 AI 视频生成平台，文生视频动态自然、表现力强。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 635,
+        "name": "AI工具",
+        "slug": "AI工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>MiniMax 旗下多模态 AI 助手与 AI 视频生成平台，文生视频动态自然、表现力强。</p>"
+  },
+  {
+    "id": 567,
+    "slug": "napkin-ai",
+    "title": "Napkin AI",
+    "url": "https://www.napkin.ai/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.napkin.ai%2F",
+    "summary": "将文字内容一键转为高颜值信息图、流程图与商业配图的 AI 可视化工具。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 635,
+        "name": "AI工具",
+        "slug": "AI工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>将文字内容一键转为高颜值信息图、流程图与商业配图的 AI 可视化工具。</p>"
+  },
+  {
+    "id": 566,
+    "slug": "leonardo-ai",
+    "title": "Leonardo AI",
+    "url": "https://leonardo.ai/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fleonardo.ai%2F",
+    "summary": "面向设计师与营销团队的 AI 视觉创作平台，支持风格一致性训练与电商素材生成。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 635,
+        "name": "AI工具",
+        "slug": "AI工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>面向设计师与营销团队的 AI 视觉创作平台，支持风格一致性训练与电商素材生成。</p>"
+  },
+  {
+    "id": 565,
+    "slug": "ideogram",
+    "title": "Ideogram",
+    "url": "https://ideogram.ai/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fideogram.ai%2F",
+    "summary": "擅长精准文字排版的 AI 绘图工具，适合制作英文海报、Logo 创意与社媒配图。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 635,
+        "name": "AI工具",
+        "slug": "AI工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>擅长精准文字排版的 AI 绘图工具，适合制作英文海报、Logo 创意与社媒配图。</p>"
+  },
+  {
+    "id": 564,
+    "slug": "luma-dream-machine",
+    "title": "Luma Dream Machine",
+    "url": "https://lumalabs.ai/dream-machine",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Flumalabs.ai%2Fdream-machine",
+    "summary": "高质量 AI 视频生成工具，擅长电影感运镜与产品动态展示视频制作。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 635,
+        "name": "AI工具",
+        "slug": "AI工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>高质量 AI 视频生成工具，擅长电影感运镜与产品动态展示视频制作。</p>"
+  },
+  {
+    "id": 563,
+    "slug": "elevenlabs",
+    "title": "ElevenLabs",
+    "url": "https://elevenlabs.io/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Felevenlabs.io%2F",
+    "summary": "全球最拟真的 AI 语音合成与声音克隆平台，适合短视频配音、播客与出海广告旁白。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 635,
+        "name": "AI工具",
+        "slug": "AI工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>全球最拟真的 AI 语音合成与声音克隆平台，适合短视频配音、播客与出海广告旁白。</p>"
+  },
+  {
+    "id": 562,
+    "slug": "heygen",
+    "title": "HeyGen",
+    "url": "https://www.heygen.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.heygen.com%2F",
+    "summary": "领先的 AI 数字人视频与多语种口型翻译平台，跨境出海营销与口播带货神器。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 635,
+        "name": "AI工具",
+        "slug": "AI工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>领先的 AI 数字人视频与多语种口型翻译平台，跨境出海营销与口播带货神器。</p>"
+  },
+  {
+    "id": 561,
+    "slug": "runway",
+    "title": "Runway",
+    "url": "https://runwayml.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Frunwayml.com%2F",
+    "summary": "好莱坞级 AI 视频生成与后期剪辑平台，支持文生视频、图生视频与智能抠像。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 635,
+        "name": "AI工具",
+        "slug": "AI工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>好莱坞级 AI 视频生成与后期剪辑平台，支持文生视频、图生视频与智能抠像。</p>"
+  },
+  {
+    "id": 560,
+    "slug": "midjourney",
+    "title": "Midjourney",
+    "url": "https://www.midjourney.com/",
+    "icon": "https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=https%3A%2F%2Fwww.midjourney.com%2F",
+    "summary": "全球顶尖的 AI 图像生成工具，广告创意、品牌视觉与艺术海报出图质量极高。",
+    "date": "2026-11-25",
+    "favorites": [
+      {
+        "id": 635,
+        "name": "AI工具",
+        "slug": "AI工具"
+      }
+    ],
+    "tags": [],
+    "contentHtml": "<p>全球顶尖的 AI 图像生成工具，广告创意、品牌视觉与艺术海报出图质量极高。</p>"
+  },
+  {
     "id": 559,
     "slug": "similarweb",
     "title": "Similarweb",
