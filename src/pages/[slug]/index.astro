@@ -63,11 +63,34 @@ const activeNav =
         : page?.title === '「天马黑珍珠」社群内容导航'
           ? '「天马黑珍珠」社群内容导航'
           : '';
+const seoKeywords =
+  kind === 'post'
+    ? [post.title, ...post.categories.map((c) => c.name), ...post.tags.map((t) => t.name), '营销笔记', '天马黑珍珠'].join(',')
+    : `${page.title},天马黑珍珠,营销导航,营销工具`;
+
+const pageJsonLd =
+  kind === 'post'
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: post.title,
+        description: post.excerpt,
+        datePublished: post.date,
+        dateModified: post.modified || post.date,
+        author: { '@type': 'Organization', name: '天马黑珍珠', url: 'https://tmhzz.com' },
+        publisher: { '@type': 'Organization', name: '天马黑珍珠', url: 'https://tmhzz.com' },
+        inLanguage: 'zh-CN',
+      }
+    : undefined;
 ---
 
 <BaseLayout
   title={kind === 'post' ? post.title : page.title}
-  description={kind === 'post' ? post.excerpt : page.title}
+  description={kind === 'post' ? post.excerpt : `${page.title} - 天马黑珍珠营销导航与工具站`}
+  keywords={seoKeywords}
+  ogType={kind === 'post' ? 'article' : 'website'}
+  ogImage={kind === 'post' && post.thumbnail ? post.thumbnail : undefined}
+  jsonLd={pageJsonLd}
   activeNav={activeNav}
 >
   <main class="container-narrow">

@@ -17,9 +17,30 @@ const related = sites
   .filter((s) => s.id !== site.id && primaryCat && s.favorites.some((f) => f.id === primaryCat.id))
   .slice(0, 6);
 const firstChar = (site.title || '?').replace(/^[「【（("'\s]+/, '').slice(0, 1) || '网';
+const siteKeywords = [
+  site.title,
+  ...site.favorites.map((c) => c.name),
+  ...site.tags.map((t) => t.name),
+  '天马黑珍珠',
+  '营销导航',
+].join(',');
+const siteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: site.title,
+  description: site.summary || site.title,
+  url: `https://tmhzz.com/sites/${encodeURIComponent(site.slug)}.html`,
+  datePublished: site.date,
+  inLanguage: 'zh-CN',
+};
 ---
 
-<BaseLayout title={site.title} description={site.summary || site.title}>
+<BaseLayout
+  title={site.title}
+  description={site.summary || `${site.title} - 天马黑珍珠精选营销与效率工具导航`}
+  keywords={siteKeywords}
+  jsonLd={siteJsonLd}
+>
   <main class="container-narrow">
     <nav class="breadcrumb" aria-label="面包屑">
       <a href="/">首页</a>

@@ -5,17 +5,49 @@ import '../styles/global.css';
 export interface Props {
   title?: string;
   description?: string;
+  keywords?: string;
+  ogType?: string;
+  ogImage?: string;
+  jsonLd?: Record<string, any> | Record<string, any>[];
   activeNav?: string;
 }
 
 const {
   title,
   description = siteConfig.description,
+  keywords = '天马黑珍珠,营销导航,营销工具导航,AI工具导航,广告创意案例,违禁词查询,媒介数据平台,行业报告下载,营销笔记,自媒体运营工具',
+  ogType = 'website',
+  ogImage = '/wp-content/uploads/2024/12/1735383887-WechatIMG454.png',
+  jsonLd,
   activeNav = '',
 } = Astro.props;
 
-const pageTitle = title ? `${title} - ${siteConfig.name}` : `${siteConfig.name} | ${siteConfig.tagline}`;
+const pageTitle = title ? `${title} - ${siteConfig.name}` : `${siteConfig.name} | 营销导航与AI工具站 · 人生在世，不是在营销，就是被营销`;
 const currentPath = decodeURIComponent(Astro.url.pathname);
+const canonicalUrl = new URL(Astro.url.pathname, siteConfig.siteUrl).href;
+const absoluteOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, siteConfig.siteUrl).href;
+
+const baseSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteConfig.name,
+    alternateName: 'tmhzz',
+    url: siteConfig.siteUrl,
+    description: siteConfig.description,
+    inLanguage: 'zh-CN',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: siteConfig.name,
+    url: siteConfig.siteUrl,
+    logo: new URL(siteConfig.logo, siteConfig.siteUrl).href,
+    sameAs: [siteConfig.weiboUrl],
+  },
+];
+const extraSchemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const allSchemas = [...baseSchemas, ...extraSchemas];
 ---
 
 <!DOCTYPE html>
@@ -25,10 +57,57 @@ const currentPath = decodeURIComponent(Astro.url.pathname);
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{pageTitle}</title>
   <meta name="description" content={description} />
+  <meta name="keywords" content={keywords} />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="baidu-site-verification" content="codeva-8C8bUcsVv6" />
+  <meta name="yandex-verification" content="e0f2285214d03852" />
   <meta name="theme-color" content="#f9f9f9" />
+  <link rel="canonical" href={canonicalUrl} />
+  <link rel="alternate" type="text/plain" title="LLMs.txt" href="/llms.txt" />
+
+  <!-- Open Graph & Social Cards -->
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:site_name" content={siteConfig.name} />
+  <meta property="og:image" content={absoluteOgImage} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={absoluteOgImage} />
+
   <link rel="icon" type="image/png" href={siteConfig.favicon} />
   <link rel="apple-touch-icon" href={siteConfig.favicon} />
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+  <!-- Structured Data (JSON-LD for Search Engines & AI) -->
+  {allSchemas.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
+
+  <!-- Google Tag (GT-NSL74V4C) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GT-NSL74V4C"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GT-NSL74V4C');
+  </script>
+
+  <!-- Baidu Analytics (百度统计) -->
+  <script is:inline>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b0abcca43f4972c3faa996d022d2725d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+  <!-- Google AdSense -->
   {siteConfig.adsense.enabled && (
     <script
       async

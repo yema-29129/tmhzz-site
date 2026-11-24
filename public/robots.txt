@@ -1,4 +1,40 @@
+# Welcome all traditional search engines and AI search crawlers
 User-agent: *
 Allow: /
 
+# Explicitly welcome major Search & AI Crawlers (GEO / AI Search)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
 Sitemap: https://tmhzz.com/sitemap-index.xml
+# AI-readable site index: https://tmhzz.com/llms.txt
