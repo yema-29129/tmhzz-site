@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SiteCard from '../../../components/SiteCard.astro';
+import sitetags from '../../../data/sitetags.json';
+import sites from '../../../data/sites.json';
+
+export function getStaticPaths() {
+  return sitetags.map((tag) => ({
+    params: { slug: tag.slug },
+    props: { tag },
+  }));
+}
+
+const { tag } = Astro.props;
+const matched = sites.filter((s) => s.tags.some((t) => t.id === tag.id));
+---
+
+<BaseLayout title={`${tag.name} - 网址标签`} description={`天马黑珍珠导航「${tag.name}」标签下共收录 ${matched.length} 个网站。`}>
+  <main class="container-narrow">
+    <nav class="breadcrumb" aria-label="面包屑">
+      <a href="/">首页</a>
+      <span>/</span>
+      <span>标签</span>
+      <span>/</span>
+      <span>#{tag.name}</span>
+    </nav>
+
+    <div class="panel">
+      <div class="section-header" style="margin-bottom:20px;">
+        <h1 style="margin:0;font-size:22px;">#{tag.name}</h1>
+        <span class="tag-pill">共 {matched.length} 个网站</span>
+      </div>
+
+      {matched.length > 0 ? (
+        <div class="site-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr));">
+          {matched.map((site) => <SiteCard site={site} />)}
+        </div>
+      ) : (
+        <p style="color:var(--text-muted);">该标签暂无收录网站。</p>
+      )}
+    </div>
+  </main>
+</BaseLayout>

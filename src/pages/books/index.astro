@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import books from '../../data/books.json';
+---
+
+<BaseLayout title="好书好物推荐" description="天马黑珍珠精选营销书籍与个人好物推荐。" activeNav="好书好物">
+  <main class="container-narrow">
+    <nav class="breadcrumb" aria-label="面包屑">
+      <a href="/">首页</a>
+      <span>/</span>
+      <span>好书好物</span>
+    </nav>
+
+    <div class="panel">
+      <h1 style="margin:0 0 10px;font-size:24px;">好书好物推荐</h1>
+      <p style="margin:0 0 22px;color:var(--text-secondary);">共收录 {books.length} 本营销经典书籍与个人精选好物。</p>
+
+      <div class="article-grid">
+        {books.map((book) => (
+          <a href={`/book/${book.slug}.html`} class="article-card">
+            <div class="article-cover">
+              {book.cover ? (
+                <img src={book.cover} alt={book.title} loading="lazy" />
+              ) : (
+                <i class="fas fa-book" style="font-size:40px;color:var(--brand);"></i>
+              )}
+            </div>
+            <div class="article-body">
+              <h2 class="article-title">{book.title}</h2>
+              <p class="article-excerpt">{book.summary}</p>
+              <div class="article-meta">
+                <span>{book.meta?.['作者'] || book.date}</span>
+                <span>{book.categories[0]?.name || '推荐'}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </main>
+</BaseLayout>

@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdSenseBlock from '../../components/AdSenseBlock.astro';
+import books from '../../data/books.json';
+
+export function getStaticPaths() {
+  return books.map((book) => ({
+    params: { slug: book.slug },
+    props: { book },
+  }));
+}
+
+const { book } = Astro.props;
+const metaEntries = Object.entries(book.meta || {});
+---
+
+<BaseLayout title={book.title} description={book.summary} activeNav="好书好物">
+  <main class="container-narrow">
+    <nav class="breadcrumb" aria-label="面包屑">
+      <a href="/">首页</a>
+      <span>/</span>
+      <a href="/books/">好书好物</a>
+      <span>/</span>
+      <span>{book.title}</span>
+    </nav>
+
+    <div class="panel">
+      <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;">
+        {book.cover && (
+          <img
+            src={book.cover}
+            alt={book.title}
+            style="width:180px;height:auto;border-radius:12px;border:1px solid var(--border-color);object-fit:cover;"
+          />
+        )}
+        <div style="flex:1;min-width:240px;">
+          <h1 style="margin:0 0 10px;font-size:24px;">{book.title}</h1>
+          <p style="margin:0 0 16px;color:var(--text-secondary);line-height:1.7;">{book.summary}</p>
+
+          {metaEntries.length > 0 && (
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px 16px;margin-bottom:18px;font-size:13.5px;">
+              {metaEntries.map(([k, v]) => (
+                <div>
+                  <span style="color:var(--text-muted);">{k}：</span>
+                  <span>{v}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {book.buyLinks && book.buyLinks.length > 0 && (
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              {book.buyLinks.map((bl) => (
+                <a href={bl.url} target="_blank" rel="noopener noreferrer nofollow" class="btn btn-primary">
+                  <span>{bl.label}</span>
+                  <i class="fas fa-external-link-alt" style="font-size:12px;"></i>
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+
+    {book.contentHtml && (
+      <article class="panel prose" set:html={book.contentHtml} />
+    )}
+
+    <AdSenseBlock />
+  </main>
+</BaseLayout>

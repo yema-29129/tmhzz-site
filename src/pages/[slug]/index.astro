@@ -1,0 +1,351 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdSenseBlock from '../../components/AdSenseBlock.astro';
+import SiteCard from '../../components/SiteCard.astro';
+import posts from '../../data/posts.json';
+import pages from '../../data/pages.json';
+import apps from '../../data/apps.json';
+import sites from '../../data/sites.json';
+import siteConfig from '../../data/site-config.json';
+
+export function getStaticPaths() {
+  const paths = [];
+  const used = new Set();
+
+  for (const page of pages) {
+    if (!page.slug || used.has(page.slug)) continue;
+    used.add(page.slug);
+    paths.push({
+      params: { slug: page.slug },
+      props: { kind: 'page', page, post: null },
+    });
+  }
+
+  for (const post of posts) {
+    if (!post.slug || used.has(post.slug)) continue;
+    used.add(post.slug);
+    paths.push({
+      params: { slug: post.slug },
+      props: { kind: 'post', post, page: null },
+    });
+  }
+
+  return paths;
+}
+
+const { kind, page, post } = Astro.props;
+
+// Prepare post navigation if kind === 'post'
+const postIndex = kind === 'post' ? posts.findIndex((p) => p.id === post.id) : -1;
+const prevPost = postIndex > 0 ? posts[postIndex - 1] : null;
+const nextPost = postIndex >= 0 && postIndex < posts.length - 1 ? posts[postIndex + 1] : null;
+
+// Special page detection
+const isNotesPage = kind === 'page' && page.id === 376;
+const isDownloadPage = kind === 'page' && page.id === 453;
+const isCalcIndexPage = kind === 'page' && page.id === 174;
+const isLinksPage = kind === 'page' && page.id === 9;
+const isRankingsPage = kind === 'page' && page.id === 7;
+const isCalculator = kind === 'page' && page.isCalculator;
+
+const calcPages = pages.filter((p) => p.isCalculator);
+const allPostCategories = Array.from(
+  new Set(posts.flatMap((p) => p.categories.map((c) => c.name)))
+);
+
+const activeNav =
+  kind === 'post' || isNotesPage
+    ? '「天马黑珍珠」营销笔记'
+    : isDownloadPage
+      ? '资料下载'
+      : isCalculator || isCalcIndexPage
+        ? '计算器'
+        : page?.title === '「天马黑珍珠」社群内容导航'
+          ? '「天马黑珍珠」社群内容导航'
+          : '';
+---
+
+<BaseLayout
+  title={kind === 'post' ? post.title : page.title}
+  description={kind === 'post' ? post.excerpt : page.title}
+  activeNav={activeNav}
+>
+  <main class="container-narrow">
+    <nav class="breadcrumb" aria-label="面包屑">
+      <a href="/">首页</a>
+      <span>/</span>
+      {kind === 'post' && (
+        <>
+          <a href="/「天马黑珍珠」营销笔记/">营销笔记</a>
+          <span>/</span>
+        </>
+      )}
+      {isCalculator && (
+        <>
+          <a href="/计算器/">计算器</a>
+          <span>/</span>
+        </>
+      )}
+      <span>{kind === 'post' ? post.title : page.title}</span>
+    </nav>
+
+    {/* ===== 1. Blog Post Detail ===== */}
+    {kind === 'post' && (
+      <>
+        <article class="panel">
+          <header style="margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border-color);">
+            <h1 style="margin:0 0 12px;font-size:26px;line-height:1.35;">{post.title}</h1>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:13px;color:var(--text-muted);">
+              <span><i class="far fa-calendar-alt" style="margin-right:4px;"></i>{post.date}</span>
+              {post.categories.map((c) => (
+                <span class="tag-pill">{c.name}</span>
+              ))}
+              {post.tags.map((t) => (
+                <span class="tag-pill">#{t.name}</span>
+              ))}
+            </div>
+          </header>
+
+          <div class="prose" set:html={post.contentHtml} />
+        </article>
+
+        <AdSenseBlock />
+
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:20px;">
+          {prevPost ? (
+            <a href={`/${prevPost.slug}/`} class="btn btn-outline">
+              <i class="fas fa-arrow-left"></i>
+              <span>上一篇：{prevPost.title}</span>
+            </a>
+          ) : <span />}
+          {nextPost && (
+            <a href={`/${nextPost.slug}/`} class="btn btn-outline">
+              <span>下一篇：{nextPost.title}</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          )}
+        </div>
+      </>
+    )}
+
+    {/* ===== 2. Interactive Calculator Page ===== */}
+    {isCalculator && (
+      <div class="panel">
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;">
+          <h1 style="margin:0;font-size:22px;">{page.title}</h1>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            {calcPages.map((cp) => (
+              <a
+                href={`/${cp.slug}/`}
+                class={`btn ${cp.id === page.id ? 'btn-primary' : 'btn-outline'}`}
+                style="padding:6px 14px;font-size:13px;"
+              >
+                {cp.title}
+              </a>
+            ))}
+          </div>
+        </div>
+        <iframe
+          id="calc-frame"
+          srcdoc={page.calculatorHtml}
+          title={page.title}
+          style="width:100%;min-height:820px;border:1px solid var(--border-color);border-radius:10px;background:#ffffff;"
+          sandbox="allow-scripts allow-forms allow-same-origin"
+        ></iframe>
+        <script is:inline>
+          (function () {
+            var frame = document.getElementById('calc-frame');
+            if (!frame) return;
+            function resizeFrame() {
+              try {
+                var doc = frame.contentDocument || frame.contentWindow.document;
+                if (doc && doc.body) {
+                  var h = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight, 760);
+                  frame.style.height = (h + 40) + 'px';
+                }
+              } catch (e) {}
+            }
+            frame.addEventListener('load', function () {
+              resizeFrame();
+              setInterval(resizeFrame, 600);
+            });
+          })();
+        </script>
+      </div>
+    )}
+
+    {/* ===== 3. Calculator Index Page ===== */}
+    {isCalcIndexPage && (
+      <div class="panel">
+        <h1 style="margin:0 0 10px;font-size:24px;">实用计算器合集</h1>
+        <p style="margin:0 0 22px;color:var(--text-secondary);">纯前端即时计算，无服务器延迟，点击即可使用：</p>
+        <div class="article-grid">
+          {calcPages.map((cp) => (
+            <a href={`/${cp.slug}/`} class="article-card" style="padding:22px;">
+              <div style="font-size:28px;color:var(--brand);margin-bottom:12px;">
+                <i class="fas fa-calculator"></i>
+              </div>
+              <h2 class="article-title">{cp.title}</h2>
+              <p class="article-excerpt">在线免费使用 {cp.title}，支持参数自定义与实时结果明细展示。</p>
+              <div class="article-meta">
+                <span>立即使用</span>
+                <i class="fas fa-arrow-right"></i>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {/* ===== 4. Marketing Notes Index Page (18 posts + category filter) ===== */}
+    {isNotesPage && (
+      <>
+        <div class="panel">
+          <h1 style="margin:0 0 10px;font-size:24px;">{page.title}</h1>
+          <p style="margin:0 0 18px;color:var(--text-secondary);">
+            共收录 {posts.length} 篇营销笔记与实战思考，支持按分类快速筛选。
+          </p>
+
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;" id="post-cat-filters">
+            <button type="button" class="btn btn-primary" data-cat="ALL" style="padding:6px 14px;font-size:13px;">全部 ({posts.length})</button>
+            {allPostCategories.map((cat) => (
+              <button type="button" class="btn btn-outline" data-cat={cat} style="padding:6px 14px;font-size:13px;">{cat}</button>
+            ))}
+          </div>
+
+          <div class="article-grid" id="posts-grid">
+            {posts.map((p) => (
+              <a
+                href={`/${p.slug}/`}
+                class="article-card"
+                data-cats={p.categories.map((c) => c.name).join(',')}
+              >
+                {p.thumbnail && (
+                  <div class="article-cover">
+                    <img src={p.thumbnail} alt={p.title} loading="lazy" />
+                  </div>
+                )}
+                <div class="article-body">
+                  <h2 class="article-title">{p.title}</h2>
+                  <p class="article-excerpt">{p.excerpt}</p>
+                  <div class="article-meta">
+                    <span>{p.date}</span>
+                    <span>{p.categories[0]?.name || '营销笔记'}</span>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {page.contentHtml && (
+          <div class="panel prose" set:html={page.contentHtml} />
+        )}
+
+        <script is:inline>
+          (function () {
+            var btns = document.querySelectorAll('#post-cat-filters button');
+            var cards = document.querySelectorAll('#posts-grid .article-card');
+            btns.forEach(function (btn) {
+              btn.addEventListener('click', function () {
+                btns.forEach(function (b) {
+                  b.classList.remove('btn-primary');
+                  b.classList.add('btn-outline');
+                });
+                btn.classList.remove('btn-outline');
+                btn.classList.add('btn-primary');
+                var cat = btn.getAttribute('data-cat');
+                cards.forEach(function (card) {
+                  var cats = (card.getAttribute('data-cats') || '').split(',');
+                  card.style.display = (cat === 'ALL' || cats.indexOf(cat) !== -1) ? '' : 'none';
+                });
+              });
+            });
+          })();
+        </script>
+      </>
+    )}
+
+    {/* ===== 5. Resource Downloads Page (6 industry reports) ===== */}
+    {isDownloadPage && (
+      <div class="panel">
+        <h1 style="margin:0 0 10px;font-size:24px;">{page.title}</h1>
+        <p style="margin:0 0 22px;color:var(--text-secondary);">
+          精选行业研究报告与营销资料，共 {apps.length} 份，支持百度网盘、夸克网盘、迅雷网盘直接下载。
+        </p>
+        <div class="article-grid">
+          {apps.map((app) => (
+            <a href={`/app/${app.slug}.html`} class="article-card">
+              <div class="article-cover">
+                {app.cover ? (
+                  <img src={app.cover} alt={app.title} loading="lazy" />
+                ) : (
+                  <i class="fas fa-file-pdf" style="font-size:42px;color:var(--brand);"></i>
+                )}
+              </div>
+              <div class="article-body">
+                <h2 class="article-title">{app.title}</h2>
+                <p class="article-excerpt">{app.summary}</p>
+                <div class="article-meta">
+                  <span>{app.updated || app.date}</span>
+                  <span style="color:var(--brand);font-weight:600;">查看下载 →</span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {/* ===== 6. Friend Links Page ===== */}
+    {isLinksPage && (
+      <div class="panel">
+        <h1 style="margin:0 0 14px;font-size:24px;">{page.title}</h1>
+        <div class="site-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr));margin-bottom:22px;">
+          {siteConfig.friendLinks.map((fl) => (
+            <a href={fl.url} target="_blank" rel="noopener noreferrer" class="site-card">
+              <div class="site-icon-box"><i class="fas fa-link"></i></div>
+              <div class="site-card-info">
+                <div class="site-card-title">{fl.label}</div>
+                <div class="site-card-desc">{fl.url}</div>
+              </div>
+            </a>
+          ))}
+        </div>
+        {page.contentHtml && <div class="prose" set:html={page.contentHtml} />}
+      </div>
+    )}
+
+    {/* ===== 7. Rankings / Featured Page ===== */}
+    {isRankingsPage && (
+      <div class="panel">
+        <h1 style="margin:0 0 10px;font-size:24px;">精选推荐榜</h1>
+        <p style="margin:0 0 20px;color:var(--text-secondary);">精选常用营销导航与最新营销笔记汇总。</p>
+        <h2 style="font-size:17px;margin:0 0 14px;">精选网址（最新收录）</h2>
+        <div class="site-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr));margin-bottom:28px;">
+          {sites.slice(0, 18).map((s) => <SiteCard site={s} />)}
+        </div>
+        <h2 style="font-size:17px;margin:0 0 14px;">精选营销笔记</h2>
+        <div class="article-grid">
+          {posts.slice(0, 6).map((p) => (
+            <a href={`/${p.slug}/`} class="article-card">
+              <div class="article-body">
+                <h3 class="article-title">{p.title}</h3>
+                <p class="article-excerpt">{p.excerpt}</p>
+                <div class="article-meta"><span>{p.date}</span></div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {/* ===== 8. Standard Standalone Pages ===== */}
+    {kind === 'page' && !isCalculator && !isCalcIndexPage && !isNotesPage && !isDownloadPage && !isLinksPage && !isRankingsPage && (
+      <article class="panel">
+        <h1 style="margin:0 0 18px;font-size:24px;">{page.title}</h1>
+        <div class="prose" set:html={page.contentHtml || '<p>内容持续更新中。</p>'} />
+      </article>
+    )}
+  </main>
+</BaseLayout>

@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteCard from '../../components/SiteCard.astro';
+import AdSenseBlock from '../../components/AdSenseBlock.astro';
+import sites from '../../data/sites.json';
+
+export function getStaticPaths() {
+  return sites.map((site) => ({
+    params: { slug: site.slug },
+    props: { site },
+  }));
+}
+
+const { site } = Astro.props;
+const primaryCat = site.favorites[0];
+const related = sites
+  .filter((s) => s.id !== site.id && primaryCat && s.favorites.some((f) => f.id === primaryCat.id))
+  .slice(0, 6);
+const firstChar = (site.title || '?').replace(/^[「【（("'\s]+/, '').slice(0, 1) || '网';
+---
+
+<BaseLayout title={site.title} description={site.summary || site.title}>
+  <main class="container-narrow">
+    <nav class="breadcrumb" aria-label="面包屑">
+      <a href="/">首页</a>
+      <span>/</span>
+      {primaryCat ? (
+        <>
+          <a href={`/favorites/${primaryCat.slug}/`}>{primaryCat.name}</a>
+          <span>/</span>
+        </>
+      ) : null}
+      <span>{site.title}</span>
+    </nav>
+
+    <div class="panel">
+      <div style="display:flex;flex-wrap:wrap;gap:22px;align-items:flex-start;">
+        <div
+          class="site-icon-box"
+          data-fallback={firstChar}
+          style="width:76px;height:76px;border-radius:16px;font-size:28px;"
+        >
+          {site.icon ? (
+            <img
+              src={site.icon}
+              alt={site.title}
+              onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;"
+            />
+          ) : (
+            firstChar
+          )}
+        </div>
+
+        <div style="flex:1;min-width:240px;">
+          <h1 style="margin:0 0 10px;font-size:24px;line-height:1.3;">{site.title}</h1>
+          <p style="margin:0 0 14px;color:var(--text-secondary);font-size:14.5px;line-height:1.7;">
+            {site.summary || '精选营销与效率工具导航。'}
+          </p>
+
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;align-items:center;">
+            <span class="tag-pill"><i class="far fa-calendar-alt" style="margin-right:5px;"></i>收录于 {site.date}</span>
+            {site.favorites.map((cat) => (
+              <a href={`/favorites/${cat.slug}/`} class="tag-pill">{cat.name}</a>
+            ))}
+            {site.tags.map((tag) => (
+              <a href={`/sitetag/${tag.slug}/`} class="tag-pill">#{tag.name}</a>
+            ))}
+          </div>
+
+          <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+            {site.url && (
+              <a href={site.url} target="_blank" rel="noopener noreferrer nofollow" class="btn btn-primary">
+                <span>打开网站</span>
+                <i class="fas fa-external-link-alt" style="font-size:12px;"></i>
+              </a>
+            )}
+            {site.url && (
+              <button type="button" class="btn btn-outline" id="copy-site-url" data-url={site.url}>
+                <i class="far fa-copy"></i>
+                <span>复制链接</span>
+              </button>
+            )}
+            {site.url && (
+              <button type="button" class="btn btn-outline" id="show-site-qr" data-url={site.url}>
+                <i class="fas fa-qrcode"></i>
+                <span>手机查看</span>
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {site.contentHtml && (
+      <article class="panel prose" set:html={site.contentHtml} />
+    )}
+
+    <AdSenseBlock />
+
+    {related.length > 0 && (
+      <section style="margin-top:26px;">
+        <div class="section-header">
+          <h2 class="section-title"><i class="fas fa-th-large"></i>同分类推荐</h2>
+          {primaryCat && <a href={`/favorites/${primaryCat.slug}/`} class="section-more">查看全部</a>}
+        </div>
+        <div class="site-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr));">
+          {related.map((item) => <SiteCard site={item} />)}
+        </div>
+      </section>
+    )}
+  </main>
+
+  <div class="modal-backdrop" id="site-qr-modal">
+    <div class="modal-card" style="max-width:320px;text-align:center;">
+      <button class="modal-close" data-close-modal aria-label="关闭"><i class="fas fa-times"></i></button>
+      <h3 style="margin:0 0 12px;font-size:16px;">手机扫码打开</h3>
+      <img id="site-qr-img" src="" alt="网址二维码" style="width:200px;height:200px;border-radius:8px;border:1px solid var(--border-color);" />
+      <p style="margin:10px 0 0;font-size:12px;color:var(--text-muted);word-break:break-all;">{site.url}</p>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var copyBtn = document.getElementById('copy-site-url');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', function () {
+          var url = copyBtn.getAttribute('data-url');
+          if (navigator.clipboard && url) {
+            navigator.clipboard.writeText(url).then(function () {
+              copyBtn.querySelector('span').textContent = '已复制';
+              setTimeout(function () { copyBtn.querySelector('span').textContent = '复制链接'; }, 1800);
+            });
+          }
+        });
+      }
+      var qrBtn = document.getElementById('show-site-qr');
+      var qrModal = document.getElementById('site-qr-modal');
+      var qrImg = document.getElementById('site-qr-img');
+      if (qrBtn && qrModal && qrImg) {
+        qrBtn.addEventListener('click', function () {
+          var url = qrBtn.getAttribute('data-url') || '';
+          qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(url);
+          qrModal.classList.add('open');
+        });
+      }
+    })();
+  </script>
+</BaseLayout>

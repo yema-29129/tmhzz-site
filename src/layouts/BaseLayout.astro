@@ -1,0 +1,304 @@
+---
+import siteConfig from '../data/site-config.json';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  activeNav?: string;
+}
+
+const {
+  title,
+  description = siteConfig.description,
+  activeNav = '',
+} = Astro.props;
+
+const pageTitle = title ? `${title} - ${siteConfig.name}` : `${siteConfig.name} | ${siteConfig.tagline}`;
+const currentPath = decodeURIComponent(Astro.url.pathname);
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <meta name="description" content={description} />
+  <meta name="theme-color" content="#f9f9f9" />
+  <link rel="icon" type="image/png" href={siteConfig.favicon} />
+  <link rel="apple-touch-icon" href={siteConfig.favicon} />
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  {siteConfig.adsense.enabled && (
+    <script
+      async
+      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${siteConfig.adsense.client}`}
+      crossorigin="anonymous"
+    ></script>
+  )}
+  <script is:inline>
+    (function () {
+      try {
+        var saved = localStorage.getItem('tmhzz-theme');
+        if (saved === 'dark') document.documentElement.classList.add('dark');
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="mobile-menu-btn" id="mobile-sidebar-toggle" aria-label="打开菜单">
+        <i class="fas fa-bars"></i>
+      </button>
+      <a href="/" class="brand-link" title={siteConfig.name}>
+        <img src={siteConfig.logo} alt={siteConfig.name} class="brand-logo" />
+        <span class="brand-name">{siteConfig.name}</span>
+      </a>
+
+      <nav class="top-nav" aria-label="主导航">
+        {siteConfig.topNav.map((item) => {
+          const isActive =
+            activeNav === item.label ||
+            (item.href === '/' ? currentPath === '/' : currentPath.startsWith(item.href));
+          return (
+            <div class="nav-item">
+              <a href={item.href} class={`nav-link ${isActive ? 'active' : ''}`}>
+                {item.href === '/' && <i class="fas fa-compass" />}
+                <span>{item.label}</span>
+                {item.children && <i class="fas fa-angle-down" style="font-size:12px;" />}
+              </a>
+              {item.children && (
+                <div class="nav-dropdown">
+                  {item.children.map((sub) => (
+                    <a href={sub.href}>{sub.label}</a>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </nav>
+
+      <div class="header-right">
+        <span class="hitokoto-text" id="hitokoto-box">人生在世，不是在营销，就是被营销。</span>
+        <button class="icon-btn" id="open-search-modal" title="站内搜索" aria-label="站内搜索">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <slot />
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-desc">
+        <strong>{siteConfig.name}</strong> — {siteConfig.description}
+      </p>
+      <div class="footer-links">
+        {siteConfig.footerLinks.map((fl) =>
+          fl.label === '广告合作' ? (
+            <a href="javascript:;" data-open-qr="广告合作 / 联系微信">{fl.label}</a>
+          ) : (
+            <a href={fl.href} target={fl.external ? '_blank' : undefined} rel={fl.external ? 'noopener noreferrer' : undefined}>
+              {fl.label}
+            </a>
+          )
+        )}
+      </div>
+
+      {siteConfig.friendLinks.length > 0 && (
+        <div class="friend-links-box">
+          <h4 class="friend-links-title">友情链接</h4>
+          <div class="friend-links-list">
+            {siteConfig.friendLinks.map((fl) => (
+              <a href={fl.url} target="_blank" rel="noopener noreferrer">{fl.label}</a>
+            ))}
+            <a href="/links/">更多链接</a>
+          </div>
+        </div>
+      )}
+
+      <div class="footer-copy">
+        {siteConfig.tagline} &nbsp;·&nbsp; © {new Date().getFullYear()} {siteConfig.name}
+      </div>
+    </div>
+  </footer>
+
+  <!-- Right Floating Toolbar -->
+  <div class="floating-tools" aria-label="快捷工具">
+    <button class="float-btn" id="back-to-top" title="回到顶部" aria-label="回到顶部">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <button class="float-btn" data-open-qr="微信扫码联系 / 加入社群" title="微信" aria-label="微信">
+      <i class="fab fa-weixin"></i>
+    </button>
+    <a class="float-btn" href={siteConfig.qqUrl} target="_blank" rel="noopener noreferrer nofollow" title="QQ" aria-label="QQ">
+      <i class="fab fa-qq"></i>
+    </a>
+    <a class="float-btn" href={siteConfig.weiboUrl} target="_blank" rel="noopener noreferrer nofollow" title="微博" aria-label="微博">
+      <i class="fab fa-weibo"></i>
+    </a>
+    <button class="float-btn" id="theme-toggle-btn" title="切换深浅色模式" aria-label="切换深浅色模式">
+      <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+  </div>
+
+  <!-- WeChat QR Modal -->
+  <div class="modal-backdrop" id="qr-modal">
+    <div class="modal-card" style="max-width:340px;text-align:center;">
+      <button class="modal-close" data-close-modal aria-label="关闭"><i class="fas fa-times"></i></button>
+      <h3 id="qr-modal-title" style="margin:0 0 14px;font-size:16px;">微信联系</h3>
+      <img src={siteConfig.wechatQr} alt="微信二维码" style="width:240px;height:auto;border-radius:10px;border:1px solid var(--border-color);" />
+      <p style="margin:12px 0 0;font-size:13px;color:var(--text-muted);">扫码添加微信 / 备注来意</p>
+    </div>
+  </div>
+
+  <!-- Global Search Modal -->
+  <div class="modal-backdrop" id="global-search-modal">
+    <div class="modal-card" style="max-width:620px;">
+      <button class="modal-close" data-close-modal aria-label="关闭"><i class="fas fa-times"></i></button>
+      <h3 style="margin:0 0 14px;font-size:16px;">站内快捷搜索</h3>
+      <div class="search-form-box" style="box-shadow:none;border:1px solid var(--border-color);">
+        <input type="text" id="modal-search-input" placeholder="输入关键词搜索网址、营销笔记、资料、好书..." autocomplete="off" />
+      </div>
+      <div id="modal-search-results" style="margin-top:12px;max-height:360px;overflow-y:auto;"></div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      // Rotating quotes
+      var quotes = [
+        '人生在世，不是在营销，就是被营销。',
+        '脚步声的急促是我想见你的预示。',
+        '好的工具，让效率翻倍；好的认知，让结果翻倍。',
+        '先解决流量与转化，再谈一切宏大叙事。',
+        '持续输出，时间会给你复利。'
+      ];
+      var hBox = document.getElementById('hitokoto-box');
+      if (hBox) {
+        hBox.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+      }
+
+      // Theme toggle
+      var themeBtn = document.getElementById('theme-toggle-btn');
+      var themeIcon = document.getElementById('theme-icon');
+      function syncThemeIcon() {
+        var isDark = document.documentElement.classList.contains('dark');
+        if (themeIcon) themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+      }
+      syncThemeIcon();
+      if (themeBtn) {
+        themeBtn.addEventListener('click', function () {
+          document.documentElement.classList.toggle('dark');
+          var isDark = document.documentElement.classList.contains('dark');
+          try { localStorage.setItem('tmhzz-theme', isDark ? 'dark' : 'light'); } catch (e) {}
+          syncThemeIcon();
+        });
+      }
+
+      // Back to top
+      var btt = document.getElementById('back-to-top');
+      window.addEventListener('scroll', function () {
+        if (btt) btt.classList.toggle('show', window.scrollY > 360);
+      });
+      if (btt) {
+        btt.addEventListener('click', function () {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      // Mobile sidebar toggle
+      var mBtn = document.getElementById('mobile-sidebar-toggle');
+      var sidebar = document.getElementById('main-sidebar');
+      if (mBtn && sidebar) {
+        mBtn.addEventListener('click', function () {
+          sidebar.classList.toggle('mobile-open');
+        });
+      }
+
+      // Modals
+      var qrModal = document.getElementById('qr-modal');
+      var qrTitle = document.getElementById('qr-modal-title');
+      document.querySelectorAll('[data-open-qr]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          if (qrTitle) qrTitle.textContent = el.getAttribute('data-open-qr') || '微信联系';
+          if (qrModal) qrModal.classList.add('open');
+        });
+      });
+
+      var searchModal = document.getElementById('global-search-modal');
+      var openSearchBtn = document.getElementById('open-search-modal');
+      var modalInput = document.getElementById('modal-search-input');
+      var modalResults = document.getElementById('modal-search-results');
+
+      if (openSearchBtn && searchModal) {
+        openSearchBtn.addEventListener('click', function () {
+          searchModal.classList.add('open');
+          setTimeout(function () { if (modalInput) modalInput.focus(); }, 60);
+          loadSearchIndex();
+        });
+      }
+
+      document.querySelectorAll('[data-close-modal]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          btn.closest('.modal-backdrop').classList.remove('open');
+        });
+      });
+      document.querySelectorAll('.modal-backdrop').forEach(function (bg) {
+        bg.addEventListener('click', function (e) {
+          if (e.target === bg) bg.classList.remove('open');
+        });
+      });
+
+      // Shared search index loader
+      window.__tmhzzIndexPromise = null;
+      window.loadSearchIndex = function () {
+        if (!window.__tmhzzIndexPromise) {
+          window.__tmhzzIndexPromise = fetch('/search-index.json')
+            .then(function (r) { return r.json(); })
+            .catch(function () { return []; });
+        }
+        return window.__tmhzzIndexPromise;
+      };
+
+      window.filterSearchItems = function (items, q) {
+        var kw = (q || '').trim().toLowerCase();
+        if (!kw) return [];
+        var parts = kw.split(/\s+/);
+        return items.filter(function (it) {
+          var hay = ((it.title || '') + ' ' + (it.desc || '') + ' ' + (it.tags || '') + ' ' + (it.extUrl || '')).toLowerCase();
+          return parts.every(function (p) { return hay.indexOf(p) !== -1; });
+        }).slice(0, 20);
+      };
+
+      if (modalInput && modalResults) {
+        modalInput.addEventListener('input', function () {
+          var q = modalInput.value;
+          window.loadSearchIndex().then(function (items) {
+            var hits = window.filterSearchItems(items, q);
+            if (!q.trim()) {
+              modalResults.innerHTML = '<div style="padding:12px;color:var(--text-muted);font-size:13px;">输入关键词开始搜索（支持网址、营销笔记、资料报告、书籍）</div>';
+              return;
+            }
+            if (!hits.length) {
+              modalResults.innerHTML = '<div style="padding:12px;color:var(--text-muted);font-size:13px;">未找到与“' + q.replace(/</g, '&lt;') + '”相关的内容</div>';
+              return;
+            }
+            modalResults.innerHTML = hits.map(function (it) {
+              return '<a class="onsite-result-item" href="' + it.url + '">' +
+                '<span class="result-badge">' + it.type + '</span>' +
+                '<div style="min-width:0;flex:1;">' +
+                '<div class="result-title">' + it.title + '</div>' +
+                '<div class="result-desc">' + (it.desc || '') + '</div>' +
+                '</div></a>';
+            }).join('');
+          });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

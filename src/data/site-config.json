@@ -1,0 +1,493 @@
+{
+  "name": "天马黑珍珠",
+  "tagline": "人生在世，不是在营销，就是被营销。",
+  "description": "天马黑珍珠营销导航与营销笔记：精选AI工具、违禁词查询、媒介渠道数据平台、广告创意案例、行业报告与营销工具导航。",
+  "siteUrl": "https://tmhzz.com",
+  "logo": "/wp-content/uploads/2026/10/1792244490-tmhzz-logo-300.webp",
+  "favicon": "/wp-content/uploads/2024/12/cropped-1735383887-WechatIMG454-192x192.png",
+  "wechatQr": "/wp-content/uploads/2024/12/1735384033-89521735384025_.pic_.jpg",
+  "qqUrl": "http://wpa.qq.com/msgrd?v=3&uin=641089702&site=qq&menu=yes",
+  "weiboUrl": "https://weibo.com/u/7298373397",
+  "bulletin": {
+    "text": "人生在世，不是在营销，就是被营销。",
+    "date": "06/21"
+  },
+  "adsense": {
+    "enabled": true,
+    "client": "ca-pub-3412124316994451",
+    "homeSlot": "6333026284"
+  },
+  "topNav": [
+    {
+      "label": "首页",
+      "href": "/"
+    },
+    {
+      "label": "「天马黑珍珠」营销笔记",
+      "href": "/「天马黑珍珠」营销笔记/"
+    },
+    {
+      "label": "「天马黑珍珠」社群内容导航",
+      "href": "/「天马黑珍珠」社群内容导航/"
+    },
+    {
+      "label": "计算器",
+      "href": "/计算器/",
+      "children": [
+        {
+          "label": "复利计算器",
+          "href": "/复利计算器/"
+        },
+        {
+          "label": "存款利息计算器",
+          "href": "/存款利息计算器/"
+        },
+        {
+          "label": "退休年龄计算器",
+          "href": "/退休年龄计算器/"
+        }
+      ]
+    },
+    {
+      "label": "资料下载",
+      "href": "/资料下载/"
+    },
+    {
+      "label": "好书好物",
+      "href": "/books/"
+    }
+  ],
+  "footerLinks": [
+    {
+      "label": "免责声明",
+      "href": "/免责声明/"
+    },
+    {
+      "label": "广告合作",
+      "href": "/wp-content/uploads/2024/12/1735384033-89521735384025_.pic_.jpg",
+      "external": true
+    },
+    {
+      "label": "关于我们",
+      "href": "/关于我们（about-us）/"
+    },
+    {
+      "label": "隐私政策",
+      "href": "/privacy-policy/"
+    },
+    {
+      "label": "友情链接",
+      "href": "/links/"
+    }
+  ],
+  "friendLinks": [
+    {
+      "label": "Stirling PDF",
+      "url": "https://pdfhelp.xyz/?lang=zh_CN"
+    },
+    {
+      "label": "HAIMA美股投资理财",
+      "url": "https://www.vooqqqm.com/"
+    },
+    {
+      "label": "Calcwisehub",
+      "url": "https://calcwisehub.com/"
+    },
+    {
+      "label": "Health Toolkit Lab",
+      "url": "https://fitcalcify.com/en/"
+    },
+    {
+      "label": "微信立减金/信用卡返现活动网站",
+      "url": "https://bank.vooqqqm.com/"
+    }
+  ],
+  "searchTabs": [
+    {
+      "id": "group-onsite",
+      "label": "站内",
+      "engines": [
+        {
+          "id": "type-big-zhannei",
+          "name": "站内",
+          "url": "https://tmhzz.com/?post_type=sites&s=",
+          "placeholder": "输入关键字搜索",
+          "isOnsite": true
+        }
+      ]
+    },
+    {
+      "id": "group-a",
+      "label": "常用",
+      "engines": [
+        {
+          "id": "type-baidu",
+          "name": "百度",
+          "url": "https://www.baidu.com/s?wd=%s%",
+          "placeholder": "百度一下",
+          "isOnsite": false
+        },
+        {
+          "id": "type-google",
+          "name": "Google",
+          "url": "https://www.google.com/search?q=%s%",
+          "placeholder": "谷歌两下",
+          "isOnsite": false
+        },
+        {
+          "id": "type-zhannei",
+          "name": "站内",
+          "url": "https://tmhzz.com/?post_type=sites&s=%s%",
+          "placeholder": "站内搜索",
+          "isOnsite": true
+        },
+        {
+          "id": "type-taobao",
+          "name": "淘宝",
+          "url": "https://s.taobao.com/search?q=%s%",
+          "placeholder": "淘宝",
+          "isOnsite": false
+        },
+        {
+          "id": "type-bing",
+          "name": "Bing",
+          "url": "https://cn.bing.com/search?q=%s%",
+          "placeholder": "微软Bing搜索",
+          "isOnsite": false
+        }
+      ]
+    },
+    {
+      "id": "group-b",
+      "label": "搜索",
+      "engines": [
+        {
+          "id": "type-baidu1",
+          "name": "百度",
+          "url": "https://www.baidu.com/s?wd=%s%",
+          "placeholder": "百度一下",
+          "isOnsite": false
+        },
+        {
+          "id": "type-google1",
+          "name": "Google",
+          "url": "https://www.google.com/search?q=%s%",
+          "placeholder": "谷歌两下",
+          "isOnsite": false
+        },
+        {
+          "id": "type-360",
+          "name": "360",
+          "url": "https://www.so.com/s?q=%s%",
+          "placeholder": "360好搜",
+          "isOnsite": false
+        },
+        {
+          "id": "type-sogo",
+          "name": "搜狗",
+          "url": "https://www.sogou.com/web?query=%s%",
+          "placeholder": "搜狗搜索",
+          "isOnsite": false
+        },
+        {
+          "id": "type-bing1",
+          "name": "Bing",
+          "url": "https://cn.bing.com/search?q=%s%",
+          "placeholder": "微软Bing搜索",
+          "isOnsite": false
+        },
+        {
+          "id": "type-sm",
+          "name": "神马",
+          "url": "https://yz.m.sm.cn/s?q=%s%",
+          "placeholder": "UC移动端搜索",
+          "isOnsite": false
+        }
+      ]
+    },
+    {
+      "id": "group-c",
+      "label": "工具",
+      "engines": [
+        {
+          "id": "type-br",
+          "name": "权重查询",
+          "url": "https://seo.5118.com/%s%?t=ydm",
+          "placeholder": "请输入网址(不带https://)",
+          "isOnsite": false
+        },
+        {
+          "id": "type-links",
+          "name": "友链检测",
+          "url": "https://ahrefs.5118.com/%s%?t=ydm",
+          "placeholder": "请输入网址(不带https://)",
+          "isOnsite": false
+        },
+        {
+          "id": "type-icp",
+          "name": "备案查询",
+          "url": "https://icp.5118.com/domain/%s%?t=ydm",
+          "placeholder": "请输入网址(不带https://)",
+          "isOnsite": false
+        },
+        {
+          "id": "type-seo",
+          "name": "SEO查询",
+          "url": "https://seo.5118.com/%s%?t=ydm",
+          "placeholder": "请输入网址(不带https://)",
+          "isOnsite": false
+        },
+        {
+          "id": "type-ciku",
+          "name": "关键词挖掘",
+          "url": "https://www.5118.com/seo/newrelated/%s%?t=ydm",
+          "placeholder": "请输入关键词",
+          "isOnsite": false
+        },
+        {
+          "id": "type-51key",
+          "name": "素材搜索",
+          "url": "https://so.5118.com/all/%s%?t=ydm",
+          "placeholder": "请输入关键词",
+          "isOnsite": false
+        },
+        {
+          "id": "type-51kt",
+          "name": "大数据词云",
+          "url": "https://www.kt1.com/wordfrequency/yuliao/%s%?t=ydm",
+          "placeholder": "请输入关键词",
+          "isOnsite": false
+        }
+      ]
+    },
+    {
+      "id": "group-d",
+      "label": "社区",
+      "engines": [
+        {
+          "id": "type-zhihu",
+          "name": "知乎",
+          "url": "https://www.zhihu.com/search?type=content&q=%s%",
+          "placeholder": "知乎",
+          "isOnsite": false
+        },
+        {
+          "id": "type-wechat",
+          "name": "微信",
+          "url": "https://weixin.sogou.com/weixin?type=2&query=%s%",
+          "placeholder": "微信",
+          "isOnsite": false
+        },
+        {
+          "id": "type-weibo",
+          "name": "微博",
+          "url": "https://s.weibo.com/weibo/%s%",
+          "placeholder": "微博",
+          "isOnsite": false
+        },
+        {
+          "id": "type-douban",
+          "name": "豆瓣",
+          "url": "https://www.douban.com/search?q=%s%",
+          "placeholder": "豆瓣",
+          "isOnsite": false
+        },
+        {
+          "id": "type-why",
+          "name": "搜外问答",
+          "url": "https://ask.seowhy.com/search/?q=%s%",
+          "placeholder": "SEO问答社区",
+          "isOnsite": false
+        }
+      ]
+    },
+    {
+      "id": "group-e",
+      "label": "生活",
+      "engines": [
+        {
+          "id": "type-taobao1",
+          "name": "淘宝",
+          "url": "https://s.taobao.com/search?q=%s%",
+          "placeholder": "淘宝",
+          "isOnsite": false
+        },
+        {
+          "id": "type-jd",
+          "name": "京东",
+          "url": "https://search.jd.com/Search?keyword=%s%",
+          "placeholder": "京东",
+          "isOnsite": false
+        },
+        {
+          "id": "type-xiachufang",
+          "name": "下厨房",
+          "url": "https://www.xiachufang.com/search/?keyword=%s%",
+          "placeholder": "下厨房",
+          "isOnsite": false
+        },
+        {
+          "id": "type-xiangha",
+          "name": "香哈菜谱",
+          "url": "https://www.xiangha.com/so/?q=caipu&s=%s%",
+          "placeholder": "香哈菜谱",
+          "isOnsite": false
+        },
+        {
+          "id": "type-12306",
+          "name": "12306",
+          "url": "https://www.12306.cn/?%s%",
+          "placeholder": "12306",
+          "isOnsite": false
+        },
+        {
+          "id": "type-kd100",
+          "name": "快递100",
+          "url": "https://www.kuaidi100.com/?%s%",
+          "placeholder": "快递100",
+          "isOnsite": false
+        },
+        {
+          "id": "type-qunar",
+          "name": "去哪儿",
+          "url": "https://www.qunar.com/?%s%",
+          "placeholder": "去哪儿",
+          "isOnsite": false
+        }
+      ]
+    }
+  ],
+  "sidebar": [
+    {
+      "href": "#term-62",
+      "label": "「天马黑珍珠」社群",
+      "icon": "fas fa-globe icon-fw",
+      "children": []
+    },
+    {
+      "href": "/「天马黑珍珠」社群内容导航/",
+      "label": "「天马黑珍珠」社群内容导航",
+      "icon": "fas fa-th-large",
+      "children": []
+    },
+    {
+      "href": "#term-69",
+      "label": "菜刀大法",
+      "icon": "fas fa-hammer icon-fw",
+      "children": []
+    },
+    {
+      "href": "#term-635",
+      "label": "AI工具",
+      "icon": "fas fa-font icon-fw",
+      "children": []
+    },
+    {
+      "href": "#term-628",
+      "label": "违禁词查询网站",
+      "icon": "fas fa-book-medical icon-fw",
+      "children": []
+    },
+    {
+      "href": "#term-63",
+      "label": "每日必看",
+      "icon": "fas fa-book-reader icon-fw",
+      "children": []
+    },
+    {
+      "href": "#term-64",
+      "label": "每周必看",
+      "icon": "fas fa-book-reader icon-fw",
+      "children": []
+    },
+    {
+      "href": "#term-65",
+      "label": "每月必看",
+      "icon": "fas fa-book-reader icon-fw",
+      "children": []
+    },
+    {
+      "href": "#term-614",
+      "label": "媒介/渠道后台数据平台",
+      "icon": "fas fa-audio-description icon-fw",
+      "children": []
+    },
+    {
+      "href": "#term-612",
+      "label": "广告创意/策划营销案例",
+      "icon": "fas fa-audio-description icon-fw",
+      "children": []
+    },
+    {
+      "href": "#term-616",
+      "label": "行业报告/数据报告",
+      "icon": "fab fa-accusoft icon-fw",
+      "children": []
+    },
+    {
+      "href": "#term-637",
+      "label": "营销工具",
+      "icon": "fas fa-download icon-fw",
+      "children": [
+        {
+          "href": "#term-637-40",
+          "label": "电子书工具"
+        },
+        {
+          "href": "#term-637-22",
+          "label": "文件格式转换"
+        },
+        {
+          "href": "#term-637-38",
+          "label": "语音转文字工具"
+        },
+        {
+          "href": "#term-637-39",
+          "label": "视频下载工具"
+        }
+      ]
+    },
+    {
+      "href": "#term-620",
+      "label": "图标素材",
+      "icon": "fas fa-city icon-fw",
+      "children": []
+    },
+    {
+      "href": "#term-618",
+      "label": "高清图片素材网站",
+      "icon": "fas fa-industry icon-fw",
+      "children": []
+    },
+    {
+      "href": "#term-626",
+      "label": "字体网站",
+      "icon": "fas fa-broom icon-fw",
+      "children": []
+    },
+    {
+      "href": "#term-624",
+      "label": "作图网站",
+      "icon": "fas fa-images icon-fw",
+      "children": []
+    },
+    {
+      "href": "#term-631",
+      "label": "PPT模板",
+      "icon": "fas fa-file-powerpoint icon-fw",
+      "children": []
+    },
+    {
+      "href": "#term-632",
+      "label": "建站相关",
+      "icon": "fab fa-google icon-fw",
+      "children": []
+    },
+    {
+      "href": "#term-612",
+      "label": "广告营销案例网站",
+      "icon": "fas fa-th-large",
+      "children": []
+    }
+  ]
+}

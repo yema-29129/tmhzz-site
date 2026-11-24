@@ -1,0 +1,212 @@
+---
+import siteConfig from '../data/site-config.json';
+
+const searchTabs = siteConfig.searchTabs;
+const bulletin = siteConfig.bulletin;
+---
+
+<section class="hero-banner">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+  <div class="hero-inner">
+    <div class="search-tabs" id="hero-search-tabs" role="tablist">
+      {searchTabs.map((tab, idx) => (
+        <button
+          type="button"
+          class={`search-tab-btn ${idx === 0 ? 'active' : ''}`}
+          data-tab-idx={idx}
+          role="tab"
+        >
+          {tab.label}
+        </button>
+      ))}
+    </div>
+
+    <form class="search-form-box" id="hero-search-form" autocomplete="off">
+      <input
+        type="text"
+        id="hero-search-input"
+        placeholder="输入关键字搜索"
+        aria-label="搜索关键词"
+      />
+      <button type="submit" class="search-submit-btn" aria-label="搜索">
+        <i class="fas fa-search"></i>
+      </button>
+      <div class="onsite-results" id="hero-onsite-results"></div>
+    </form>
+
+    <div class="search-engines-row" id="hero-engines-row"></div>
+  </div>
+
+  <div class="bulletin-bar" id="hero-bulletin">
+    <i class="fas fa-volume-up" style="color:var(--brand);"></i>
+    <span>{bulletin.text}</span>
+    <span class="bulletin-date">({bulletin.date})</span>
+    <button type="button" class="bulletin-close" id="close-bulletin" aria-label="关闭公告">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+</section>
+
+<script is:inline define:vars={{ searchTabs }}>
+  (function () {
+    // 1. Subtle animated particle canvas (replaces heavy external fx iframe)
+    var canvas = document.getElementById('hero-canvas');
+    if (canvas && canvas.getContext) {
+      var ctx = canvas.getContext('2d');
+      var w, h, particles = [];
+      function resize() {
+        w = canvas.width = canvas.offsetWidth;
+        h = canvas.height = canvas.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+      for (var i = 0; i < 36; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 2 + 0.8,
+          vx: (Math.random() - 0.5) * 0.45,
+          vy: (Math.random() - 0.5) * 0.45,
+          alpha: Math.random() * 0.5 + 0.2
+        });
+      }
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0) p.x = w;
+          if (p.x > w) p.x = 0;
+          if (p.y < 0) p.y = h;
+          if (p.y > h) p.y = 0;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(241, 64, 75, ' + p.alpha + ')';
+          ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    }
+
+    // 2. Multi-tab & Multi-engine Search
+    var currentTabIdx = 0;
+    var currentEngineIdx = 0;
+    var tabBtns = document.querySelectorAll('#hero-search-tabs .search-tab-btn');
+    var enginesRow = document.getElementById('hero-engines-row');
+    var input = document.getElementById('hero-search-input');
+    var form = document.getElementById('hero-search-form');
+    var resultsBox = document.getElementById('hero-onsite-results');
+
+    function getActiveEngine() {
+      var tab = searchTabs[currentTabIdx] || { engines: [] };
+      return tab.engines[currentEngineIdx] || { isOnsite: true, placeholder: '输入关键字搜索', url: '' };
+    }
+
+    function renderEngines() {
+      var tab = searchTabs[currentTabIdx];
+      if (!tab || !enginesRow) return;
+      if (tab.engines.length <= 1) {
+        enginesRow.innerHTML = '';
+      } else {
+        enginesRow.innerHTML = tab.engines.map(function (eng, idx) {
+          return '<button type="button" class="engine-chip ' + (idx === currentEngineIdx ? 'active' : '') + '" data-eng-idx="' + idx + '">' + eng.name + '</button>';
+        }).join('');
+        enginesRow.querySelectorAll('.engine-chip').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            currentEngineIdx = Number(btn.getAttribute('data-eng-idx'));
+            renderEngines();
+            if (input) input.focus();
+          });
+        });
+      }
+      var eng = getActiveEngine();
+      if (input) input.placeholder = eng.placeholder || '输入关键字搜索';
+      if (!eng.isOnsite && resultsBox) resultsBox.classList.remove('open');
+    }
+
+    tabBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        tabBtns.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        currentTabIdx = Number(btn.getAttribute('data-tab-idx'));
+        currentEngineIdx = 0;
+        renderEngines();
+      });
+    });
+
+    function runOnsiteSearch(q) {
+      if (!resultsBox) return;
+      if (!q.trim()) {
+        resultsBox.classList.remove('open');
+        return;
+      }
+      window.loadSearchIndex().then(function (items) {
+        var hits = window.filterSearchItems(items, q);
+        if (!hits.length) {
+          resultsBox.innerHTML = '<div style="padding:14px;color:var(--text-muted);font-size:13px;">站内未找到相关结果</div>';
+        } else {
+          resultsBox.innerHTML = hits.map(function (it) {
+            return '<a class="onsite-result-item" href="' + it.url + '">' +
+              '<span class="result-badge">' + it.type + '</span>' +
+              '<div style="min-width:0;flex:1;">' +
+              '<div class="result-title">' + it.title + '</div>' +
+              '<div class="result-desc">' + (it.desc || '') + '</div>' +
+              '</div></a>';
+          }).join('');
+        }
+        resultsBox.classList.add('open');
+      });
+    }
+
+    if (input) {
+      input.addEventListener('input', function () {
+        var eng = getActiveEngine();
+        if (eng.isOnsite) runOnsiteSearch(input.value);
+      });
+      input.addEventListener('focus', function () {
+        var eng = getActiveEngine();
+        if (eng.isOnsite && input.value.trim()) runOnsiteSearch(input.value);
+      });
+    }
+
+    document.addEventListener('click', function (e) {
+      if (form && resultsBox && !form.contains(e.target)) {
+        resultsBox.classList.remove('open');
+      }
+    });
+
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var q = (input ? input.value : '').trim();
+        var eng = getActiveEngine();
+        if (eng.isOnsite) {
+          runOnsiteSearch(q);
+          return;
+        }
+        if (!q) return;
+        var targetUrl = eng.url || '';
+        if (targetUrl.indexOf('%s%') !== -1) {
+          targetUrl = targetUrl.replace('%s%', encodeURIComponent(q));
+        } else {
+          targetUrl = targetUrl + encodeURIComponent(q);
+        }
+        window.open(targetUrl, '_blank', 'noopener,noreferrer');
+      });
+    }
+
+    // Bulletin close
+    var closeBtn = document.getElementById('close-bulletin');
+    var bar = document.getElementById('hero-bulletin');
+    if (closeBtn && bar) {
+      closeBtn.addEventListener('click', function () {
+        bar.style.display = 'none';
+      });
+    }
+
+    renderEngines();
+  })();
+</script>

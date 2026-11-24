@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSearch from '../components/HeroSearch.astro';
+import SiteCard from '../components/SiteCard.astro';
+import AdSenseBlock from '../components/AdSenseBlock.astro';
+
+import siteConfig from '../data/site-config.json';
+import sections from '../data/sections.json';
+import sites from '../data/sites.json';
+
+const siteMap = new Map(sites.map((s) => [s.id, s]));
+---
+
+<BaseLayout activeNav="首页">
+  <HeroSearch />
+
+  <div class="page-shell">
+    <!-- Left Collapsible Sidebar -->
+    <aside class="sidebar" id="main-sidebar" aria-label="分类导航">
+      <ul class="sidebar-list">
+        {siteConfig.sidebar.map((item) => (
+          <li>
+            <a href={item.href} class="side-link" title={item.label}>
+              <i class={item.icon || 'fas fa-folder'}></i>
+              <span class="side-label">{item.label}</span>
+            </a>
+            {item.children && item.children.length > 0 && (
+              <ul class="side-sub">
+                {item.children.map((sub) => (
+                  <li>
+                    <a href={sub.href.startsWith('#term-637-') ? '#term-637' : sub.href}>{sub.label}</a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+      <div class="sidebar-footer">
+        <button type="button" class="collapse-btn" id="sidebar-collapse-btn" title="收起/展开侧边栏">
+          <i class="fas fa-angle-double-left" id="collapse-icon"></i>
+          <span class="side-label">收起</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Right Main Content: Categorized Site Cards -->
+    <main class="main-content">
+      {sections.map((sec) => {
+        const cards = sec.siteIds.map((id) => siteMap.get(id)).filter(Boolean);
+        return (
+          <section class="nav-section" id={sec.id}>
+            <div class="section-header">
+              <h2 class="section-title">
+                <i class={sec.icon || 'fas fa-folder'}></i>
+                <span>{sec.title}</span>
+              </h2>
+              {sec.moreUrl && (
+                <a href={sec.moreUrl} class="section-more">more+</a>
+              )}
+            </div>
+
+            {sec.hasAd && <AdSenseBlock />}
+
+            <div class="site-grid">
+              {cards.map((site) => site && <SiteCard site={site} />)}
+            </div>
+          </section>
+        );
+      })}
+    </main>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var sidebar = document.getElementById('main-sidebar');
+      var collapseBtn = document.getElementById('sidebar-collapse-btn');
+      var collapseIcon = document.getElementById('collapse-icon');
+      if (collapseBtn && sidebar) {
+        collapseBtn.addEventListener('click', function () {
+          sidebar.classList.toggle('collapsed');
+          if (collapseIcon) {
+            collapseIcon.className = sidebar.classList.contains('collapsed')
+              ? 'fas fa-angle-double-right'
+              : 'fas fa-angle-double-left';
+          }
+        });
+      }
+
+      // Close mobile sidebar after clicking an anchor
+      document.querySelectorAll('#main-sidebar a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          if (sidebar) sidebar.classList.remove('mobile-open');
+        });
+      });
+
+      // Highlight single active sidebar anchor on scroll
+      var sectionEls = Array.prototype.slice.call(document.querySelectorAll('.nav-section[id]'));
+      var sideLinks = document.querySelectorAll('#main-sidebar .side-link[href^="#"]');
+      function updateActiveSidebar() {
+        var currentId = '';
+        for (var i = 0; i < sectionEls.length; i++) {
+          var rect = sectionEls[i].getBoundingClientRect();
+          if (rect.top <= 130) currentId = '#' + sectionEls[i].id;
+        }
+        if (!currentId && sectionEls.length) currentId = '#' + sectionEls[0].id;
+        sideLinks.forEach(function (l) {
+          l.classList.toggle('active', l.getAttribute('href') === currentId);
+        });
+      }
+      if (sectionEls.length && sideLinks.length) {
+        window.addEventListener('scroll', updateActiveSidebar, { passive: true });
+        updateActiveSidebar();
+      }
+    })();
+  </script>
+</BaseLayout>

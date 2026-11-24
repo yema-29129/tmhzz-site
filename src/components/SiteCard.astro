@@ -1,0 +1,49 @@
+---
+export interface Props {
+  site: {
+    id: number;
+    slug: string;
+    title: string;
+    url: string;
+    icon: string;
+    summary: string;
+  };
+}
+
+const { site } = Astro.props;
+const detailHref = `/sites/${site.slug}.html`;
+const firstChar = (site.title || '?').replace(/^[「【（("'\s]+/, '').slice(0, 1) || '网';
+---
+
+<article class="site-card" title={site.summary || site.title}>
+  <a href={detailHref} class="site-card-main">
+    <div class="site-icon-box" data-fallback={firstChar}>
+      {site.icon ? (
+        <img
+          src={site.icon}
+          alt={site.title}
+          loading="lazy"
+          onerror="this.style.display='none';this.parentElement.textContent=this.parentElement.dataset.fallback;"
+        />
+      ) : (
+        firstChar
+      )}
+    </div>
+    <div class="site-card-info">
+      <div class="site-card-title">{site.title}</div>
+      <div class="site-card-desc">{site.summary || site.url}</div>
+    </div>
+  </a>
+  {site.url && (
+    <a
+      href={site.url}
+      target="_blank"
+      rel="noopener noreferrer nofollow"
+      class="site-direct-btn"
+      title={`直达 ${site.title}`}
+      aria-label={`直达 ${site.title}`}
+    >
+      <i class="fas fa-external-link-alt"></i>
+    </a>
+  )}
+</article>

@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SiteCard from '../../../components/SiteCard.astro';
+import favorites from '../../../data/favorites.json';
+import sites from '../../../data/sites.json';
+
+export function getStaticPaths() {
+  return favorites.map((fav) => ({
+    params: { slug: fav.slug },
+    props: { fav },
+  }));
+}
+
+const { fav } = Astro.props;
+const childIds = new Set(favorites.filter((f) => f.parent === fav.id).map((f) => f.id));
+const matched = sites.filter((s) =>
+  s.favorites.some((f) => f.id === fav.id || childIds.has(f.id))
+);
+---
+
+<BaseLayout title={`${fav.name} - 网址分类`} description={`天马黑珍珠导航「${fav.name}」分类下共收录 ${matched.length} 个精选网站。`}>
+  <main class="container-narrow">
+    <nav class="breadcrumb" aria-label="面包屑">
+      <a href="/">首页</a>
+      <span>/</span>
+      <span>分类</span>
+      <span>/</span>
+      <span>{fav.name}</span>
+    </nav>
+
+    <div class="panel">
+      <div class="section-header" style="margin-bottom:20px;">
+        <h1 style="margin:0;font-size:22px;">{fav.name}</h1>
+        <span class="tag-pill">共 {matched.length} 个网站</span>
+      </div>
+
+      {matched.length > 0 ? (
+        <div class="site-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr));">
+          {matched.map((site) => <SiteCard site={site} />)}
+        </div>
+      ) : (
+        <p style="color:var(--text-muted);">该分类暂无收录网站。</p>
+      )}
+    </div>
+  </main>
+</BaseLayout>
