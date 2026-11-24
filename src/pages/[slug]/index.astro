@@ -2,10 +2,12 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import AdSenseBlock from '../../components/AdSenseBlock.astro';
 import SiteCard from '../../components/SiteCard.astro';
+import ModernCalculators from '../../components/ModernCalculators.astro';
 import posts from '../../data/posts.json';
 import pages from '../../data/pages.json';
 import apps from '../../data/apps.json';
 import sites from '../../data/sites.json';
+import tools from '../../data/tools.json';
 import siteConfig from '../../data/site-config.json';
 
 export function getStaticPaths() {
@@ -13,7 +15,7 @@ export function getStaticPaths() {
   const used = new Set();
 
   for (const page of pages) {
-    if (!page.slug || used.has(page.slug)) continue;
+    if (!page.slug || used.has(page.slug) || page.id === 420) continue;
     used.add(page.slug);
     paths.push({
       params: { slug: page.slug },
@@ -59,10 +61,8 @@ const activeNav =
     : isDownloadPage
       ? '资料下载'
       : isCalculator || isCalcIndexPage
-        ? '计算器'
-        : page?.title === '「天马黑珍珠」社群内容导航'
-          ? '「天马黑珍珠」社群内容导航'
-          : '';
+        ? '在线工具箱'
+        : '';
 const seoKeywords =
   kind === 'post'
     ? [post.title, ...post.categories.map((c) => c.name), ...post.tags.map((t) => t.name), '营销笔记', '天马黑珍珠'].join(',')
@@ -151,68 +151,54 @@ const pageJsonLd =
       </>
     )}
 
-    {/* ===== 2. Interactive Calculator Page ===== */}
+    {/* ===== 2. Interactive Calculator Page (Redesigned Native UI) ===== */}
     {isCalculator && (
-      <div class="panel">
-        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;">
-          <h1 style="margin:0;font-size:22px;">{page.title}</h1>
-          <div style="display:flex;flex-wrap:wrap;gap:8px;">
-            {calcPages.map((cp) => (
-              <a
-                href={`/${cp.slug}/`}
-                class={`btn ${cp.id === page.id ? 'btn-primary' : 'btn-outline'}`}
-                style="padding:6px 14px;font-size:13px;"
-              >
-                {cp.title}
-              </a>
-            ))}
+      <>
+        <div class="panel">
+          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border-color);">
+            <h1 style="margin:0;font-size:23px;">{page.title}</h1>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              {calcPages.map((cp) => (
+                <a
+                  href={`/${cp.slug}/`}
+                  class={`btn ${cp.id === page.id ? 'btn-primary' : 'btn-outline'}`}
+                  style="padding:6px 14px;font-size:13px;"
+                >
+                  {cp.title}
+                </a>
+              ))}
+              <a href="/tools/" class="btn btn-outline" style="padding:6px 14px;font-size:13px;">全部 12 款工具</a>
+            </div>
           </div>
+          <ModernCalculators pageId={page.id} />
         </div>
-        <iframe
-          id="calc-frame"
-          srcdoc={page.calculatorHtml}
-          title={page.title}
-          style="width:100%;min-height:820px;border:1px solid var(--border-color);border-radius:10px;background:#ffffff;"
-          sandbox="allow-scripts allow-forms allow-same-origin"
-        ></iframe>
-        <script is:inline>
-          (function () {
-            var frame = document.getElementById('calc-frame');
-            if (!frame) return;
-            function resizeFrame() {
-              try {
-                var doc = frame.contentDocument || frame.contentWindow.document;
-                if (doc && doc.body) {
-                  var h = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight, 760);
-                  frame.style.height = (h + 40) + 'px';
-                }
-              } catch (e) {}
-            }
-            frame.addEventListener('load', function () {
-              resizeFrame();
-              setInterval(resizeFrame, 600);
-            });
-          })();
-        </script>
-      </div>
+        <AdSenseBlock />
+      </>
     )}
 
-    {/* ===== 3. Calculator Index Page ===== */}
+    {/* ===== 3. Calculator / Toolbox Index Page ===== */}
     {isCalcIndexPage && (
       <div class="panel">
-        <h1 style="margin:0 0 10px;font-size:24px;">实用计算器合集</h1>
-        <p style="margin:0 0 22px;color:var(--text-secondary);">纯前端即时计算，无服务器延迟，点击即可使用：</p>
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px;">
+          <div>
+            <h1 style="margin:0 0 6px;font-size:24px;">实用计算器与在线工具箱</h1>
+            <p style="margin:0;color:var(--text-secondary);">共 {tools.length} 款免费纯前端工具，打开即用、实时出结果：</p>
+          </div>
+          <a href="/tools/" class="btn btn-primary" style="padding:7px 16px;font-size:13px;">进入完整工具箱</a>
+        </div>
         <div class="article-grid">
-          {calcPages.map((cp) => (
-            <a href={`/${cp.slug}/`} class="article-card" style="padding:22px;">
-              <div style="font-size:28px;color:var(--brand);margin-bottom:12px;">
-                <i class="fas fa-calculator"></i>
+          {tools.map((t) => (
+            <a href={t.path} class="article-card" style="padding:20px;">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                <span style="width:36px;height:36px;border-radius:10px;background:var(--brand-soft);color:var(--brand);display:inline-flex;align-items:center;justify-content:center;font-size:16px;">
+                  <i class={t.icon}></i>
+                </span>
+                <h2 class="article-title" style="margin:0;">{t.shortTitle}</h2>
               </div>
-              <h2 class="article-title">{cp.title}</h2>
-              <p class="article-excerpt">在线免费使用 {cp.title}，支持参数自定义与实时结果明细展示。</p>
+              <p class="article-excerpt">{t.desc}</p>
               <div class="article-meta">
-                <span>立即使用</span>
-                <i class="fas fa-arrow-right"></i>
+                <span>{t.category}</span>
+                <span style="color:var(--brand);font-weight:600;">立即使用 →</span>
               </div>
             </a>
           ))}

@@ -1,0 +1,237 @@
+---
+export interface Props {
+  pageId: number;
+}
+
+const { pageId } = Astro.props;
+---
+
+<style is:global>
+  .calc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  @media (max-width: 760px) { .calc-grid { grid-template-columns: 1fr; } }
+  .calc-field label { display: block; font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; }
+  .calc-input, .calc-select {
+    width: 100%; padding: 10px 12px; border-radius: 8px;
+    border: 1px solid rgba(128,128,128,0.25); background: var(--bg-body);
+    color: var(--text-primary); font-size: 14px; font-family: inherit;
+  }
+  .calc-input:focus, .calc-select:focus { outline: none; border-color: var(--brand); }
+  .calc-kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 12px; margin-top: 20px; }
+  .calc-kpi { background: var(--bg-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; }
+  .calc-kpi-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+  .calc-kpi-val { font-size: 22px; font-weight: 800; color: var(--text-primary); }
+  .calc-kpi-val.brand { color: var(--brand); }
+  .calc-kpi-sub { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+  .calc-bar { height: 14px; border-radius: 999px; background: var(--bg-subtle); overflow: hidden; display: flex; margin-top: 18px; }
+  .calc-bar-p { background: #3b82f6; height: 100%; transition: width 0.3s ease; }
+  .calc-bar-i { background: var(--brand); height: 100%; transition: width 0.3s ease; }
+  .calc-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13.5px; }
+  .calc-table th, .calc-table td { padding: 9px 10px; border-bottom: 1px solid var(--border-color); text-align: left; }
+  .calc-table th { color: var(--text-muted); font-weight: 600; background: var(--bg-subtle); }
+</style>
+
+{/* ===== 1. 复利计算器 (id=182) ===== */}
+{pageId === 182 && (
+  <div>
+    <div class="calc-grid">
+      <div class="calc-field"><label>初始本金（元）</label><input type="number" id="c-init" class="calc-input" value="10000" min="0" /></div>
+      <div class="calc-field"><label>每期定投金额（元）</label><input type="number" id="c-add" class="calc-input" value="2000" min="0" /></div>
+      <div class="calc-field">
+        <label>定投频率</label>
+        <select id="c-freq" class="calc-select">
+          <option value="12" selected>每月定投（12次/年）</option>
+          <option value="52">每周定投（52次/年）</option>
+          <option value="1">每年定投（1次/年）</option>
+        </select>
+      </div>
+      <div class="calc-field"><label>预期年化收益率（%）</label><input type="number" id="c-rate" class="calc-input" value="8" step="0.5" /></div>
+      <div class="calc-field"><label>投资年限（年）</label><input type="number" id="c-years" class="calc-input" value="15" min="1" max="60" /></div>
+    </div>
+
+    <div class="calc-kpi-grid">
+      <div class="calc-kpi"><div class="calc-kpi-label">最终本息总额</div><div class="calc-kpi-val brand" id="c-final">-</div></div>
+      <div class="calc-kpi"><div class="calc-kpi-label">累计投入本金</div><div class="calc-kpi-val" id="c-principal">-</div></div>
+      <div class="calc-kpi"><div class="calc-kpi-label">累计复利收益</div><div class="calc-kpi-val brand" id="c-gain">-</div><div class="calc-kpi-sub" id="c-mult"></div></div>
+    </div>
+
+    <div class="calc-bar" title="本金与复利收益占比">
+      <div class="calc-bar-p" id="c-bar-p" style="width:50%;"></div>
+      <div class="calc-bar-i" id="c-bar-i" style="width:50%;"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-top:6px;">
+      <span id="c-leg-p">蓝色：累计本金</span>
+      <span id="c-leg-i">红色：复利收益</span>
+    </div>
+
+    <h3 style="font-size:15px;margin:22px 0 6px;">逐年复利增长明细</h3>
+    <div style="overflow-x:auto;">
+      <table class="calc-table">
+        <thead><tr><th>年份</th><th>累计投入本金</th><th>年末账户总额</th><th>累计收益</th></tr></thead>
+        <tbody id="c-rows"></tbody>
+      </table>
+    </div>
+
+    <script is:inline>
+      (function () {
+        function calc() {
+          var init = Math.max(0, parseFloat(document.getElementById('c-init').value) || 0);
+          var add = Math.max(0, parseFloat(document.getElementById('c-add').value) || 0);
+          var freq = parseInt(document.getElementById('c-freq').value, 10) || 12;
+          var rate = (parseFloat(document.getElementById('c-rate').value) || 0) / 100;
+          var years = Math.min(60, Math.max(1, parseInt(document.getElementById('c-years').value, 10) || 1));
+
+          var pr = rate / freq;
+          var balance = init;
+          var principal = init;
+          var rows = [];
+          for (var y = 1; y <= years; y++) {
+            for (var p = 0; p < freq; p++) {
+              balance = (balance + add) * (1 + pr);
+              principal += add;
+            }
+            rows.push({ y: y, p: principal, b: balance, g: balance - principal });
+          }
+          var gain = balance - principal;
+          var pctP = balance > 0 ? (principal / balance) * 100 : 100;
+          document.getElementById('c-final').textContent = '¥' + Math.round(balance).toLocaleString();
+          document.getElementById('c-principal').textContent = '¥' + Math.round(principal).toLocaleString();
+          document.getElementById('c-gain').textContent = '¥' + Math.round(gain).toLocaleString();
+          document.getElementById('c-mult').textContent = principal > 0 ? ('总回报率 +' + ((gain / principal) * 100).toFixed(1) + '%') : '';
+          document.getElementById('c-bar-p').style.width = pctP.toFixed(1) + '%';
+          document.getElementById('c-bar-i').style.width = (100 - pctP).toFixed(1) + '%';
+          document.getElementById('c-leg-p').textContent = '蓝色：累计本金 (' + pctP.toFixed(1) + '%)';
+          document.getElementById('c-leg-i').textContent = '红色：复利收益 (' + (100 - pctP).toFixed(1) + '%)';
+
+          document.getElementById('c-rows').innerHTML = rows.map(function (r) {
+            return '<tr><td>第 ' + r.y + ' 年</td><td>¥' + Math.round(r.p).toLocaleString() + '</td><td><strong>¥' + Math.round(r.b).toLocaleString() + '</strong></td><td style="color:var(--brand);">+¥' + Math.round(r.g).toLocaleString() + '</td></tr>';
+          }).join('');
+        }
+        ['c-init', 'c-add', 'c-freq', 'c-rate', 'c-years'].forEach(function (id) {
+          document.getElementById(id).addEventListener('input', calc);
+          document.getElementById(id).addEventListener('change', calc);
+        });
+        calc();
+      })();
+    </script>
+  </div>
+)}
+
+{/* ===== 2. 存款利息计算器 (id=178) ===== */}
+{pageId === 178 && (
+  <div>
+    <div class="calc-grid">
+      <div class="calc-field"><label>存款本金（元）</label><input type="number" id="d-amount" class="calc-input" value="100000" min="0" /></div>
+      <div class="calc-field"><label>存款年利率（%）</label><input type="number" id="d-rate" class="calc-input" value="2.15" step="0.05" /></div>
+      <div class="calc-field"><label>存款期限（年）</label><input type="number" id="d-years" class="calc-input" value="3" step="0.5" min="0.25" /></div>
+      <div class="calc-field">
+        <label>计息方式</label>
+        <select id="d-mode" class="calc-select">
+          <option value="simple" selected>单利（整存整取定期存款）</option>
+          <option value="compound">复利（到期自动转存）</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="calc-kpi-grid">
+      <div class="calc-kpi"><div class="calc-kpi-label">到期本息合计</div><div class="calc-kpi-val brand" id="d-total">-</div></div>
+      <div class="calc-kpi"><div class="calc-kpi-label">到期总利息</div><div class="calc-kpi-val brand" id="d-int">-</div></div>
+      <div class="calc-kpi"><div class="calc-kpi-label">折合每月利息</div><div class="calc-kpi-val" id="d-month">-</div></div>
+      <div class="calc-kpi"><div class="calc-kpi-label">折合每天利息</div><div class="calc-kpi-val" id="d-day">-</div></div>
+    </div>
+
+    <script is:inline>
+      (function () {
+        function calc() {
+          var p = Math.max(0, parseFloat(document.getElementById('d-amount').value) || 0);
+          var r = (parseFloat(document.getElementById('d-rate').value) || 0) / 100;
+          var y = Math.max(0.01, parseFloat(document.getElementById('d-years').value) || 1);
+          var mode = document.getElementById('d-mode').value;
+          var total = mode === 'compound' ? p * Math.pow(1 + r, y) : p * (1 + r * y);
+          var interest = total - p;
+          document.getElementById('d-total').textContent = '¥' + total.toLocaleString(undefined, { maximumFractionDigits: 2 });
+          document.getElementById('d-int').textContent = '¥' + interest.toLocaleString(undefined, { maximumFractionDigits: 2 });
+          document.getElementById('d-month').textContent = '¥' + (interest / (y * 12)).toFixed(2);
+          document.getElementById('d-day').textContent = '¥' + (interest / (y * 365)).toFixed(2);
+        }
+        ['d-amount', 'd-rate', 'd-years', 'd-mode'].forEach(function (id) {
+          document.getElementById(id).addEventListener('input', calc);
+          document.getElementById(id).addEventListener('change', calc);
+        });
+        calc();
+      })();
+    </script>
+  </div>
+)}
+
+{/* ===== 3. 退休年龄计算器 (id=171) ===== */}
+{pageId === 171 && (
+  <div>
+    <div class="calc-grid">
+      <div class="calc-field"><label>出生年份</label><input type="number" id="ret-year" class="calc-input" value="1990" min="1960" max="2015" /></div>
+      <div class="calc-field"><label>出生月份（1~12）</label><input type="number" id="ret-month" class="calc-input" value="6" min="1" max="12" /></div>
+      <div class="calc-field" style="grid-column:1 / -1;">
+        <label>人员类型</label>
+        <select id="ret-type" class="calc-select">
+          <option value="male" selected>男职工（原法定 60 岁 → 逐步延迟至 63 岁）</option>
+          <option value="female55">女职工（原法定 55 岁 → 逐步延迟至 58 岁）</option>
+          <option value="female50">女职工（原法定 50 岁 → 逐步延迟至 55 岁）</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="calc-kpi-grid">
+      <div class="calc-kpi"><div class="calc-kpi-label">改革后法定退休时间</div><div class="calc-kpi-val brand" id="ret-date">-</div></div>
+      <div class="calc-kpi"><div class="calc-kpi-label">改革后法定退休年龄</div><div class="calc-kpi-val" id="ret-age">-</div></div>
+      <div class="calc-kpi"><div class="calc-kpi-label">延迟月数</div><div class="calc-kpi-val brand" id="ret-delay">-</div></div>
+      <div class="calc-kpi"><div class="calc-kpi-label">距离退休还剩</div><div class="calc-kpi-val" id="ret-left">-</div></div>
+    </div>
+
+    <p style="margin:16px 0 0;font-size:12.5px;color:var(--text-muted);line-height:1.7;">
+      依据 2025 年 1 月 1 日起实施的《关于实施渐进式延迟法定退休年龄的决定》测算：男职工及原 55 岁退休女职工每 4 个月延迟 1 个月（最多延 36 个月），原 50 岁退休女职工每 2 个月延迟 1 个月（最多延 60 个月）。
+    </p>
+
+    <script is:inline>
+      (function () {
+        function calc() {
+          var by = parseInt(document.getElementById('ret-year').value, 10) || 1990;
+          var bm = Math.min(12, Math.max(1, parseInt(document.getElementById('ret-month').value, 10) || 1));
+          var type = document.getElementById('ret-type').value;
+
+          var baseAge = type === 'male' ? 60 : (type === 'female55' ? 55 : 50);
+          var step = type === 'female50' ? 2 : 4;
+          var maxDelay = type === 'female50' ? 60 : 36;
+
+          var origTotalMonths = (by + baseAge) * 12 + (bm - 1);
+          var policyStart = 2025 * 12; // 2025-01
+          var delay = 0;
+          if (origTotalMonths >= policyStart) {
+            var diff = origTotalMonths - policyStart;
+            delay = Math.min(maxDelay, Math.floor(diff / step) + 1);
+          }
+
+          var finalTotal = origTotalMonths + delay;
+          var fy = Math.floor(finalTotal / 12);
+          var fm = (finalTotal % 12) + 1;
+          var ageYears = baseAge + Math.floor(delay / 12);
+          var ageRemM = delay % 12;
+
+          var now = new Date();
+          var nowTotal = now.getFullYear() * 12 + now.getMonth();
+          var leftM = Math.max(0, finalTotal - nowTotal);
+          var leftY = Math.floor(leftM / 12);
+          var leftRem = leftM % 12;
+
+          document.getElementById('ret-date').textContent = fy + '年' + fm + '月';
+          document.getElementById('ret-age').textContent = ageYears + '岁' + (ageRemM ? (ageRemM + '个月') : '');
+          document.getElementById('ret-delay').textContent = delay + ' 个月';
+          document.getElementById('ret-left').textContent = leftM === 0 ? '已到退休时间' : (leftY + '年' + leftRem + '个月');
+        }
+        ['ret-year', 'ret-month', 'ret-type'].forEach(function (id) {
+          document.getElementById(id).addEventListener('input', calc);
+          document.getElementById(id).addEventListener('change', calc);
+        });
+        calc();
+      })();
+    </script>
+  </div>
+)}

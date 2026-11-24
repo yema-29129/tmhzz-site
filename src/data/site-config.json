@@ -27,10 +27,6 @@
       "href": "/「天马黑珍珠」营销笔记/"
     },
     {
-      "label": "「天马黑珍珠」社群内容导航",
-      "href": "/「天马黑珍珠」社群内容导航/"
-    },
-    {
       "label": "在线工具箱",
       "href": "/tools/",
       "children": [
@@ -394,12 +390,6 @@
       "href": "#term-62",
       "label": "「天马黑珍珠」社群",
       "icon": "fas fa-globe icon-fw",
-      "children": []
-    },
-    {
-      "href": "/「天马黑珍珠」社群内容导航/",
-      "label": "「天马黑珍珠」社群内容导航",
-      "icon": "fas fa-th-large",
       "children": []
     },
     {
