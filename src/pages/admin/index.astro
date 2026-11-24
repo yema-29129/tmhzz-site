@@ -1,0 +1,920 @@
+---
+import siteConfig from '../../data/site-config.json';
+import '../../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>内容发布工作台 - {siteConfig.name}</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href={siteConfig.favicon} />
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <style>
+    body { background: var(--bg-body); }
+    .admin-wrap { max-width: 1180px; margin: 0 auto; padding: 24px 20px 60px; }
+    .admin-top {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 14px; background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: 14px; padding: 16px 22px; margin-bottom: 18px; box-shadow: var(--shadow-card);
+    }
+    .admin-brand { display: flex; align-items: center; gap: 12px; }
+    .admin-brand img { height: 34px; border-radius: 6px; }
+    .admin-brand h1 { margin: 0; font-size: 18px; }
+    .admin-top-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+    .token-bar {
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: 14px; padding: 18px 22px; margin-bottom: 18px; box-shadow: var(--shadow-card);
+    }
+    .token-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .input, .select, .textarea {
+      width: 100%; padding: 9px 12px; border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.14); background: var(--bg-body);
+      color: var(--text-primary); font-size: 14px; font-family: inherit;
+    }
+    .textarea { min-height: 140px; resize: vertical; line-height: 1.7; }
+    .input:focus, .select:focus, .textarea:focus { outline: none; border-color: var(--brand); }
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px;
+      border-radius: 999px; font-size: 12.5px; font-weight: 600;
+    }
+    .status-ok { background: #e6f7ed; color: #137333; }
+    .status-wait { background: #fff3e0; color: #b25e09; }
+
+    .tabs-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .tab-btn {
+      padding: 10px 18px; border-radius: 10px; border: 1px solid var(--border-color);
+      background: var(--bg-card); color: var(--text-secondary); cursor: pointer;
+      font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .tab-btn.active { background: var(--brand); color: #fff; border-color: var(--brand); }
+
+    .admin-card {
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: 14px; padding: 22px 24px; margin-bottom: 18px; box-shadow: var(--shadow-card);
+    }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    @media (max-width: 760px) { .form-grid { grid-template-columns: 1fr; } }
+    .field label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--text-secondary); }
+    .field-full { grid-column: 1 / -1; }
+
+    .list-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    .list-table th, .list-table td {
+      padding: 10px 10px; border-bottom: 1px solid var(--border-color);
+      text-align: left; font-size: 13.5px; vertical-align: middle;
+    }
+    .list-table th { color: var(--text-muted); font-weight: 600; font-size: 12.5px; }
+    .btn-sm { padding: 5px 11px; font-size: 12.5px; border-radius: 6px; }
+    .btn-danger { background: #fff1f0; color: #cf1322; border: 1px solid #ffa39e; }
+    .btn-danger:hover { background: #cf1322; color: #fff; }
+
+    .toast {
+      position: fixed; right: 22px; bottom: 22px; max-width: 420px; z-index: 300;
+      padding: 14px 18px; border-radius: 12px; color: #fff; font-size: 14px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.22); display: none; line-height: 1.5;
+    }
+    .toast.show { display: block; }
+    .toast.info { background: #1f2937; }
+    .toast.success { background: #15803d; }
+    .toast.error { background: #b91c1c; }
+
+    .guide-box {
+      margin-top: 12px; padding: 14px 16px; border-radius: 10px;
+      background: var(--bg-subtle); font-size: 13px; line-height: 1.8; display: none;
+    }
+    .guide-box.open { display: block; }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+  </style>
+</head>
+<body>
+  <div class="admin-wrap">
+    <header class="admin-top">
+      <div class="admin-brand">
+        <img src={siteConfig.logo} alt={siteConfig.name} />
+        <div>
+          <h1>{siteConfig.name} · 内容发布工作台</h1>
+          <div style="font-size:12.5px;color:var(--text-muted);">填写表单保存 → 自动推送 GitHub → Cloudflare 约 1 分钟自动上线</div>
+        </div>
+      </div>
+      <div class="admin-top-actions">
+        <span id="conn-status" class="status-pill status-wait"><i class="fas fa-lock"></i> 未连接 GitHub</span>
+        <a href="/" class="btn btn-outline btn-sm" target="_blank"><i class="fas fa-home"></i> 访问网站</a>
+        <a href="https://dash.cloudflare.com/" class="btn btn-outline btn-sm" target="_blank"><i class="fas fa-cloud"></i> 查看发布进度</a>
+      </div>
+    </header>
+
+    <!-- GitHub Token Connection Bar -->
+    <section class="token-bar">
+      <div class="token-row">
+        <div style="flex:1;min-width:260px;">
+          <input type="password" id="gh-token-input" class="input" placeholder="粘贴你的 GitHub 专属密钥 (github_pat_... 或 ghp_...)" />
+        </div>
+        <button type="button" class="btn btn-primary" id="btn-connect"><i class="fas fa-plug"></i> 连接并同步数据</button>
+        <button type="button" class="btn btn-outline" id="btn-toggle-guide"><i class="far fa-question-circle"></i> 30秒获取密钥教程</button>
+        <button type="button" class="btn btn-outline" id="btn-logout" style="display:none;"><i class="fas fa-sign-out-alt"></i> 清除密钥</button>
+      </div>
+      <div class="guide-box" id="token-guide">
+        <strong>如何 30 秒获取专属密钥（只需操作一次，浏览器会自动记住）：</strong>
+        <ol style="margin:6px 0 0 18px;padding:0;">
+          <li>点击打开 <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" style="color:var(--brand);text-decoration:underline;">GitHub 创建密钥页面</a>（如未登录先登录账号 <code>yema-29129</code>）。</li>
+          <li><strong>Token name</strong> 随便填，例如 <code>tmhzz-admin</code>；<strong>Expiration</strong> 选最长（如 1 年或 Custom）。</li>
+          <li><strong>Repository access</strong> 选 <code>Only select repositories</code> → 下拉勾选 <code>tmhzz-site</code>。</li>
+          <li>展开下方 <strong>Permissions → Repository permissions</strong>，找到 <strong>Contents</strong>，把权限改为 <code>Read and write</code>。</li>
+          <li>拉到最底部点绿色按钮 <strong>Generate token</strong>，复制生成的那串 <code>github_pat_...</code> 粘贴到上面输入框，点「连接并同步数据」即可永久使用！</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Tabs -->
+    <nav class="tabs-bar">
+      <button type="button" class="tab-btn active" data-tab="sites"><i class="fas fa-compass"></i> 网址导航管理 (<span id="count-sites">-</span>)</button>
+      <button type="button" class="tab-btn" data-tab="posts"><i class="fas fa-pen-nib"></i> 营销笔记发布 (<span id="count-posts">-</span>)</button>
+      <button type="button" class="tab-btn" data-tab="apps"><i class="fas fa-download"></i> 资料下载管理 (<span id="count-apps">-</span>)</button>
+      <button type="button" class="tab-btn" data-tab="settings"><i class="fas fa-sliders-h"></i> 公告与友链设置</button>
+    </nav>
+
+    <!-- TAB 1: Sites -->
+    <section class="tab-pane active" id="pane-sites">
+      <div class="admin-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+          <h2 id="site-form-heading" style="margin:0;font-size:16px;"><i class="fas fa-plus-circle" style="color:var(--brand);margin-right:6px;"></i>添加新网站</h2>
+          <button type="button" class="btn btn-outline btn-sm" id="btn-reset-site" style="display:none;">取消编辑，切换为新增</button>
+        </div>
+        <form id="site-form" class="form-grid">
+          <input type="hidden" id="site-edit-id" value="" />
+          <div class="field">
+            <label>网站名称 *</label>
+            <input type="text" id="site-title" class="input" placeholder="例如：DeepSeek" required />
+          </div>
+          <div class="field">
+            <label>网站链接 (URL) *</label>
+            <input type="text" id="site-url" class="input" placeholder="例如：https://chat.deepseek.com" required />
+          </div>
+          <div class="field">
+            <label>所属首页分类 *</label>
+            <select id="site-section" class="select" required></select>
+          </div>
+          <div class="field">
+            <label>网站图标链接（留空自动抓取高清图标）</label>
+            <input type="text" id="site-icon" class="input" placeholder="留空即可，自动根据网址生成图标" />
+          </div>
+          <div class="field field-full">
+            <label>一句话简介 *</label>
+            <input type="text" id="site-summary" class="input" placeholder="简明介绍这个网站有什么用，会显示在首页卡片和搜索引擎描述中" required />
+          </div>
+          <div class="field field-full">
+            <label>详细介绍（选填，显示在网址详情页）</label>
+            <textarea id="site-content" class="textarea" style="min-height:80px;" placeholder="可不填；填写后会在点击卡片进入详情页时展示"></textarea>
+          </div>
+          <div class="field field-full" style="display:flex;gap:10px;align-items:center;">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-cloud-upload-alt"></i> <span id="site-submit-text">保存并自动上线</span></button>
+            <label style="display:inline-flex;align-items:center;gap:6px;margin:0;font-weight:400;cursor:pointer;">
+              <input type="checkbox" id="site-prepend" checked /> 排在该分类最前面
+            </label>
+          </div>
+        </form>
+      </div>
+
+      <div class="admin-card">
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;">
+          <h3 style="margin:0;font-size:15px;">已有网址列表</h3>
+          <input type="text" id="site-filter" class="input" style="max-width:280px;" placeholder="搜索网站名或网址..." />
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="list-table">
+            <thead>
+              <tr>
+                <th style="width:46px;">图标</th>
+                <th>网站名称</th>
+                <th>所属分类</th>
+                <th>网址</th>
+                <th style="width:140px;">操作</th>
+              </tr>
+            </thead>
+            <tbody id="sites-tbody">
+              <tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:24px;">请先在上方连接 GitHub 密钥加载数据</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: Posts -->
+    <section class="tab-pane" id="pane-posts">
+      <div class="admin-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+          <h2 id="post-form-heading" style="margin:0;font-size:16px;"><i class="fas fa-pen-nib" style="color:var(--brand);margin-right:6px;"></i>发布新营销笔记</h2>
+          <button type="button" class="btn btn-outline btn-sm" id="btn-reset-post" style="display:none;">取消编辑</button>
+        </div>
+        <form id="post-form" class="form-grid">
+          <input type="hidden" id="post-edit-id" value="" />
+          <div class="field field-full">
+            <label>文章标题 *</label>
+            <input type="text" id="post-title" class="input" placeholder="输入营销笔记标题" required />
+          </div>
+          <div class="field">
+            <label>分类</label>
+            <select id="post-category" class="select">
+              <option value="营销笔记">营销笔记</option>
+              <option value="思维认知">思维认知</option>
+              <option value="渠道&流量">渠道&流量</option>
+              <option value="转化">转化</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>发布日期</label>
+            <input type="date" id="post-date" class="input" />
+          </div>
+          <div class="field field-full">
+            <label>封面图链接（选填）</label>
+            <input type="text" id="post-thumb" class="input" placeholder="可留空，或填图片 URL" />
+          </div>
+          <div class="field field-full">
+            <label>文章正文 *（直接粘贴文字即可，空行会自动分段；也支持 HTML）</label>
+            <textarea id="post-content" class="textarea" style="min-height:220px;" placeholder="在这里输入或粘贴你的营销笔记正文..." required></textarea>
+          </div>
+          <div class="field field-full">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-cloud-upload-alt"></i> <span id="post-submit-text">发布并自动上线</span></button>
+          </div>
+        </form>
+      </div>
+
+      <div class="admin-card">
+        <h3 style="margin:0 0 10px;font-size:15px;">已有营销笔记</h3>
+        <div style="overflow-x:auto;">
+          <table class="list-table">
+            <thead>
+              <tr>
+                <th>标题</th>
+                <th style="width:120px;">分类</th>
+                <th style="width:110px;">日期</th>
+                <th style="width:140px;">操作</th>
+              </tr>
+            </thead>
+            <tbody id="posts-tbody">
+              <tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:24px;">连接 GitHub 后显示</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: Apps / Downloads -->
+    <section class="tab-pane" id="pane-apps">
+      <div class="admin-card">
+        <h2 style="margin:0 0 14px;font-size:16px;"><i class="fas fa-file-pdf" style="color:var(--brand);margin-right:6px;"></i>添加新行业报告 / 资料下载</h2>
+        <form id="app-form" class="form-grid">
+          <div class="field field-full">
+            <label>资料名称 *</label>
+            <input type="text" id="app-title" class="input" placeholder="例如：2026中国消费趋势报告" required />
+          </div>
+          <div class="field">
+            <label>简介 *</label>
+            <input type="text" id="app-summary" class="input" placeholder="一句话介绍资料内容" required />
+          </div>
+          <div class="field">
+            <label>封面图链接（选填）</label>
+            <input type="text" id="app-cover" class="input" placeholder="可留空" />
+          </div>
+          <div class="field">
+            <label>百度网盘链接（选填）</label>
+            <input type="text" id="app-baidu" class="input" placeholder="https://pan.baidu.com/s/..." />
+          </div>
+          <div class="field">
+            <label>夸克网盘链接（选填）</label>
+            <input type="text" id="app-quark" class="input" placeholder="https://pan.quark.cn/s/..." />
+          </div>
+          <div class="field">
+            <label>迅雷网盘链接（选填）</label>
+            <input type="text" id="app-xunlei" class="input" placeholder="https://pan.xunlei.com/s/..." />
+          </div>
+          <div class="field">
+            <label>提取码（选填）</label>
+            <input type="text" id="app-pwd" class="input" placeholder="例如：8888" />
+          </div>
+          <div class="field field-full">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-cloud-upload-alt"></i> 保存资料并自动上线</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="admin-card">
+        <h3 style="margin:0 0 10px;font-size:15px;">已有资料列表</h3>
+        <div style="overflow-x:auto;">
+          <table class="list-table">
+            <thead>
+              <tr>
+                <th>资料标题</th>
+                <th style="width:120px;">更新日期</th>
+                <th style="width:100px;">网盘数</th>
+                <th style="width:90px;">操作</th>
+              </tr>
+            </thead>
+            <tbody id="apps-tbody">
+              <tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:24px;">连接 GitHub 后显示</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: Settings -->
+    <section class="tab-pane" id="pane-settings">
+      <div class="admin-card">
+        <h2 style="margin:0 0 14px;font-size:16px;"><i class="fas fa-bullhorn" style="color:var(--brand);margin-right:6px;"></i>首页公告与广告设置</h2>
+        <form id="settings-form" class="form-grid">
+          <div class="field">
+            <label>顶部公告文字</label>
+            <input type="text" id="set-bulletin-text" class="input" />
+          </div>
+          <div class="field">
+            <label>公告日期（如 11/25）</label>
+            <input type="text" id="set-bulletin-date" class="input" />
+          </div>
+          <div class="field field-full">
+            <label>网站 SEO 简介（显示在搜索引擎结果里）</label>
+            <input type="text" id="set-desc" class="input" />
+          </div>
+          <div class="field field-full">
+            <label style="display:inline-flex;align-items:center;gap:8px;cursor:pointer;">
+              <input type="checkbox" id="set-adsense" /> 开启 Google AdSense 广告位
+            </label>
+          </div>
+          <div class="field field-full">
+            <label>友情链接（每行一条，格式：<code>名称 | 网址</code>）</label>
+            <textarea id="set-friends" class="textarea" style="min-height:130px;"></textarea>
+          </div>
+          <div class="field field-full">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-cloud-upload-alt"></i> 保存设置并自动上线</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script is:inline>
+    (function () {
+      var OWNER = 'yema-29129';
+      var REPO = 'tmhzz-site';
+      var BRANCH = 'main';
+      var TOKEN_KEY = 'tmhzz_admin_gh_token';
+
+      var state = {
+        token: '',
+        shas: {},
+        sites: [],
+        sections: [],
+        posts: [],
+        apps: [],
+        config: null
+      };
+
+      var $ = function (id) { return document.getElementById(id); };
+
+      function showToast(msg, type) {
+        var el = $('toast');
+        el.textContent = msg;
+        el.className = 'toast show ' + (type || 'info');
+        clearTimeout(window.__toastTimer);
+        window.__toastTimer = setTimeout(function () { el.classList.remove('show'); }, 5200);
+      }
+
+      function b64EncodeUnicode(str) {
+        var bytes = new TextEncoder().encode(str);
+        var bin = '';
+        for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+        return btoa(bin);
+      }
+
+      function b64DecodeUnicode(b64) {
+        var bin = atob(b64.replace(/\s/g, ''));
+        var bytes = new Uint8Array(bin.length);
+        for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        return new TextDecoder().decode(bytes);
+      }
+
+      function ghFetch(path, opts) {
+        opts = opts || {};
+        var headers = Object.assign({
+          'Authorization': 'Bearer ' + state.token,
+          'Accept': 'application/vnd.github+json'
+        }, opts.headers || {});
+        return fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + path + '?ref=' + BRANCH + '&_=' + Date.now(), {
+          method: opts.method || 'GET',
+          headers: headers,
+          body: opts.body
+        }).then(function (r) {
+          return r.json().then(function (data) {
+            if (!r.ok) throw new Error(data.message || ('GitHub API 错误: ' + r.status));
+            return data;
+          });
+        });
+      }
+
+      function loadJsonFile(filePath) {
+        return ghFetch(filePath).then(function (res) {
+          state.shas[filePath] = res.sha;
+          return JSON.parse(b64DecodeUnicode(res.content));
+        });
+      }
+
+      function saveJsonFile(filePath, obj, commitMsg) {
+        var body = JSON.stringify({
+          message: commitMsg,
+          content: b64EncodeUnicode(JSON.stringify(obj, null, 2) + '\n'),
+          sha: state.shas[filePath],
+          branch: BRANCH
+        });
+        return fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + filePath, {
+          method: 'PUT',
+          headers: {
+            'Authorization': 'Bearer ' + state.token,
+            'Accept': 'application/vnd.github+json',
+            'Content-Type': 'application/json'
+          },
+          body: body
+        }).then(function (r) {
+          return r.json().then(function (data) {
+            if (!r.ok) throw new Error(data.message || ('保存失败: ' + r.status));
+            state.shas[filePath] = data.content.sha;
+            return data;
+          });
+        });
+      }
+
+      function slugify(title) {
+        return (title || 'item')
+          .trim()
+          .toLowerCase()
+          .replace(/[\\/?#%*"<>|:\s]+/g, '-')
+          .replace(/-+/g, '-')
+          .replace(/^-|-$/g, '') || ('item-' + Date.now());
+      }
+
+      function todayStr() {
+        var d = new Date();
+        return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      }
+
+      function ensureConnected() {
+        if (!state.token || !state.config) {
+          showToast('请先在顶部粘贴 GitHub 密钥并点击「连接并同步数据」', 'error');
+          return false;
+        }
+        return true;
+      }
+
+      function syncAll() {
+        showToast('正在从 GitHub 拉取最新网站数据...', 'info');
+        return Promise.all([
+          loadJsonFile('src/data/sites.json'),
+          loadJsonFile('src/data/sections.json'),
+          loadJsonFile('src/data/posts.json'),
+          loadJsonFile('src/data/apps.json'),
+          loadJsonFile('src/data/site-config.json')
+        ]).then(function (res) {
+          state.sites = res[0];
+          state.sections = res[1];
+          state.posts = res[2];
+          state.apps = res[3];
+          state.config = res[4];
+          localStorage.setItem(TOKEN_KEY, state.token);
+          $('conn-status').className = 'status-pill status-ok';
+          $('conn-status').innerHTML = '<i class="fas fa-check-circle"></i> 已连接 tmhzz-site';
+          $('btn-logout').style.display = '';
+          renderAll();
+          showToast('同步成功！现在可以直接增删改内容并一键上线。', 'success');
+        }).catch(function (err) {
+          $('conn-status').className = 'status-pill status-wait';
+          $('conn-status').innerHTML = '<i class="fas fa-exclamation-triangle"></i> 连接失败';
+          showToast('连接失败：' + err.message, 'error');
+        });
+      }
+
+      function renderAll() {
+        $('count-sites').textContent = state.sites.length;
+        $('count-posts').textContent = state.posts.length;
+        $('count-apps').textContent = state.apps.length;
+
+        // Populate sections dropdown
+        var sel = $('site-section');
+        sel.innerHTML = state.sections.map(function (sec) {
+          return '<option value="' + sec.id + '">' + sec.title + ' (' + (sec.siteIds || []).length + ')</option>';
+        }).join('');
+
+        renderSitesTable();
+        renderPostsTable();
+        renderAppsTable();
+        renderSettingsForm();
+      }
+
+      function findSectionForSite(siteId) {
+        for (var i = 0; i < state.sections.length; i++) {
+          if ((state.sections[i].siteIds || []).indexOf(siteId) !== -1) return state.sections[i];
+        }
+        return null;
+      }
+
+      function renderSitesTable() {
+        var kw = ($('site-filter').value || '').trim().toLowerCase();
+        var list = state.sites.filter(function (s) {
+          if (!kw) return true;
+          return (s.title + ' ' + s.url + ' ' + s.summary).toLowerCase().indexOf(kw) !== -1;
+        });
+        var tbody = $('sites-tbody');
+        if (!list.length) {
+          tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:20px;">无匹配网址</td></tr>';
+          return;
+        }
+        tbody.innerHTML = list.slice(0, 80).map(function (s) {
+          var sec = findSectionForSite(s.id);
+          var secName = sec ? sec.title : (s.favorites && s.favorites[0] ? s.favorites[0].name : '未分类');
+          return '<tr>' +
+            '<td><img src="' + (s.icon || '') + '" style="width:28px;height:28px;border-radius:6px;object-fit:cover;background:#eee;" onerror="this.style.visibility=\'hidden\'" /></td>' +
+            '<td><strong>' + s.title + '</strong><div style="font-size:12px;color:var(--text-muted);max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + (s.summary || '') + '</div></td>' +
+            '<td><span class="tag-pill">' + secName + '</span></td>' +
+            '<td style="max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><a href="' + s.url + '" target="_blank" style="color:var(--brand);">' + s.url + '</a></td>' +
+            '<td>' +
+              '<button type="button" class="btn btn-outline btn-sm" data-edit-site="' + s.id + '" style="margin-right:6px;">编辑</button>' +
+              '<button type="button" class="btn btn-danger btn-sm" data-del-site="' + s.id + '">删除</button>' +
+            '</td></tr>';
+        }).join('');
+
+        tbody.querySelectorAll('[data-edit-site]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var id = Number(btn.getAttribute('data-edit-site'));
+            var s = state.sites.find(function (x) { return x.id === id; });
+            if (!s) return;
+            var sec = findSectionForSite(id);
+            $('site-edit-id').value = String(id);
+            $('site-title').value = s.title || '';
+            $('site-url').value = s.url || '';
+            $('site-icon').value = s.icon || '';
+            $('site-summary').value = s.summary || '';
+            $('site-content').value = (s.contentHtml || '').replace(/<[^>]+>/g, '');
+            if (sec) $('site-section').value = sec.id;
+            $('site-form-heading').innerHTML = '<i class="fas fa-edit" style="color:var(--brand);margin-right:6px;"></i>正在编辑：' + s.title;
+            $('site-submit-text').textContent = '保存修改并自动上线';
+            $('btn-reset-site').style.display = '';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        });
+
+        tbody.querySelectorAll('[data-del-site]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var id = Number(btn.getAttribute('data-del-site'));
+            var s = state.sites.find(function (x) { return x.id === id; });
+            if (!s || !confirm('确定删除网址「' + s.title + '」并立即发布上线吗？')) return;
+            state.sites = state.sites.filter(function (x) { return x.id !== id; });
+            state.sections.forEach(function (sec) {
+              sec.siteIds = (sec.siteIds || []).filter(function (x) { return x !== id; });
+            });
+            showToast('正在保存删除到 GitHub...', 'info');
+            saveJsonFile('src/data/sites.json', state.sites, 'Admin: delete site ' + s.title)
+              .then(function () { return saveJsonFile('src/data/sections.json', state.sections, 'Admin: update sections after deleting ' + s.title); })
+              .then(function () {
+                renderAll();
+                showToast('✅ 已删除并提交！Cloudflare 约 1 分钟后自动生效。', 'success');
+              })
+              .catch(function (err) { showToast('保存失败：' + err.message, 'error'); });
+          });
+        });
+      }
+
+      function renderPostsTable() {
+        var tbody = $('posts-tbody');
+        tbody.innerHTML = state.posts.map(function (p) {
+          var cat = p.categories && p.categories[0] ? p.categories[0].name : '营销笔记';
+          return '<tr>' +
+            '<td><strong>' + p.title + '</strong></td>' +
+            '<td><span class="tag-pill">' + cat + '</span></td>' +
+            '<td>' + p.date + '</td>' +
+            '<td>' +
+              '<button type="button" class="btn btn-outline btn-sm" data-edit-post="' + p.id + '" style="margin-right:6px;">编辑</button>' +
+              '<button type="button" class="btn btn-danger btn-sm" data-del-post="' + p.id + '">删除</button>' +
+            '</td></tr>';
+        }).join('');
+
+        tbody.querySelectorAll('[data-edit-post]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var id = Number(btn.getAttribute('data-edit-post'));
+            var p = state.posts.find(function (x) { return x.id === id; });
+            if (!p) return;
+            $('post-edit-id').value = String(id);
+            $('post-title').value = p.title || '';
+            $('post-date').value = p.date || todayStr();
+            $('post-thumb').value = p.thumbnail || '';
+            $('post-content').value = p.contentHtml || '';
+            if (p.categories && p.categories[0]) $('post-category').value = p.categories[0].name;
+            $('post-form-heading').innerHTML = '<i class="fas fa-edit" style="color:var(--brand);margin-right:6px;"></i>正在编辑笔记：' + p.title;
+            $('post-submit-text').textContent = '保存修改并自动上线';
+            $('btn-reset-post').style.display = '';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        });
+
+        tbody.querySelectorAll('[data-del-post]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var id = Number(btn.getAttribute('data-del-post'));
+            var p = state.posts.find(function (x) { return x.id === id; });
+            if (!p || !confirm('确定删除笔记「' + p.title + '」吗？')) return;
+            state.posts = state.posts.filter(function (x) { return x.id !== id; });
+            showToast('正在保存删除...', 'info');
+            saveJsonFile('src/data/posts.json', state.posts, 'Admin: delete post ' + p.title)
+              .then(function () {
+                renderAll();
+                showToast('✅ 已删除并提交！Cloudflare 约 1 分钟后自动生效。', 'success');
+              })
+              .catch(function (err) { showToast('保存失败：' + err.message, 'error'); });
+          });
+        });
+      }
+
+      function renderAppsTable() {
+        var tbody = $('apps-tbody');
+        tbody.innerHTML = state.apps.map(function (a) {
+          return '<tr>' +
+            '<td><strong>' + a.title + '</strong></td>' +
+            '<td>' + (a.updated || a.date) + '</td>' +
+            '<td>' + (a.downloads || []).length + ' 个网盘</td>' +
+            '<td><button type="button" class="btn btn-danger btn-sm" data-del-app="' + a.id + '">删除</button></td></tr>';
+        }).join('');
+
+        tbody.querySelectorAll('[data-del-app]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var id = Number(btn.getAttribute('data-del-app'));
+            var a = state.apps.find(function (x) { return x.id === id; });
+            if (!a || !confirm('确定删除资料「' + a.title + '」吗？')) return;
+            state.apps = state.apps.filter(function (x) { return x.id !== id; });
+            saveJsonFile('src/data/apps.json', state.apps, 'Admin: delete report ' + a.title)
+              .then(function () {
+                renderAll();
+                showToast('✅ 已删除并提交！Cloudflare 约 1 分钟后自动生效。', 'success');
+              })
+              .catch(function (err) { showToast('保存失败：' + err.message, 'error'); });
+          });
+        });
+      }
+
+      function renderSettingsForm() {
+        if (!state.config) return;
+        $('set-bulletin-text').value = (state.config.bulletin && state.config.bulletin.text) || '';
+        $('set-bulletin-date').value = (state.config.bulletin && state.config.bulletin.date) || '';
+        $('set-desc').value = state.config.description || '';
+        $('set-adsense').checked = !!(state.config.adsense && state.config.adsense.enabled);
+        $('set-friends').value = (state.config.friendLinks || []).map(function (f) {
+          return f.label + ' | ' + f.url;
+        }).join('\n');
+      }
+
+      // Event bindings
+      document.querySelectorAll('.tab-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+          document.querySelectorAll('.tab-pane').forEach(function (p) { p.classList.remove('active'); });
+          btn.classList.add('active');
+          $('pane-' + btn.getAttribute('data-tab')).classList.add('active');
+        });
+      });
+
+      $('btn-toggle-guide').addEventListener('click', function () {
+        $('token-guide').classList.toggle('open');
+      });
+
+      $('btn-connect').addEventListener('click', function () {
+        var val = $('gh-token-input').value.trim();
+        if (!val) { showToast('请先粘贴 GitHub 密钥', 'error'); return; }
+        state.token = val;
+        syncAll();
+      });
+
+      $('btn-logout').addEventListener('click', function () {
+        localStorage.removeItem(TOKEN_KEY);
+        state.token = '';
+        $('gh-token-input').value = '';
+        $('btn-logout').style.display = 'none';
+        $('conn-status').className = 'status-pill status-wait';
+        $('conn-status').innerHTML = '<i class="fas fa-lock"></i> 未连接 GitHub';
+        showToast('已清除本机保存的密钥', 'info');
+      });
+
+      $('site-filter').addEventListener('input', renderSitesTable);
+
+      function resetSiteForm() {
+        $('site-form').reset();
+        $('site-edit-id').value = '';
+        $('site-prepend').checked = true;
+        $('site-form-heading').innerHTML = '<i class="fas fa-plus-circle" style="color:var(--brand);margin-right:6px;"></i>添加新网站';
+        $('site-submit-text').textContent = '保存并自动上线';
+        $('btn-reset-site').style.display = 'none';
+      }
+      $('btn-reset-site').addEventListener('click', resetSiteForm);
+
+      $('site-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!ensureConnected()) return;
+        var editId = $('site-edit-id').value ? Number($('site-edit-id').value) : null;
+        var title = $('site-title').value.trim();
+        var url = $('site-url').value.trim();
+        if (url && !/^https?:\/\//i.test(url)) url = 'https://' + url;
+        var secId = $('site-section').value;
+        var summary = $('site-summary').value.trim();
+        var icon = $('site-icon').value.trim() || ('https://t0.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=128&url=' + encodeURIComponent(url));
+        var contentRaw = $('site-content').value.trim();
+        var contentHtml = contentRaw ? ('<p>' + contentRaw.replace(/\n+/g, '</p><p>') + '</p>') : '';
+        var secObj = state.sections.find(function (s) { return s.id === secId; });
+        var secTitle = secObj ? secObj.title : '推荐';
+        var termNum = Number((secId || '').replace(/^term-(\d+).*/, '$1')) || 0;
+
+        if (editId) {
+          var existing = state.sites.find(function (x) { return x.id === editId; });
+          if (existing) {
+            existing.title = title;
+            existing.url = url;
+            existing.icon = icon;
+            existing.summary = summary;
+            if (contentHtml) existing.contentHtml = contentHtml;
+          }
+          // Move section if changed
+          state.sections.forEach(function (sec) {
+            sec.siteIds = (sec.siteIds || []).filter(function (x) { return x !== editId; });
+          });
+          if (secObj) {
+            if ($('site-prepend').checked) secObj.siteIds.unshift(editId);
+            else secObj.siteIds.push(editId);
+          }
+        } else {
+          var newId = Math.max.apply(null, state.sites.map(function (s) { return s.id; }).concat([1000])) + 1;
+          var newSite = {
+            id: newId,
+            slug: slugify(title),
+            title: title,
+            url: url,
+            icon: icon,
+            summary: summary,
+            date: todayStr(),
+            favorites: termNum ? [{ id: termNum, name: secTitle, slug: secTitle }] : [],
+            tags: [],
+            contentHtml: contentHtml
+          };
+          state.sites.unshift(newSite);
+          if (secObj) {
+            if ($('site-prepend').checked) secObj.siteIds.unshift(newId);
+            else secObj.siteIds.push(newId);
+          }
+        }
+
+        showToast('正在保存到 GitHub 并触发自动发布...', 'info');
+        saveJsonFile('src/data/sites.json', state.sites, 'Admin: ' + (editId ? 'update' : 'add') + ' site ' + title)
+          .then(function () { return saveJsonFile('src/data/sections.json', state.sections, 'Admin: update sections for ' + title); })
+          .then(function () {
+            resetSiteForm();
+            renderAll();
+            showToast('✅ 网址「' + title + '」已保存！Cloudflare 约 1 分钟自动上线生效。', 'success');
+          })
+          .catch(function (err) { showToast('保存失败：' + err.message, 'error'); });
+      });
+
+      function resetPostForm() {
+        $('post-form').reset();
+        $('post-edit-id').value = '';
+        $('post-date').value = todayStr();
+        $('post-form-heading').innerHTML = '<i class="fas fa-pen-nib" style="color:var(--brand);margin-right:6px;"></i>发布新营销笔记';
+        $('post-submit-text').textContent = '发布并自动上线';
+        $('btn-reset-post').style.display = 'none';
+      }
+      $('btn-reset-post').addEventListener('click', resetPostForm);
+      $('post-date').value = todayStr();
+
+      $('post-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!ensureConnected()) return;
+        var editId = $('post-edit-id').value ? Number($('post-edit-id').value) : null;
+        var title = $('post-title').value.trim();
+        var date = $('post-date').value || todayStr();
+        var catName = $('post-category').value;
+        var thumb = $('post-thumb').value.trim();
+        var raw = $('post-content').value.trim();
+        var html = /<(p|div|h[1-6]|ul|ol|img|blockquote)\b/i.test(raw)
+          ? raw
+          : raw.split(/\n{2,}/).map(function (para) { return '<p>' + para.replace(/\n/g, '<br>') + '</p>'; }).join('\n');
+        var excerpt = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 150);
+
+        if (editId) {
+          var p = state.posts.find(function (x) { return x.id === editId; });
+          if (p) {
+            p.title = title;
+            p.date = date;
+            p.modified = todayStr();
+            p.thumbnail = thumb;
+            p.excerpt = excerpt;
+            p.categories = [{ id: 1, name: catName, slug: catName }];
+            p.contentHtml = html;
+          }
+        } else {
+          var newId = Math.max.apply(null, state.posts.map(function (x) { return x.id; }).concat([1000])) + 1;
+          state.posts.unshift({
+            id: newId,
+            slug: slugify(title),
+            title: title,
+            date: date,
+            modified: date,
+            thumbnail: thumb,
+            excerpt: excerpt,
+            categories: [{ id: 1, name: catName, slug: catName }],
+            tags: [],
+            contentHtml: html
+          });
+        }
+
+        showToast('正在发布笔记到 GitHub...', 'info');
+        saveJsonFile('src/data/posts.json', state.posts, 'Admin: ' + (editId ? 'update' : 'publish') + ' post ' + title)
+          .then(function () {
+            resetPostForm();
+            renderAll();
+            showToast('✅ 笔记「' + title + '」已发布！Cloudflare 约 1 分钟自动上线。', 'success');
+          })
+          .catch(function (err) { showToast('发布失败：' + err.message, 'error'); });
+      });
+
+      $('app-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!ensureConnected()) return;
+        var title = $('app-title').value.trim();
+        var summary = $('app-summary').value.trim();
+        var cover = $('app-cover').value.trim();
+        var downloads = [];
+        if ($('app-baidu').value.trim()) downloads.push({ label: '百度网盘', url: $('app-baidu').value.trim() });
+        if ($('app-quark').value.trim()) downloads.push({ label: '夸克', url: $('app-quark').value.trim() });
+        if ($('app-xunlei').value.trim()) downloads.push({ label: '迅雷', url: $('app-xunlei').value.trim() });
+        var pwd = $('app-pwd').value.trim();
+        var newId = Math.max.apply(null, state.apps.map(function (x) { return x.id; }).concat([1000])) + 1;
+        state.apps.unshift({
+          id: newId,
+          slug: slugify(title),
+          title: title,
+          date: todayStr(),
+          updated: todayStr(),
+          cover: cover,
+          summary: summary,
+          downloads: downloads,
+          downloadNote: '',
+          passwords: pwd ? [pwd] : [],
+          categories: [{ id: 1, name: '行业报告文件', slug: '行业报告文件' }],
+          contentHtml: '<p>' + summary + '</p>'
+        });
+
+        showToast('正在保存资料到 GitHub...', 'info');
+        saveJsonFile('src/data/apps.json', state.apps, 'Admin: add report ' + title)
+          .then(function () {
+            $('app-form').reset();
+            renderAll();
+            showToast('✅ 资料「' + title + '」已保存！Cloudflare 约 1 分钟自动上线。', 'success');
+          })
+          .catch(function (err) { showToast('保存失败：' + err.message, 'error'); });
+      });
+
+      $('settings-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!ensureConnected()) return;
+        state.config.bulletin = {
+          text: $('set-bulletin-text').value.trim(),
+          date: $('set-bulletin-date').value.trim()
+        };
+        state.config.description = $('set-desc').value.trim();
+        state.config.adsense.enabled = $('set-adsense').checked;
+        state.config.friendLinks = $('set-friends').value
+          .split('\n')
+          .map(function (line) { return line.trim(); })
+          .filter(Boolean)
+          .map(function (line) {
+            var parts = line.split('|');
+            return { label: (parts[0] || '').trim(), url: (parts[1] || '').trim() };
+          })
+          .filter(function (f) { return f.label && f.url; });
+
+        showToast('正在保存网站设置...', 'info');
+        saveJsonFile('src/data/site-config.json', state.config, 'Admin: update site settings')
+          .then(function () {
+            showToast('✅ 设置已保存！Cloudflare 约 1 分钟自动上线。', 'success');
+          })
+          .catch(function (err) { showToast('保存失败：' + err.message, 'error'); });
+      });
+
+      // Auto-connect if token already saved in localStorage
+      var saved = localStorage.getItem(TOKEN_KEY);
+      if (saved) {
+        $('gh-token-input').value = saved;
+        state.token = saved;
+        syncAll();
+      }
+    })();
+  </script>
+</body>
+</html>
