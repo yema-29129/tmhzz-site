@@ -1,0 +1,86 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="UTM 推广追踪链接生成器"
+  description="一键生成规范的 Google Analytics / 百度统计 UTM 推广追踪链接，内置小红书、抖音、公众号、视频号常用渠道预设。"
+  keywords="UTM链接生成器,推广追踪链接,广告渠道追踪URL,GA UTM参数生成"
+  currentPath="/tools/utm-builder/"
+>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
+    <span style="font-size:13px;color:var(--text-muted);line-height:32px;">常用渠道快捷预设：</span>
+    <button type="button" class="btn btn-outline" style="padding:5px 12px;font-size:12.5px;" data-preset="xiaohongshu,kol">小红书达人</button>
+    <button type="button" class="btn btn-outline" style="padding:5px 12px;font-size:12.5px;" data-preset="douyin,feed">抖音信息流</button>
+    <button type="button" class="btn btn-outline" style="padding:5px 12px;font-size:12.5px;" data-preset="wechat_mp,article">微信公众号</button>
+    <button type="button" class="btn btn-outline" style="padding:5px 12px;font-size:12.5px;" data-preset="wechat_video,live">视频号直播</button>
+    <button type="button" class="btn btn-outline" style="padding:5px 12px;font-size:12.5px;" data-preset="baidu,cpc">百度竞价 SEM</button>
+    <button type="button" class="btn btn-outline" style="padding:5px 12px;font-size:12.5px;" data-preset="google,cpc">Google Ads</button>
+  </div>
+
+  <div class="tool-grid">
+    <div class="tool-field" style="grid-column:1 / -1;">
+      <label>目标落地页网址 *</label>
+      <input type="text" id="u-base" class="tool-input" value="https://tmhzz.com/" placeholder="https://example.com/landing" />
+    </div>
+    <div class="tool-field"><label>流量来源 utm_source *</label><input type="text" id="u-source" class="tool-input" value="xiaohongshu" placeholder="如 xiaohongshu / douyin / wechat" /></div>
+    <div class="tool-field"><label>媒介类型 utm_medium *</label><input type="text" id="u-medium" class="tool-input" value="kol" placeholder="如 cpc / kol / social / feed" /></div>
+    <div class="tool-field"><label>活动名称 utm_campaign *</label><input type="text" id="u-campaign" class="tool-input" value="2026_promo" placeholder="如 618_sale / spring_launch" /></div>
+    <div class="tool-field"><label>素材/达人标识 utm_content（选填）</label><input type="text" id="u-content" class="tool-input" placeholder="如 banner_a / kol_zhangsan" /></div>
+    <div class="tool-field" style="grid-column:1 / -1;"><label>投放关键词 utm_term（选填）</label><input type="text" id="u-term" class="tool-input" placeholder="如 ai_tools" /></div>
+  </div>
+
+  <div class="kpi-box" style="margin-top:20px;">
+    <div class="kpi-label">生成的完整追踪链接</div>
+    <div id="u-result" style="font-size:14px;word-break:break-all;font-family:monospace;color:var(--brand);margin:8px 0 12px;"></div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;">
+      <button type="button" class="btn btn-primary" id="u-copy"><i class="far fa-copy"></i> 一键复制链接</button>
+      <a id="u-open" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline"><i class="fas fa-external-link-alt"></i> 测试打开</a>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var ids = ['u-base', 'u-source', 'u-medium', 'u-campaign', 'u-content', 'u-term'];
+      function build() {
+        var base = document.getElementById('u-base').value.trim();
+        if (!base) { document.getElementById('u-result').textContent = ''; return; }
+        if (!/^https?:\/\//i.test(base)) base = 'https://' + base;
+        try {
+          var u = new URL(base);
+          var pairs = [
+            ['utm_source', document.getElementById('u-source').value.trim()],
+            ['utm_medium', document.getElementById('u-medium').value.trim()],
+            ['utm_campaign', document.getElementById('u-campaign').value.trim()],
+            ['utm_content', document.getElementById('u-content').value.trim()],
+            ['utm_term', document.getElementById('u-term').value.trim()]
+          ];
+          pairs.forEach(function (p) { if (p[1]) u.searchParams.set(p[0], p[1]); });
+          document.getElementById('u-result').textContent = u.href;
+          document.getElementById('u-open').href = u.href;
+        } catch (e) {
+          document.getElementById('u-result').textContent = '请输入正确的网址格式（如 https://tmhzz.com/）';
+        }
+      }
+      ids.forEach(function (id) { document.getElementById(id).addEventListener('input', build); });
+      document.querySelectorAll('[data-preset]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var parts = btn.getAttribute('data-preset').split(',');
+          document.getElementById('u-source').value = parts[0];
+          document.getElementById('u-medium').value = parts[1];
+          build();
+        });
+      });
+      document.getElementById('u-copy').addEventListener('click', function () {
+        var txt = document.getElementById('u-result').textContent;
+        if (navigator.clipboard && txt) {
+          navigator.clipboard.writeText(txt).then(function () {
+            document.getElementById('u-copy').innerHTML = '<i class="fas fa-check"></i> 已复制';
+            setTimeout(function () { document.getElementById('u-copy').innerHTML = '<i class="far fa-copy"></i> 一键复制链接'; }, 1600);
+          });
+        }
+      });
+      build();
+    })();
+  </script>
+</ToolLayout>

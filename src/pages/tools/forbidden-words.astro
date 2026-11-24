@@ -1,0 +1,167 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="小红书/抖音违禁词在线检测器"
+  description="免费检测新广告法极限词、小红书引流敏感词、抖音直播违禁词与医疗功效夸大词，支持高亮标红与一键合规替换。"
+  keywords="违禁词查询,小红书违禁词检测,抖音违禁词查询,新广告法极限词检测,敏感词在线检测"
+  currentPath="/tools/forbidden-words/"
+>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+    <button type="button" class="btn btn-primary" id="btn-check"><i class="fas fa-search"></i> 立即检测</button>
+    <button type="button" class="btn btn-outline" id="btn-replace"><i class="fas fa-magic"></i> 一键合规替换</button>
+    <button type="button" class="btn btn-outline" id="btn-copy"><i class="far fa-copy"></i> 复制结果文案</button>
+    <button type="button" class="btn btn-outline" id="btn-sample">填入示例文案</button>
+    <button type="button" class="btn btn-outline" id="btn-clear">清空</button>
+  </div>
+
+  <div class="tool-grid">
+    <div class="tool-field">
+      <label>待检测文案（支持小红书笔记、抖音脚本、电商详情页）</label>
+      <textarea id="fw-input" class="tool-textarea" style="min-height:240px;" placeholder="把你的小红书笔记、抖音口播稿或广告文案粘贴到这里，自动检测违禁词..."></textarea>
+    </div>
+    <div class="tool-field">
+      <label>高亮检测预览（红色为命中风险词）</label>
+      <div id="fw-preview" style="min-height:240px;padding:12px;border-radius:8px;border:1px solid var(--border-color);background:var(--bg-body);white-space:pre-wrap;line-height:1.8;font-size:14px;overflow-y:auto;max-height:360px;">
+        <span style="color:var(--text-muted);">检测结果将在这里高亮显示...</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-box"><div class="kpi-label">命中风险词总数</div><div class="kpi-val brand" id="fw-total">0</div></div>
+    <div class="kpi-box"><div class="kpi-label">文案总字数</div><div class="kpi-val" id="fw-chars">0</div></div>
+    <div class="kpi-box"><div class="kpi-label">安全评级</div><div class="kpi-val" id="fw-grade">待检测</div></div>
+  </div>
+
+  <div id="fw-detail" style="margin-top:18px;"></div>
+
+  <script is:inline>
+    (function () {
+      var RULES = [
+        { cat: '新广告法极限词', words: [
+          ['最', '更'], ['第一', '领先'], ['唯一', '少见'], ['国家级', '专业级'], ['世界级', '高水准'],
+          ['顶级', '优质'], ['顶尖', '出众'], ['极致', '出色'], ['绝对', '十分'], ['史无前例', '难得一见'],
+          ['全网最低', '性价比高'], ['销量第一', '热销爆款'], ['万能', '多用途'], ['永久', '持久'],
+          ['100%', '高比例'], ['百分百', '高比例'], ['冠军', '热门'], ['王牌', '主力'], ['绝无仅有', '非常少见'],
+          ['史上最', '口碑很好的'], ['天花板', '高水准代表'], ['闭眼入', '值得考虑']
+        ]},
+        { cat: '小红书/抖音引流敏感词', words: [
+          ['加微信', '私信交流'], ['微信', '绿泡泡'], ['vx', '联系'], ['V信', '联系'], ['加V', '联系'],
+          ['公众号', '同名号'], ['私聊', '评论区交流'], ['淘宝', '某宝'], ['拼多多', '某夕夕'],
+          ['京东', '某东'], ['二维码', '入口'], ['手机号', '联系方式'], ['微信号', '主页'],
+          ['赚钱', '副业增收'], ['暴富', '提升收入'], ['日入过千', '稳定副业'], ['躺赚', '轻松增收'],
+          ['点赞收藏', '欢迎互动'], ['一键三连', '欢迎支持'], ['求关注', '欢迎交流']
+        ]},
+        { cat: '医疗/美妆功效夸大词', words: [
+          ['根治', '改善'], ['治愈', '缓解'], ['特效', '针对性'], ['药效', '护理效果'], ['消炎', '舒缓'],
+          ['杀菌', '清洁'], ['抗菌', '净护'], ['抗癌', '健康守护'], ['降血压', '日常养护'], ['降血糖', '日常管理'],
+          ['祖传秘方', '经典配方'], ['立竿见影', '体验明显'], ['三天见效', '坚持使用可见变化'],
+          ['七天美白', '提亮肤色'], ['永久脱毛', '持久净毛'], ['零副作用', '温和配方'], ['无任何副作用', '温和安心']
+        ]},
+        { cat: '虚假承诺与诱导词', words: [
+          ['包过', '助力提升'], ['保证', '力争'], ['保本', '稳健'], ['稳赚不赔', '理性参考'],
+          ['无效退款', '售后保障'], ['免费领', '体验装'], ['点击领取', '了解详情'], ['抢疯了', '人气很高'],
+          ['最后一天', '活动有限期'], ['错过再等一年', '限时活动']
+        ]}
+      ];
+
+      // Flatten sorted by length desc so longer phrases match first
+      var FLAT = [];
+      RULES.forEach(function (g) {
+        g.words.forEach(function (pair) {
+          FLAT.push({ word: pair[0], rep: pair[1], cat: g.cat });
+        });
+      });
+      FLAT.sort(function (a, b) { return b.word.length - a.word.length; });
+
+      var inp = document.getElementById('fw-input');
+      var prev = document.getElementById('fw-preview');
+      var detail = document.getElementById('fw-detail');
+
+      function esc(s) {
+        return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+
+      function runCheck() {
+        var text = inp.value || '';
+        document.getElementById('fw-chars').textContent = text.length;
+        if (!text.trim()) {
+          prev.innerHTML = '<span style="color:var(--text-muted);">检测结果将在这里高亮显示...</span>';
+          document.getElementById('fw-total').textContent = '0';
+          document.getElementById('fw-grade').textContent = '待检测';
+          detail.innerHTML = '';
+          return;
+        }
+        var hits = [];
+        var regexParts = FLAT.map(function (r) { return r.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); });
+        var re = new RegExp('(' + regexParts.join('|') + ')', 'gi');
+        var countMap = {};
+
+        var highlighted = esc(text).replace(re, function (m) {
+          var lower = m.toLowerCase();
+          var rule = FLAT.find(function (r) { return r.word.toLowerCase() === lower; });
+          if (rule) {
+            var k = rule.word;
+            if (!countMap[k]) countMap[k] = { rule: rule, count: 0 };
+            countMap[k].count++;
+            hits.push(rule);
+          }
+          return '<span class="hl-bad">' + m + '</span>';
+        });
+
+        prev.innerHTML = highlighted;
+        document.getElementById('fw-total').textContent = hits.length;
+        var gradeEl = document.getElementById('fw-grade');
+        if (hits.length === 0) {
+          gradeEl.textContent = '安全合规';
+          gradeEl.style.color = '#15803d';
+          detail.innerHTML = '<div style="padding:14px;border-radius:8px;background:#e6f7ed;color:#137333;font-size:13.5px;">未检测到常见违禁词与敏感词，可放心发布。</div>';
+        } else {
+          gradeEl.textContent = hits.length >= 5 ? '高风险' : '需修改';
+          gradeEl.style.color = '#d9323d';
+          var rows = Object.values(countMap).map(function (it) {
+            return '<tr><td><span class="hl-bad">' + esc(it.rule.word) + '</span></td>' +
+              '<td>' + esc(it.rule.cat) + '</td>' +
+              '<td>' + it.count + ' 次</td>' +
+              '<td style="color:#15803d;font-weight:600;">建议改为：' + esc(it.rule.rep) + '</td></tr>';
+          }).join('');
+          detail.innerHTML = '<table class="tool-table"><thead><tr><th>命中词</th><th>风险类别</th><th>出现次数</th><th>合规替换建议</th></tr></thead><tbody>' + rows + '</tbody></table>';
+        }
+      }
+
+      document.getElementById('btn-check').addEventListener('click', runCheck);
+      inp.addEventListener('input', runCheck);
+
+      document.getElementById('btn-replace').addEventListener('click', function () {
+        var text = inp.value || '';
+        FLAT.forEach(function (r) {
+          var re = new RegExp(r.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+          text = text.replace(re, r.rep);
+        });
+        inp.value = text;
+        runCheck();
+      });
+
+      document.getElementById('btn-copy').addEventListener('click', function () {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(inp.value || '').then(function () {
+            document.getElementById('btn-copy').innerHTML = '<i class="fas fa-check"></i> 已复制';
+            setTimeout(function () { document.getElementById('btn-copy').innerHTML = '<i class="far fa-copy"></i> 复制结果文案'; }, 1600);
+          });
+        }
+      });
+
+      document.getElementById('btn-sample').addEventListener('click', function () {
+        inp.value = '姐妹们！这款精华真的是全网最低、销量第一的天花板！100%纯天然无任何副作用，七天美白立竿见影，还能消炎根治痘痘！错过再等一年，点赞收藏加微信私聊领取免费领名额，带你躺赚日入过千！';
+        runCheck();
+      });
+
+      document.getElementById('btn-clear').addEventListener('click', function () {
+        inp.value = '';
+        runCheck();
+      });
+    })();
+  </script>
+</ToolLayout>

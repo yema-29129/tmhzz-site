@@ -1,0 +1,62 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="裁员 N+1 / 2N 经济补偿金计算器"
+  description="依据《劳动合同法》自动核算工作年限折算系数 N，一键算出 N、N+1、2N 赔偿金额与免税额度参考。"
+  keywords="裁员N+1计算器,2N赔偿金计算,离职经济补偿金计算器,劳动法赔偿计算"
+  currentPath="/tools/n-plus-1/"
+>
+  <div class="tool-grid">
+    <div class="tool-field"><label>已工作整年数（年）</label><input type="number" id="n-years" class="tool-input" value="3" min="0" /></div>
+    <div class="tool-field"><label>超出整年的月数（0~11 个月）</label><input type="number" id="n-months" class="tool-input" value="7" min="0" max="11" /></div>
+    <div class="tool-field"><label>离职前 12 个月平均税前月薪（元，含奖金津贴）</label><input type="number" id="n-avg" class="tool-input" value="18000" /></div>
+    <div class="tool-field"><label>上月税前工资（用于计算 +1 代通知金，元）</label><input type="number" id="n-last" class="tool-input" value="18000" /></div>
+    <div class="tool-field" style="grid-column:1 / -1;"><label>当地上年度社平工资 3 倍封顶线（选填，不填则按无封顶计算，如一线城市约 36000~40000 元）</label><input type="number" id="n-cap" class="tool-input" placeholder="留空表示不封顶" /></div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-box"><div class="kpi-label">法定折算系数 N</div><div class="kpi-val" id="n-coef">-</div><div class="kpi-sub">满6个月按1年，不满6个月按0.5年</div></div>
+    <div class="kpi-box"><div class="kpi-label">N 补偿金（协商/到期不续）</div><div class="kpi-val" id="n-val">-</div></div>
+    <div class="kpi-box"><div class="kpi-label">N+1 补偿金（无过失辞退）</div><div class="kpi-val brand" id="n1-val">-</div></div>
+    <div class="kpi-box"><div class="kpi-label">2N 赔偿金（违法解除）</div><div class="kpi-val brand" id="n2-val">-</div></div>
+  </div>
+
+  <p style="margin:18px 0 0;font-size:12.5px;color:var(--text-muted);line-height:1.7;">
+    提示：根据税法规定，个人因与用人单位解除劳动关系取得的一次性补偿收入，在当地上年职工平均工资 <strong>3 倍数额以内</strong> 的部分，免征个人所得税。本工具结果仅供参考，具体以当地劳动仲裁与税局标准为准。
+  </p>
+
+  <script is:inline>
+    (function () {
+      function calc() {
+        var y = Math.max(0, parseInt(document.getElementById('n-years').value, 10) || 0);
+        var m = Math.max(0, parseInt(document.getElementById('n-months').value, 10) || 0);
+        var avg = parseFloat(document.getElementById('n-avg').value) || 0;
+        var last = parseFloat(document.getElementById('n-last').value) || avg;
+        var cap = parseFloat(document.getElementById('n-cap').value) || 0;
+
+        var N = y + (m >= 6 ? 1 : (m > 0 ? 0.5 : 0));
+        var base = avg;
+        var effN = N;
+        if (cap > 0 && avg > cap) {
+          base = cap;
+          effN = Math.min(12, N);
+        }
+
+        var valN = effN * base;
+        var valN1 = valN + last;
+        var val2N = valN * 2;
+
+        document.getElementById('n-coef').textContent = effN + ' 个月';
+        document.getElementById('n-val').textContent = '¥' + Math.round(valN).toLocaleString();
+        document.getElementById('n1-val').textContent = '¥' + Math.round(valN1).toLocaleString();
+        document.getElementById('n2-val').textContent = '¥' + Math.round(val2N).toLocaleString();
+      }
+      ['n-years', 'n-months', 'n-avg', 'n-last', 'n-cap'].forEach(function (id) {
+        document.getElementById(id).addEventListener('input', calc);
+      });
+      calc();
+    })();
+  </script>
+</ToolLayout>

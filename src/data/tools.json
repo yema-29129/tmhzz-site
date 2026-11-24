@@ -1,0 +1,122 @@
+[
+  {
+    "slug": "forbidden-words",
+    "path": "/tools/forbidden-words/",
+    "title": "小红书/抖音违禁词在线检测器",
+    "shortTitle": "违禁词在线检测",
+    "category": "营销电商",
+    "icon": "fas fa-shield-alt",
+    "desc": "免费检测新广告法极限词、小红书引流敏感词、抖音直播违禁词与医疗功效夸大词，支持高亮标红与一键合规替换。",
+    "keywords": "违禁词查询,小红书违禁词检测,抖音违禁词查询,新广告法极限词检测,敏感词在线检测"
+  },
+  {
+    "slug": "ecommerce-roi",
+    "path": "/tools/ecommerce-roi/",
+    "title": "电商保本 ROI / 盈亏平衡计算器",
+    "shortTitle": "电商保本 ROI 计算器",
+    "category": "营销电商",
+    "icon": "fas fa-chart-line",
+    "desc": "输入售价、成本、运费、佣金、退货率与税点，秒算电商毛利率、保本 ROI（投产比）及不同净利率下的目标投流 ROI。",
+    "keywords": "保本ROI计算器,电商ROI计算器,盈亏平衡点计算,千川保本ROI,直通车投产比计算"
+  },
+  {
+    "slug": "live-gmv",
+    "path": "/tools/live-gmv/",
+    "title": "直播间 GMV 拆解与投流计算器",
+    "shortTitle": "直播间 GMV 拆解",
+    "category": "营销电商",
+    "icon": "fas fa-broadcast-tower",
+    "desc": "输入目标 GMV、客单价、转化率、点击率与 CPM/自然流量占比，一键倒推直播间所需曝光、进房人数与付费投流预算。",
+    "keywords": "直播间GMV拆解,抖音投流计算器,千川投流预算计算,直播带货转化率计算"
+  },
+  {
+    "slug": "utm-builder",
+    "path": "/tools/utm-builder/",
+    "title": "UTM 推广追踪链接生成器",
+    "shortTitle": "UTM 链接生成器",
+    "category": "营销电商",
+    "icon": "fas fa-link",
+    "desc": "一键生成规范的 Google Analytics / 百度统计 UTM 推广追踪链接，内置小红书、抖音、公众号、视频号常用渠道预设。",
+    "keywords": "UTM链接生成器,推广追踪链接,广告渠道追踪URL,GA UTM参数生成"
+  },
+  {
+    "slug": "qrcode",
+    "path": "/tools/qrcode/",
+    "title": "免费无过期在线二维码生成器",
+    "shortTitle": "在线二维码生成",
+    "category": "营销电商",
+    "icon": "fas fa-qrcode",
+    "desc": "纯前端生成高清静态二维码，永不过期、无中间跳转广告，支持自定义尺寸与前景背景色，一键保存 PNG 图片。",
+    "keywords": "在线二维码生成器,免费二维码制作,永不过期二维码,网址转二维码"
+  },
+  {
+    "slug": "word-count",
+    "path": "/tools/word-count/",
+    "title": "公众号/小红书文案字数统计与排版助手",
+    "shortTitle": "文案字数与排版",
+    "category": "营销电商",
+    "icon": "fas fa-align-left",
+    "desc": "实时统计总字数、中文字数、小红书标题/正文红线、公众号阅读时长与短视频口播时长，支持一键清多余空行与格式整理。",
+    "keywords": "字数统计在线,小红书字数限制,短视频口播时长计算,文案排版工具"
+  },
+  {
+    "slug": "mortgage-prepay",
+    "path": "/tools/mortgage-prepay/",
+    "title": "房贷提前还款计算器",
+    "shortTitle": "房贷提前还款计算",
+    "category": "理财职场",
+    "icon": "fas fa-home",
+    "desc": "对比「缩短年限」与「减少月供」两种提前还房贷方案，精准测算能省下多少利息及新的每月月供。",
+    "keywords": "房贷提前还款计算器,提前还房贷省多少利息,缩短年限还是减少月供"
+  },
+  {
+    "slug": "tax-calculator",
+    "path": "/tools/tax-calculator/",
+    "title": "2026 个人所得税与年终奖计算器",
+    "shortTitle": "个税/年终奖计算器",
+    "category": "理财职场",
+    "icon": "fas fa-file-invoice-dollar",
+    "desc": "按现行综合所得税率精准计算月度/年度个人所得税，并自动对比年终奖「单独计税」与「并入综合所得」哪种更省税。",
+    "keywords": "个人所得税计算器,年终奖个税计算器,单独计税和合并计税对比,2026个税计算"
+  },
+  {
+    "slug": "n-plus-1",
+    "path": "/tools/n-plus-1/",
+    "title": "裁员 N+1 / 2N 经济补偿金计算器",
+    "shortTitle": "裁员 N+1 计算器",
+    "category": "理财职场",
+    "icon": "fas fa-balance-scale",
+    "desc": "依据《劳动合同法》自动核算工作年限折算系数 N，一键算出 N、N+1、2N 赔偿金额与免税额度参考。",
+    "keywords": "裁员N+1计算器,2N赔偿金计算,离职经济补偿金计算器,劳动法赔偿计算"
+  },
+  {
+    "slug": "compound",
+    "path": "/复利计算器/",
+    "title": "定投复利计算器",
+    "shortTitle": "复利计算器",
+    "category": "理财职场",
+    "icon": "fas fa-coins",
+    "desc": "测算基金/股票定期定额投资在复利效应下的长期收益曲线与最终本息总额。",
+    "keywords": "定投复利计算器,复利收益计算器,理财复利在线计算"
+  },
+  {
+    "slug": "deposit",
+    "path": "/存款利息计算器/",
+    "title": "存款利息计算器",
+    "shortTitle": "存款利息计算器",
+    "category": "理财职场",
+    "icon": "fas fa-piggy-bank",
+    "desc": "计算银行活期、定期存款与大额存单在不同利率和存期下的到期利息与本息合计。",
+    "keywords": "存款利息计算器,银行定期存款利息计算"
+  },
+  {
+    "slug": "retirement",
+    "path": "/退休年龄计算器/",
+    "title": "延迟退休年龄计算器",
+    "shortTitle": "退休年龄计算器",
+    "category": "理财职场",
+    "icon": "fas fa-user-clock",
+    "desc": "按最新渐进式延迟退休政策，输入出生年月与性别一键测算法定退休时间与延迟月数。",
+    "keywords": "退休年龄计算器,延迟退休计算器,法定退休时间查询"
+  }
+]

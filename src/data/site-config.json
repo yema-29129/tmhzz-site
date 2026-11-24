@@ -31,20 +31,52 @@
       "href": "/「天马黑珍珠」社群内容导航/"
     },
     {
-      "label": "计算器",
-      "href": "/计算器/",
+      "label": "在线工具箱",
+      "href": "/tools/",
       "children": [
+        {
+          "label": "违禁词在线检测",
+          "href": "/tools/forbidden-words/"
+        },
+        {
+          "label": "电商保本 ROI 计算器",
+          "href": "/tools/ecommerce-roi/"
+        },
+        {
+          "label": "直播间 GMV 拆解",
+          "href": "/tools/live-gmv/"
+        },
+        {
+          "label": "UTM 链接生成器",
+          "href": "/tools/utm-builder/"
+        },
+        {
+          "label": "在线二维码生成",
+          "href": "/tools/qrcode/"
+        },
+        {
+          "label": "文案字数与排版",
+          "href": "/tools/word-count/"
+        },
+        {
+          "label": "房贷提前还款计算",
+          "href": "/tools/mortgage-prepay/"
+        },
+        {
+          "label": "个税/年终奖计算器",
+          "href": "/tools/tax-calculator/"
+        },
+        {
+          "label": "裁员 N+1 计算器",
+          "href": "/tools/n-plus-1/"
+        },
         {
           "label": "复利计算器",
           "href": "/复利计算器/"
         },
         {
-          "label": "存款利息计算器",
-          "href": "/存款利息计算器/"
-        },
-        {
-          "label": "退休年龄计算器",
-          "href": "/退休年龄计算器/"
+          "label": "查看全部 12 款工具",
+          "href": "/tools/"
         }
       ]
     },

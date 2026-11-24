@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdSenseBlock from '../../components/AdSenseBlock.astro';
+import tools from '../../data/tools.json';
+
+const mktTools = tools.filter((t) => t.category === '营销电商');
+const lifeTools = tools.filter((t) => t.category === '理财职场');
+---
+
+<BaseLayout
+  title="营销人 + 职场在线工具箱（12款免费在线工具）"
+  description="免费在线使用小红书/抖音违禁词检测器、电商保本ROI计算器、直播间GMV拆解、UTM链接生成器、二维码生成、文案字数统计、房贷提前还款、个税年终奖及N+1赔偿计算器。"
+  keywords="营销在线工具箱,违禁词检测,保本ROI计算器,直播间GMV计算,UTM链接生成,房贷提前还款计算器,个税计算器,N+1赔偿计算器"
+  activeNav="在线工具箱"
+>
+  <main class="container-narrow">
+    <nav class="breadcrumb" aria-label="面包屑">
+      <a href="/">首页</a>
+      <span>/</span>
+      <span>在线工具箱</span>
+    </nav>
+
+    <div class="panel">
+      <h1 style="margin:0 0 8px;font-size:24px;">营销人 + 职场在线工具箱</h1>
+      <p style="margin:0 0 22px;color:var(--text-secondary);">
+        全部 <strong>{tools.length} 款</strong> 纯前端免费工具，打开即用、无需登录、不上传你的任何隐私文案与财务数据。
+      </p>
+
+      <h2 style="font-size:17px;margin:0 0 14px;display:flex;align-items:center;gap:8px;">
+        <i class="fas fa-bullhorn" style="color:var(--brand);"></i>
+        <span>营销 / 电商 / 自媒体刚需工具（{mktTools.length} 款）</span>
+      </h2>
+      <div class="article-grid" style="margin-bottom:28px;">
+        {mktTools.map((t) => (
+          <a href={t.path} class="article-card" style="padding:20px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <span style="width:36px;height:36px;border-radius:10px;background:var(--brand-soft);color:var(--brand);display:inline-flex;align-items:center;justify-content:center;font-size:16px;">
+                <i class={t.icon}></i>
+              </span>
+              <h3 class="article-title" style="margin:0;">{t.shortTitle}</h3>
+            </div>
+            <p class="article-excerpt">{t.desc}</p>
+            <div class="article-meta">
+              <span style="color:var(--brand);font-weight:600;">立即免费使用 →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <h2 style="font-size:17px;margin:0 0 14px;display:flex;align-items:center;gap:8px;">
+        <i class="fas fa-calculator" style="color:var(--brand);"></i>
+        <span>理财 / 职场高频计算器（{lifeTools.length} 款）</span>
+      </h2>
+      <div class="article-grid">
+        {lifeTools.map((t) => (
+          <a href={t.path} class="article-card" style="padding:20px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <span style="width:36px;height:36px;border-radius:10px;background:var(--brand-soft);color:var(--brand);display:inline-flex;align-items:center;justify-content:center;font-size:16px;">
+                <i class={t.icon}></i>
+              </span>
+              <h3 class="article-title" style="margin:0;">{t.shortTitle}</h3>
+            </div>
+            <p class="article-excerpt">{t.desc}</p>
+            <div class="article-meta">
+              <span style="color:var(--brand);font-weight:600;">立即免费使用 →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <AdSenseBlock />
+  </main>
+</BaseLayout>

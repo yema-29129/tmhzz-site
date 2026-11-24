@@ -1,0 +1,89 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="2026 个人所得税与年终奖计算器"
+  description="按现行综合所得税率精准计算月度/年度个人所得税，并自动对比年终奖「单独计税」与「并入综合所得」哪种更省税。"
+  keywords="个人所得税计算器,年终奖个税计算器,单独计税和合并计税对比,2026个税计算"
+  currentPath="/tools/tax-calculator/"
+>
+  <div class="tool-grid">
+    <div class="tool-field"><label>税前月薪（元）</label><input type="number" id="t-sal" class="tool-input" value="18000" /></div>
+    <div class="tool-field"><label>每月五险一金个人缴纳（元）</label><input type="number" id="t-ins" class="tool-input" value="3200" /></div>
+    <div class="tool-field"><label>每月专项附加扣除（租房/房贷/子女等，元）</label><input type="number" id="t-ded" class="tool-input" value="2000" /></div>
+    <div class="tool-field"><label>年终奖税前金额（元）</label><input type="number" id="t-bonus" class="tool-input" value="50000" /></div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-box"><div class="kpi-label">工资全年应缴个税</div><div class="kpi-val" id="t-sal-tax">-</div><div class="kpi-sub" id="t-sal-net"></div></div>
+    <div class="kpi-box"><div class="kpi-label">年终奖「单独计税」税额</div><div class="kpi-val brand" id="t-sep">-</div><div class="kpi-sub" id="t-sep-net"></div></div>
+    <div class="kpi-box"><div class="kpi-label">年终奖「合并计税」新增税额</div><div class="kpi-val" id="t-comb">-</div><div class="kpi-sub" id="t-comb-net"></div></div>
+    <div class="kpi-box"><div class="kpi-label">最优方案建议</div><div class="kpi-val brand" id="t-best">-</div><div class="kpi-sub" id="t-save"></div></div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var ANNUAL = [
+        [36000, 0.03, 0], [144000, 0.10, 2520], [300000, 0.20, 16920],
+        [420000, 0.25, 31920], [660000, 0.30, 52920], [960000, 0.35, 85920], [Infinity, 0.45, 181920]
+      ];
+      var MONTHLY = [
+        [3000, 0.03, 0], [12000, 0.10, 210], [25000, 0.20, 1410],
+        [35000, 0.25, 2660], [55000, 0.30, 4410], [80000, 0.35, 7160], [Infinity, 0.45, 15160]
+      ];
+      function annualTax(taxable) {
+        if (taxable <= 0) return 0;
+        for (var i = 0; i < ANNUAL.length; i++) {
+          if (taxable <= ANNUAL[i][0]) return taxable * ANNUAL[i][1] - ANNUAL[i][2];
+        }
+        return 0;
+      }
+      function bonusSeparateTax(bonus) {
+        if (bonus <= 0) return 0;
+        var avg = bonus / 12;
+        for (var i = 0; i < MONTHLY.length; i++) {
+          if (avg <= MONTHLY[i][0]) return bonus * MONTHLY[i][1] - MONTHLY[i][2];
+        }
+        return 0;
+      }
+      function calc() {
+        var sal = parseFloat(document.getElementById('t-sal').value) || 0;
+        var ins = parseFloat(document.getElementById('t-ins').value) || 0;
+        var ded = parseFloat(document.getElementById('t-ded').value) || 0;
+        var bonus = parseFloat(document.getElementById('t-bonus').value) || 0;
+
+        var annualTaxable = Math.max(0, (sal - ins - ded - 5000) * 12);
+        var salTax = annualTax(annualTaxable);
+        var avgNetSal = sal - ins - salTax / 12;
+
+        var sepTax = bonusSeparateTax(bonus);
+        var combTotalTax = annualTax(annualTaxable + bonus);
+        var combBonusTax = Math.max(0, combTotalTax - salTax);
+
+        document.getElementById('t-sal-tax').textContent = '¥' + Math.round(salTax).toLocaleString();
+        document.getElementById('t-sal-net').textContent = '平均税后月薪约 ¥' + Math.round(avgNetSal).toLocaleString();
+        document.getElementById('t-sep').textContent = '¥' + Math.round(sepTax).toLocaleString();
+        document.getElementById('t-sep-net').textContent = '年终奖到手 ¥' + Math.round(bonus - sepTax).toLocaleString();
+        document.getElementById('t-comb').textContent = '¥' + Math.round(combBonusTax).toLocaleString();
+        document.getElementById('t-comb-net').textContent = '年终奖到手 ¥' + Math.round(bonus - combBonusTax).toLocaleString();
+
+        var diff = Math.abs(sepTax - combBonusTax);
+        if (sepTax < combBonusTax) {
+          document.getElementById('t-best').textContent = '选「单独计税」';
+          document.getElementById('t-save').textContent = '比合并计税多省 ¥' + Math.round(diff).toLocaleString();
+        } else if (combBonusTax < sepTax) {
+          document.getElementById('t-best').textContent = '选「合并计税」';
+          document.getElementById('t-save').textContent = '比单独计税多省 ¥' + Math.round(diff).toLocaleString();
+        } else {
+          document.getElementById('t-best').textContent = '两者相同';
+          document.getElementById('t-save').textContent = '两种计税方式税额一致';
+        }
+      }
+      ['t-sal', 't-ins', 't-ded', 't-bonus'].forEach(function (id) {
+        document.getElementById(id).addEventListener('input', calc);
+      });
+      calc();
+    })();
+  </script>
+</ToolLayout>

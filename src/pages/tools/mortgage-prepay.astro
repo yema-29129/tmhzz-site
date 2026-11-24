@@ -1,0 +1,77 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="房贷提前还款计算器"
+  description="对比「缩短年限」与「减少月供」两种提前还房贷方案，精准测算能省下多少利息及新的每月月供。"
+  keywords="房贷提前还款计算器,提前还房贷省多少利息,缩短年限还是减少月供"
+  currentPath="/tools/mortgage-prepay/"
+>
+  <div class="tool-grid">
+    <div class="tool-field"><label>原贷款总额（万元）</label><input type="number" id="m-total" class="tool-input" value="100" step="1" /></div>
+    <div class="tool-field"><label>贷款年利率（%）</label><input type="number" id="m-rate" class="tool-input" value="3.3" step="0.05" /></div>
+    <div class="tool-field"><label>原贷款年限（年）</label><input type="number" id="m-years" class="tool-input" value="30" step="1" /></div>
+    <div class="tool-field"><label>已还款月数（期）</label><input type="number" id="m-paid" class="tool-input" value="36" step="1" /></div>
+    <div class="tool-field"><label>本次提前还款金额（万元）</label><input type="number" id="m-prepay" class="tool-input" value="20" step="1" /></div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-box"><div class="kpi-label">原每月月供（等额本息）</div><div class="kpi-val" id="m-old-pmt">-</div></div>
+    <div class="kpi-box"><div class="kpi-label">当前剩余本金</div><div class="kpi-val" id="m-rem">-</div></div>
+    <div class="kpi-box"><div class="kpi-label">方案A（缩短年限）省息</div><div class="kpi-val brand" id="m-save-a">-</div><div class="kpi-sub" id="m-sub-a"></div></div>
+    <div class="kpi-box"><div class="kpi-label">方案B（减少月供）省息</div><div class="kpi-val" id="m-save-b">-</div><div class="kpi-sub" id="m-sub-b"></div></div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var ids = ['m-total', 'm-rate', 'm-years', 'm-paid', 'm-prepay'];
+      function pmt(P, r, n) {
+        if (r === 0) return P / n;
+        var x = Math.pow(1 + r, n);
+        return P * r * x / (x - 1);
+      }
+      function calc() {
+        var P = (parseFloat(document.getElementById('m-total').value) || 0) * 10000;
+        var r = (parseFloat(document.getElementById('m-rate').value) || 0) / 100 / 12;
+        var N = (parseInt(document.getElementById('m-years').value, 10) || 30) * 12;
+        var paid = Math.min(N - 1, Math.max(0, parseInt(document.getElementById('m-paid').value, 10) || 0));
+        var prepay = (parseFloat(document.getElementById('m-prepay').value) || 0) * 10000;
+
+        var oldPmt = pmt(P, r, N);
+        var remMonths = N - paid;
+        // Remaining principal after `paid` months
+        var remP = r === 0
+          ? P * (remMonths / N)
+          : P * (Math.pow(1 + r, N) - Math.pow(1 + r, paid)) / (Math.pow(1 + r, N) - 1);
+
+        var oldRemInterest = oldPmt * remMonths - remP;
+        var newP = Math.max(0, remP - prepay);
+
+        // Plan A: Keep monthly payment same, shorten term
+        var newMonthsA = 0;
+        if (newP > 0) {
+          newMonthsA = r === 0
+            ? Math.ceil(newP / oldPmt)
+            : Math.ceil(Math.log(oldPmt / (oldPmt - newP * r)) / Math.log(1 + r));
+        }
+        var newIntA = newP > 0 ? Math.max(0, oldPmt * newMonthsA - newP) : 0;
+        var saveA = Math.max(0, oldRemInterest - newIntA);
+
+        // Plan B: Keep term same, reduce monthly payment
+        var newPmtB = newP > 0 ? pmt(newP, r, remMonths) : 0;
+        var newIntB = newP > 0 ? Math.max(0, newPmtB * remMonths - newP) : 0;
+        var saveB = Math.max(0, oldRemInterest - newIntB);
+
+        document.getElementById('m-old-pmt').textContent = '¥' + oldPmt.toFixed(2);
+        document.getElementById('m-rem').textContent = (remP / 10000).toFixed(2) + ' 万';
+        document.getElementById('m-save-a').textContent = '¥' + Math.round(saveA).toLocaleString();
+        document.getElementById('m-sub-a').textContent = '月供不变，剩余期数缩至 ' + newMonthsA + ' 期（少还 ' + (remMonths - newMonthsA) + ' 期）';
+        document.getElementById('m-save-b').textContent = '¥' + Math.round(saveB).toLocaleString();
+        document.getElementById('m-sub-b').textContent = '新月供降至 ¥' + newPmtB.toFixed(2) + '（每月减负 ¥' + (oldPmt - newPmtB).toFixed(0) + '）';
+      }
+      ids.forEach(function (id) { document.getElementById(id).addEventListener('input', calc); });
+      calc();
+    })();
+  </script>
+</ToolLayout>

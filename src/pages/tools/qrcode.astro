@@ -1,0 +1,61 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="免费无过期在线二维码生成器"
+  description="纯前端生成高清静态二维码，永不过期、无中间跳转广告，支持自定义尺寸与前景背景色，一键保存 PNG 图片。"
+  keywords="在线二维码生成器,免费二维码制作,永不过期二维码,网址转二维码"
+  currentPath="/tools/qrcode/"
+>
+  <div class="tool-grid">
+    <div>
+      <div class="tool-field" style="margin-bottom:14px;">
+        <label>输入网址或文本内容 *</label>
+        <textarea id="qr-text" class="tool-textarea" style="min-height:110px;">https://tmhzz.com/</textarea>
+      </div>
+      <div class="tool-grid" style="margin-bottom:14px;">
+        <div class="tool-field">
+          <label>尺寸（像素）</label>
+          <select id="qr-size" class="tool-select">
+            <option value="200">200 × 200</option>
+            <option value="300" selected>300 × 300（推荐）</option>
+            <option value="500">500 × 500（高清印刷）</option>
+          </select>
+        </div>
+        <div class="tool-field">
+          <label>二维码颜色</label>
+          <input type="color" id="qr-color" class="tool-input" value="#111111" style="height:40px;padding:4px;" />
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button type="button" class="btn btn-primary" id="qr-gen"><i class="fas fa-qrcode"></i> 重新生成</button>
+        <a id="qr-dl" href="#" download="tmhzz-qrcode.png" class="btn btn-outline"><i class="fas fa-download"></i> 下载高清 PNG</a>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;border-radius:12px;background:var(--bg-subtle);border:1px solid var(--border-color);">
+      <img id="qr-img" src="" alt="生成的二维码" style="max-width:260px;border-radius:10px;background:#fff;padding:10px;box-shadow:var(--shadow-card);" />
+      <p style="margin:12px 0 0;font-size:12.5px;color:var(--text-muted);">静态直连二维码，永不过期，无中转广告</p>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      function render() {
+        var text = (document.getElementById('qr-text').value || '').trim() || 'https://tmhzz.com/';
+        var size = document.getElementById('qr-size').value || '300';
+        var color = (document.getElementById('qr-color').value || '#111111').replace('#', '');
+        var url = 'https://api.qrserver.com/v1/create-qr-code/?size=' + size + 'x' + size + '&color=' + color + '&margin=10&data=' + encodeURIComponent(text);
+        document.getElementById('qr-img').src = url;
+        document.getElementById('qr-dl').href = url;
+      }
+      ['qr-text', 'qr-size', 'qr-color'].forEach(function (id) {
+        document.getElementById(id).addEventListener('input', render);
+        document.getElementById(id).addEventListener('change', render);
+      });
+      document.getElementById('qr-gen').addEventListener('click', render);
+      render();
+    })();
+  </script>
+</ToolLayout>

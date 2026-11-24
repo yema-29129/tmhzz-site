@@ -1,0 +1,61 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="直播间 GMV 拆解与投流计算器"
+  description="输入目标 GMV、客单价、转化率、点击率与 CPM/自然流量占比，一键倒推直播间所需曝光、进房人数与付费投流预算。"
+  keywords="直播间GMV拆解,抖音投流计算器,千川投流预算计算,直播带货转化率计算"
+  currentPath="/tools/live-gmv/"
+>
+  <div class="tool-grid">
+    <div class="tool-field"><label>单场目标 GMV（元）</label><input type="number" id="g-gmv" class="tool-input" value="100000" /></div>
+    <div class="tool-field"><label>平均客单价（元）</label><input type="number" id="g-aov" class="tool-input" value="128" /></div>
+    <div class="tool-field"><label>进房成交转化率 CVR（%）</label><input type="number" id="g-cvr" class="tool-input" value="2.5" step="0.1" /></div>
+    <div class="tool-field"><label>曝光点击率 CTR（%）</label><input type="number" id="g-ctr" class="tool-input" value="4.0" step="0.1" /></div>
+    <div class="tool-field"><label>千次曝光成本 CPM（元）</label><input type="number" id="g-cpm" class="tool-input" value="45" step="0.5" /></div>
+    <div class="tool-field"><label>自然免费流量占比（%）</label><input type="number" id="g-org" class="tool-input" value="40" step="1" /></div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-box"><div class="kpi-label">所需成交单量</div><div class="kpi-val" id="g-orders">-</div></div>
+    <div class="kpi-box"><div class="kpi-label">所需总进房人数 (UV)</div><div class="kpi-val" id="g-uv">-</div></div>
+    <div class="kpi-box"><div class="kpi-label">所需总曝光次数</div><div class="kpi-val" id="g-imp">-</div></div>
+    <div class="kpi-box"><div class="kpi-label">预计付费投流预算</div><div class="kpi-val brand" id="g-ad">-</div></div>
+    <div class="kpi-box"><div class="kpi-label">单次进房成本 (CPC)</div><div class="kpi-val" id="g-cpc">-</div></div>
+    <div class="kpi-box"><div class="kpi-label">全店综合 ROI</div><div class="kpi-val brand" id="g-roi">-</div><div class="kpi-sub" id="g-paid-roi"></div></div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var ids = ['g-gmv', 'g-aov', 'g-cvr', 'g-ctr', 'g-cpm', 'g-org'];
+      function calc() {
+        var gmv = parseFloat(document.getElementById('g-gmv').value) || 0;
+        var aov = parseFloat(document.getElementById('g-aov').value) || 1;
+        var cvr = (parseFloat(document.getElementById('g-cvr').value) || 0.1) / 100;
+        var ctr = (parseFloat(document.getElementById('g-ctr').value) || 0.1) / 100;
+        var cpm = parseFloat(document.getElementById('g-cpm').value) || 0;
+        var org = Math.min(99, Math.max(0, parseFloat(document.getElementById('g-org').value) || 0)) / 100;
+
+        var orders = Math.ceil(gmv / aov);
+        var uv = Math.ceil(orders / cvr);
+        var imp = Math.ceil(uv / ctr);
+        var paidImp = imp * (1 - org);
+        var adCost = (paidImp / 1000) * cpm;
+        var cpc = (cpm / 1000) / ctr;
+        var totalRoi = adCost > 0 ? gmv / adCost : 0;
+        var paidRoi = adCost > 0 ? (gmv * (1 - org)) / adCost : 0;
+
+        document.getElementById('g-orders').textContent = orders.toLocaleString() + ' 单';
+        document.getElementById('g-uv').textContent = uv.toLocaleString() + ' 人';
+        document.getElementById('g-imp').textContent = (imp / 10000).toFixed(2) + ' 万';
+        document.getElementById('g-ad').textContent = '¥' + Math.round(adCost).toLocaleString();
+        document.getElementById('g-cpc').textContent = '¥' + cpc.toFixed(2);
+        document.getElementById('g-roi').textContent = totalRoi.toFixed(2);
+        document.getElementById('g-paid-roi').textContent = '纯付费投流 ROI：' + paidRoi.toFixed(2);
+      }
+      ids.forEach(function (id) { document.getElementById(id).addEventListener('input', calc); });
+      calc();
+    })();
+  </script>
+</ToolLayout>

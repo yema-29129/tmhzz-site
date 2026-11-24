@@ -26,11 +26,21 @@ const sites = readJson('sites.json');
 const posts = readJson('posts.json');
 const apps = readJson('apps.json');
 const books = readJson('books.json');
+const tools = fs.existsSync(path.join(DATA, 'tools.json')) ? readJson('tools.json') : [];
 
 const siteMap = new Map(sites.map((s) => [s.id, s]));
 
 // 1. Rebuild public/search-index.json
 const searchIndex = [];
+for (const t of tools) {
+  searchIndex.push({
+    type: '工具',
+    title: t.title || '',
+    desc: (t.desc || '').slice(0, 120),
+    url: t.path,
+    tags: `${t.category || ''} ${t.keywords || ''}`,
+  });
+}
 for (const s of sites) {
   searchIndex.push({
     type: '网址',
@@ -100,10 +110,8 @@ const lines = [
   '## 行业报告与资料下载',
   ...apps.map((a) => `- [${a.title}](${enc('/app/' + a.slug + '.html')}): ${(a.summary || '').slice(0, 80)}`),
   '',
-  '## 在线计算器',
-  `- [复利计算器](${enc('/复利计算器/')})`,
-  `- [存款利息计算器](${enc('/存款利息计算器/')})`,
-  `- [退休年龄计算器](${enc('/退休年龄计算器/')})`,
+  '## 免费在线工具箱（营销/电商/理财/职场）',
+  ...tools.map((t) => `- [${t.title}](${enc(t.path)}): ${t.desc}`),
   '',
   '## 完整索引',
   `- [完整网址与资源目录 (llms-full.txt)](${BASE}/llms-full.txt)`,

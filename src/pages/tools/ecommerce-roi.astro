@@ -1,0 +1,84 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="电商保本 ROI / 盈亏平衡计算器"
+  description="输入售价、成本、运费、佣金、退货率与税点，秒算电商毛利率、保本 ROI（投产比）及不同净利率下的目标投流 ROI。"
+  keywords="保本ROI计算器,电商ROI计算器,盈亏平衡点计算,千川保本ROI,直通车投产比计算"
+  currentPath="/tools/ecommerce-roi/"
+>
+  <div class="tool-grid">
+    <div class="tool-field"><label>商品售价（元）</label><input type="number" id="r-price" class="tool-input" value="199" step="0.01" /></div>
+    <div class="tool-field"><label>商品进货/生产成本（元）</label><input type="number" id="r-cost" class="tool-input" value="55" step="0.01" /></div>
+    <div class="tool-field"><label>单均快递 + 包装费（元）</label><input type="number" id="r-ship" class="tool-input" value="8" step="0.01" /></div>
+    <div class="tool-field"><label>平台扣点 / 达人佣金（%）</label><input type="number" id="r-comm" class="tool-input" value="10" step="0.1" /></div>
+    <div class="tool-field"><label>预估退款 / 退货率（%）</label><input type="number" id="r-refund" class="tool-input" value="15" step="0.1" /></div>
+    <div class="tool-field"><label>综合税率 / 其他杂费（%）</label><input type="number" id="r-tax" class="tool-input" value="3" step="0.1" /></div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-box"><div class="kpi-label">保本 ROI（投产比）</div><div class="kpi-val brand" id="out-roi">-</div><div class="kpi-sub">实际 ROI 高于此值即盈利</div></div>
+    <div class="kpi-box"><div class="kpi-label">含退货实际毛利率</div><div class="kpi-val" id="out-margin">-</div><div class="kpi-sub">扣除成本/运费/佣金/退货后</div></div>
+    <div class="kpi-box"><div class="kpi-label">单单最高可承受推广费 (CPA)</div><div class="kpi-val" id="out-cpa">-</div><div class="kpi-sub">超过此单均获客成本将亏损</div></div>
+    <div class="kpi-box"><div class="kpi-label">不含广告单单净利润</div><div class="kpi-val" id="out-profit">-</div><div class="kpi-sub">按有效成交单折算</div></div>
+  </div>
+
+  <h2 style="font-size:16px;margin:24px 0 8px;">不同目标净利率对应的投流 ROI 参考表</h2>
+  <table class="tool-table">
+    <thead><tr><th>目标净利率</th><th>目标投流 ROI</th><th>单单目标广告预算 (CPA)</th><th>每卖 10 万元预计净利</th></tr></thead>
+    <tbody id="roi-targets"></tbody>
+  </table>
+
+  <script is:inline>
+    (function () {
+      var ids = ['r-price', 'r-cost', 'r-ship', 'r-comm', 'r-refund', 'r-tax'];
+      function calc() {
+        var price = parseFloat(document.getElementById('r-price').value) || 0;
+        var cost = parseFloat(document.getElementById('r-cost').value) || 0;
+        var ship = parseFloat(document.getElementById('r-ship').value) || 0;
+        var comm = (parseFloat(document.getElementById('r-comm').value) || 0) / 100;
+        var refund = (parseFloat(document.getElementById('r-refund').value) || 0) / 100;
+        var tax = (parseFloat(document.getElementById('r-tax').value) || 0) / 100;
+
+        if (price <= 0 || refund >= 1) return;
+        // Effective revenue per GMV yuan after refund
+        var validRate = 1 - refund;
+        // Per-order profit before ad spend (shipping is incurred even on returned orders in e-commerce)
+        var grossPerOrder = price * validRate * (1 - comm - tax) - cost * validRate - ship;
+        var marginRate = grossPerOrder / price;
+
+        var roiEl = document.getElementById('out-roi');
+        var marginEl = document.getElementById('out-margin');
+        var cpaEl = document.getElementById('out-cpa');
+        var profitEl = document.getElementById('out-profit');
+
+        marginEl.textContent = (marginRate * 100).toFixed(2) + '%';
+        profitEl.textContent = '¥' + grossPerOrder.toFixed(2);
+
+        if (marginRate <= 0) {
+          roiEl.textContent = '无法保本';
+          cpaEl.textContent = '¥0.00';
+          document.getElementById('roi-targets').innerHTML = '<tr><td colspan="4" style="color:#d9323d;">当前定价与成本结构下毛利为负，请先优化售价、成本或退货率。</td></tr>';
+          return;
+        }
+        var breakEvenRoi = 1 / marginRate;
+        roiEl.textContent = breakEvenRoi.toFixed(2);
+        cpaEl.textContent = '¥' + grossPerOrder.toFixed(2);
+
+        var targets = [0.05, 0.10, 0.15, 0.20, 0.25];
+        document.getElementById('roi-targets').innerHTML = targets.map(function (t) {
+          var adRatio = marginRate - t;
+          if (adRatio <= 0) {
+            return '<tr><td>' + (t * 100) + '%</td><td colspan="3" style="color:var(--text-muted);">毛利率不足以支撑该净利率目标</td></tr>';
+          }
+          var tRoi = 1 / adRatio;
+          var tCpa = price * adRatio;
+          return '<tr><td><strong>' + (t * 100) + '%</strong></td><td style="color:var(--brand);font-weight:700;">' + tRoi.toFixed(2) + '</td><td>¥' + tCpa.toFixed(2) + '</td><td>¥' + (100000 * t).toLocaleString() + '</td></tr>';
+        }).join('');
+      }
+      ids.forEach(function (id) { document.getElementById(id).addEventListener('input', calc); });
+      calc();
+    })();
+  </script>
+</ToolLayout>

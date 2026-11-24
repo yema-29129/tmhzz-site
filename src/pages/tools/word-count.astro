@@ -1,0 +1,77 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+---
+
+<ToolLayout
+  title="公众号/小红书文案字数统计与排版助手"
+  description="实时统计总字数、中文字数、小红书标题/正文红线、公众号阅读时长与短视频口播时长，支持一键清多余空行与格式整理。"
+  keywords="字数统计在线,小红书字数限制,短视频口播时长计算,文案排版工具"
+  currentPath="/tools/word-count/"
+>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+    <button type="button" class="btn btn-primary" id="wc-clean"><i class="fas fa-broom"></i> 一键清除多余空行</button>
+    <button type="button" class="btn btn-outline" id="wc-space"><i class="fas fa-text-width"></i> 中英文自动加空格</button>
+    <button type="button" class="btn btn-outline" id="wc-copy"><i class="far fa-copy"></i> 复制整理后文案</button>
+    <button type="button" class="btn btn-outline" id="wc-clear">清空</button>
+  </div>
+
+  <textarea id="wc-input" class="tool-textarea" style="min-height:220px;" placeholder="把你的公众号文章、小红书笔记或短视频口播稿粘贴到这里，实时统计字数与播报时长..."></textarea>
+
+  <div class="kpi-grid">
+    <div class="kpi-box"><div class="kpi-label">总字符数（含标点）</div><div class="kpi-val brand" id="wc-total">0</div><div class="kpi-sub" id="wc-xhs">小红书正文限 1000 字</div></div>
+    <div class="kpi-box"><div class="kpi-label">纯中文汉字</div><div class="kpi-val" id="wc-zh">0</div><div class="kpi-sub" id="wc-en">英文/数字：0</div></div>
+    <div class="kpi-box"><div class="kpi-label">段落数</div><div class="kpi-val" id="wc-para">0</div><div class="kpi-sub">按非空行统计</div></div>
+    <div class="kpi-box"><div class="kpi-label">短视频口播预计时长</div><div class="kpi-val brand" id="wc-speak">0 秒</div><div class="kpi-sub">按 240 字/分钟标准语速</div></div>
+    <div class="kpi-box"><div class="kpi-label">公众号阅读预计时长</div><div class="kpi-val" id="wc-read">0 分钟</div><div class="kpi-sub">按 450 字/分钟默读速度</div></div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var inp = document.getElementById('wc-input');
+      function update() {
+        var t = inp.value || '';
+        var noSpace = t.replace(/\s+/g, '');
+        var zh = (t.match(/[\u4e00-\u9fa5]/g) || []).length;
+        var en = (t.match(/[A-Za-z0-9]/g) || []).length;
+        var paras = t.split(/\n+/).filter(function (l) { return l.trim().length > 0; }).length;
+        var speakSec = Math.ceil((noSpace.length / 240) * 60);
+        var readMin = Math.max(0, Math.ceil(noSpace.length / 450));
+
+        document.getElementById('wc-total').textContent = noSpace.length;
+        document.getElementById('wc-zh').textContent = zh;
+        document.getElementById('wc-en').textContent = '英文/数字：' + en;
+        document.getElementById('wc-para').textContent = paras;
+        document.getElementById('wc-speak').textContent = speakSec >= 60 ? (Math.floor(speakSec / 60) + ' 分 ' + (speakSec % 60) + ' 秒') : (speakSec + ' 秒');
+        document.getElementById('wc-read').textContent = readMin + ' 分钟';
+        var xhsEl = document.getElementById('wc-xhs');
+        if (noSpace.length > 1000) {
+          xhsEl.textContent = '已超出小红书 1000 字上限（多 ' + (noSpace.length - 1000) + ' 字）';
+          xhsEl.style.color = '#d9323d';
+        } else {
+          xhsEl.textContent = '距离小红书 1000 字上限还剩 ' + (1000 - noSpace.length) + ' 字';
+          xhsEl.style.color = '';
+        }
+      }
+
+      inp.addEventListener('input', update);
+      document.getElementById('wc-clean').addEventListener('click', function () {
+        inp.value = (inp.value || '').replace(/[ \t]+$/gm, '').replace(/\n{3,}/g, '\n\n').trim();
+        update();
+      });
+      document.getElementById('wc-space').addEventListener('click', function () {
+        inp.value = (inp.value || '')
+          .replace(/([\u4e00-\u9fa5])([A-Za-z0-9])/g, '$1 $2')
+          .replace(/([A-Za-z0-9])([\u4e00-\u9fa5])/g, '$1 $2');
+        update();
+      });
+      document.getElementById('wc-copy').addEventListener('click', function () {
+        if (navigator.clipboard) navigator.clipboard.writeText(inp.value || '');
+      });
+      document.getElementById('wc-clear').addEventListener('click', function () {
+        inp.value = '';
+        update();
+      });
+      update();
+    })();
+  </script>
+</ToolLayout>
