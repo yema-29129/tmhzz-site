@@ -41,11 +41,25 @@
 - [Kimi](https://tmhzz.com/sites/kimi.html): Kimi 是由 Moonshot AI 开发的多功能 AI 智能助手，以卓越的长文本处理和多模态能力著称。它支持实时网络搜索、文档分析及图像理解，可助力研究、写作和问题解决。自 2023 年推出以来， | 官网: https://kimi.moonshot.cn/
 - [豆包](https://tmhzz.com/sites/%E8%B1%86%E5%8C%85.html): 豆包是字节跳动基于云雀模型推出的多功能AI助手，支持聊天对话、写作辅助、图像生成及信息搜索等功能。它提供网页端及多平台应用，界面简洁，语音输入识别精准。自2023年8月上线以来，豆包以高效、智能的服务 | 官网: https://www.doubao.com/chat/?channel=baidu_pz&source=db_baidu_pz_01&keywordid=weizhi1
 - [腾讯元宝](https://tmhzz.com/sites/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D.html): 腾讯元宝是腾讯基于自研混元大模型推出的AI智能助手，于2024年5月30日上线。它提供AI搜索、文档解析、写作辅助等多项功能，支持语音文字交互及多格式文件识别。腾讯元宝整合微信生态与网络资源，为用户带 | 官网: https://yuanbao.tencent.com/
+- [Gemini](https://tmhzz.com/sites/gemini.html): Google 官方多模态 AI 助手，擅长长文本分析、资料总结、代码与营销策划。 | 官网: https://gemini.google.com/
+- [Perplexity](https://tmhzz.com/sites/perplexity.html): 全球领先的 AI 搜索引擎，带权威来源引用，适合快速做行业竞品调研与事实核查。 | 官网: https://www.perplexity.ai/
+- [NotebookLM](https://tmhzz.com/sites/notebooklm.html): Google 出品的 AI 知识库与播客生成工具，上传 PDF 行业报告即可问答与提炼要点。 | 官网: https://notebooklm.google.com/
+- [通义千问](https://tmhzz.com/sites/%E9%80%9A%E4%B9%89%E5%8D%83%E9%97%AE.html): 阿里云官方大模型助手，支持长文档解析、营销文案撰写与音频转写。 | 官网: https://tongyi.aliyun.com/
+- [即梦 AI](https://tmhzz.com/sites/%E5%8D%B3%E6%A2%A6-ai.html): 字节跳动剪映旗下 AI 生图与视频创作平台，中文海报排版和电商视觉效果出色。 | 官网: https://jimeng.jianying.com/
+- [可灵 AI](https://tmhzz.com/sites/%E5%8F%AF%E7%81%B5-ai.html): 快手推出的高质量 AI 视频与图像生成平台，适合短视频广告素材与创意分镜制作。 | 官网: https://klingai.kuaishou.com/
+- [Gamma](https://tmhzz.com/sites/gamma.html): 爆款 AI 一键生成 PPT 与方案演示文稿工具，输入大纲即可快速产出高颜值提案。 | 官网: https://gamma.app/
+- [Suno](https://tmhzz.com/sites/suno.html): 领先的 AI 音乐与歌曲生成工具，可快速为短视频、广告片定制原创 BGM 与品牌主题曲。 | 官网: https://suno.com/
+- [Dify](https://tmhzz.com/sites/dify.html): 开源大模型应用与 AI Agent 工作流编排平台，适合搭建企业营销知识库与自动化助手。 | 官网: https://dify.ai/
+- [Cursor](https://tmhzz.com/sites/cursor.html): AI 驱动的新一代代码编辑器，不懂编程也能用自然语言快速搭建营销落地页与小工具。 | 官网: https://www.cursor.com/
 
 ### 违禁词查询网站
 - [零克查词](https://tmhzz.com/sites/%E9%9B%B6%E5%85%8B%E6%9F%A5%E8%AF%8D.html): 零克查词是一款专业的新广告法违禁词检测工具，支持快速识别广告文案中的敏感词和违规用语，帮助用户优化广告内容，规避法律风险。适用于电商、品牌推广和内容创作，是广告合规的优质助手。 | 官网: https://www.lingkechaci.com/
 - [句易网](https://tmhzz.com/sites/%E5%8F%A5%E6%98%93%E7%BD%91.html): 句易网是一款智能化的新广告法违禁词检测工具，提供精准的广告文案审核服务，帮助用户快速识别敏感词、违规用语，确保广告内容合法合规。适用于电商、品牌推广、营销策划等领域，是广告创作者的必备助手。 | 官网: http://www.ju1.cn/
 - [新广告法违禁词查询工具-拓源网](https://tmhzz.com/sites/%E6%96%B0%E5%B9%BF%E5%91%8A%E6%B3%95%E8%BF%9D%E7%A6%81%E8%AF%8D%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7-%E6%8B%93%E6%BA%90%E7%BD%91.html): 拓源网的新广告法违禁词查询工具是专业的广告用语审核平台，帮助用户快速检测广告文案中的敏感词及违禁词，避免违规风险。适用于电商、营销及品牌推广，是合规广告创作的必备工具。 | 官网: https://zbp.toyean.com/tools/
+- [轻抖违禁词检测](https://tmhzz.com/sites/%E8%BD%BB%E6%8A%96%E8%BF%9D%E7%A6%81%E8%AF%8D%E6%A3%80%E6%B5%8B.html): 短视频与直播达人常用工具平台，支持抖音/小红书文案违禁词检测与脚本提取。 | 官网: https://www.qingdou.cn/
+- [句无忧](https://tmhzz.com/sites/%E5%8F%A5%E6%97%A0%E5%BF%A7.html): 专注新广告法与多平台（小红书/抖音/电商/公众号）敏感词、极限词在线检测工具。 | 官网: https://www.juwuyou.com/
+- [易撰违禁词检测](https://tmhzz.com/sites/%E6%98%93%E6%92%B0%E8%BF%9D%E7%A6%81%E8%AF%8D%E6%A3%80%E6%B5%8B.html): 自媒体爆文与广告法违禁词、敏感词在线检测及内容质量评估工具。 | 官网: https://www.yizhuan5.com/
+- [爱校对](https://tmhzz.com/sites/%E7%88%B1%E6%A0%A1%E5%AF%B9.html): 字节跳动出品的中文智能校对与合规审校工具，快速检查文案错别字、标点与敏感表述。 | 官网: https://www.ijiaodui.com/
 
 ### 每日必看
 - [微博热榜](https://tmhzz.com/sites/%E7%83%AD%E6%90%9C%E6%A6%9C.html): 微博热榜 | 官网: https://weibo.com/hot/search
@@ -55,6 +69,10 @@
 - [百度热搜](https://tmhzz.com/sites/%E4%BB%8A%E6%97%A5%E7%83%AD%E6%90%9C%E6%A6%9C.html): 百度热搜 | 官网: https://top.baidu.com/board?tab=realtime
 - [腾讯新闻](https://tmhzz.com/sites/%E8%85%BE%E8%AE%AF%E6%96%B0%E9%97%BB.html): 数据统计 相关导航 网易新闻 网易新闻 铂程斋 铂程斋 中国营销传播网 中国营销传播网 知乎热榜 知乎热榜 新榜 新榜 抖音电商案例库-抖音电商官方学习平台 抖音电商案例库-抖音电商官方学习平台 煎蛋 | 官网: https://www.qq.com/
 - [网易新闻](https://tmhzz.com/sites/%E7%BD%91%E6%98%93%E6%96%B0%E9%97%BB.html): 网易新闻 | 官网: https://www.163.com/
+- [今日热榜](https://tmhzz.com/sites/%E4%BB%8A%E6%97%A5%E7%83%AD%E6%A6%9C.html): 聚合全网微博、知乎、微信、抖音、小红书、B站等百余个平台实时热榜，自媒体选题必备。 | 官网: https://tophub.today/
+- [36氪](https://tmhzz.com/sites/36%E6%B0%AA.html): 聚焦新商业、科技、消费品牌与创投动态，营销人每日洞察行业风向必看媒体。 | 官网: https://36kr.com/
+- [虎嗅网](https://tmhzz.com/sites/%E8%99%8E%E5%97%85%E7%BD%91.html): 深度商业与消费趋势评论媒体，提供品牌案例拆解与互联网行业深度观察。 | 官网: https://www.huxiu.com/
+- [人人都是产品经理](https://tmhzz.com/sites/%E4%BA%BA%E4%BA%BA%E9%83%BD%E6%98%AF%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86.html): 聚集产品、运营、增长与商业变现方法论的垂直内容社区。 | 官网: https://www.woshipm.com/
 
 ### 每周必看
 - [消费站](https://tmhzz.com/sites/%E6%B6%88%E8%B4%B9%E7%AB%99.html): 消费站 | 官网: https://www.cbndata.com/information
@@ -66,6 +84,10 @@
 - [煎蛋](https://tmhzz.com/sites/%E7%85%8E%E8%9B%8B.html): 煎蛋 | 官网: http://jandan.net/new
 - [抖音电商案例库-抖音电商官方学习平台](https://tmhzz.com/sites/%E6%8A%96%E9%9F%B3%E7%94%B5%E5%95%86%E6%A1%88%E4%BE%8B%E5%BA%93.html): 抖音电商案例库-抖音电商官方学习平台 | 官网: https://school.jinritemai.com/doudian/web/ecomcase
 - [A5创业网](https://tmhzz.com/sites/a5%E5%88%9B%E4%B8%9A%E7%BD%91.html): 网络推广-网站推广-免费推广 - A5创业网 | 官网: https://www.admin5.com/browse/58/
+- [刀法研究所](https://tmhzz.com/sites/%E5%88%80%E6%B3%95%E7%A0%94%E7%A9%B6%E6%89%80.html): 专注中国新消费品牌营销、品牌定位与增长策略拆解的头部商业媒体与智库。 | 官网: https://www.daofa.cn/
+- [鸟哥笔记](https://tmhzz.com/sites/%E9%B8%9F%E5%93%A5%E7%AC%94%E8%AE%B0.html): 专注移动互联网推广、APP 增长、信息流投放与营销实战干货的垂直平台。 | 官网: https://www.niaogebiji.com/
+- [运营研究社](https://tmhzz.com/sites/%E8%BF%90%E8%90%A5%E7%A0%94%E7%A9%B6%E7%A4%BE.html): 聚焦新媒体运营、私域流量变现与爆款案例拆解的运营人成长社区。 | 官网: https://www.yunyingxuetang.com/
+- [品牌星球 BrandStar](https://tmhzz.com/sites/%E5%93%81%E7%89%8C%E6%98%9F%E7%90%83-brandstar.html): 专注全球与中国创新消费品牌动态、品牌视觉与出海营销案例的深度媒体。 | 官网: https://www.brandstar.com.cn/
 
 ### 每月必看
 - [梅花网](https://tmhzz.com/sites/%E6%A2%85%E8%8A%B1%E7%BD%91.html): 梅花网 | 官网: https://www.meihua.info/info
@@ -92,6 +114,12 @@
 - [新红-小红书数据分析工具](https://tmhzz.com/sites/%E6%96%B0%E7%BA%A2-%E5%B0%8F%E7%BA%A2%E4%B9%A6%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7.html): 新红-小红书数据分析工具 | 官网: https://xh.newrank.cn/product/home?promoPlatType=3&promoChannel=30&promoScene=211&source=10000&l=ys_xh-banner_top_xh
 - [新榜](https://tmhzz.com/sites/%E6%96%B0%E6%A6%9C-2.html): 基于微信（公众号、视频号）、抖音、小红书、B站、快手等主流内容平台，新榜提供包括新抖、新视、新红、新站、新快在内的数据工具，为用户带来实时热门素材、品牌声量、直播电商等全面的数据监测分析能力 | 官网: https://www.newrank.cn/
 - [艾瑞APP指数-艾瑞数据](https://tmhzz.com/sites/%E8%89%BE%E7%91%9E%E6%95%B0%E6%8D%AE-2.html): 艾瑞APP指数-艾瑞数据 | 官网: https://index.iresearch.com.cn/new/#/app
+- [小红书蒲公英](https://tmhzz.com/sites/%E5%B0%8F%E7%BA%A2%E4%B9%A6%E8%92%B2%E5%85%AC%E8%8B%B1.html): 小红书官方达人商业合作平台，支持博主筛选、报价查询与种草投后数据复盘。 | 官网: https://pgy.xiaohongshu.com/
+- [小红书聚光平台](https://tmhzz.com/sites/%E5%B0%8F%E7%BA%A2%E4%B9%A6%E8%81%9A%E5%85%89%E5%B9%B3%E5%8F%B0.html): 小红书官方商业投放后台，整合搜索广告、信息流与种草转化全链路投放。 | 官网: https://ad.xiaohongshu.com/
+- [巨量星图](https://tmhzz.com/sites/%E5%B7%A8%E9%87%8F%E6%98%9F%E5%9B%BE.html): 抖音官方达人撮合与内容营销平台，涵盖达人画像、商单投放与转化追踪。 | 官网: https://www.xingtu.cn/
+- [巨量千川](https://tmhzz.com/sites/%E5%B7%A8%E9%87%8F%E5%8D%83%E5%B7%9D.html): 抖音电商一体化智能投流平台，支持短视频带货与直播间付费推广。 | 官网: https://qianchuan.jinritemai.com/
+- [腾讯广告](https://tmhzz.com/sites/%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A.html): 微信朋友圈、视频号、公众号及腾讯全域流量官方广告投放与数据管理后台。 | 官网: https://e.qq.com/
+- [百度指数](https://tmhzz.com/sites/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0.html): 百度官方关键词搜索趋势、需求图谱与人群画像分析工具，洞察市场需求热度。 | 官网: https://index.baidu.com/
 
 ### 广告创意/策划营销案例
 - [新片场](https://tmhzz.com/sites/%E6%96%B0%E7%89%87%E5%9C%BA.html): 新片场 - 发现全球优质视频与创作人，与百万创作人一起成长 | 官网: https://www.xinpianchang.com/square
@@ -106,6 +134,10 @@
 - [活动汪](https://tmhzz.com/sites/%E6%B4%BB%E5%8A%A8%E6%B1%AA.html): 提供大量免费的策划方案和活动案例，部分付费。 | 官网: https://www.eventwang.cn/
 - [优视TVCBOOK 广告视频搜索社交网络](https://tmhzz.com/sites/%E4%BC%98%E8%A7%86tvcbook.html): 优视TVCBOOK 广告视频搜索社交网络 | 官网: https://www.tvcbook.com/homepage.html
 - [胖鲸](https://tmhzz.com/sites/%E8%83%96%E9%B2%B8.html): 胖鲸 – 最受品牌主关注的营销媒体平台 | 官网: https://socialone.com.cn/?source=header_logo
+- [4A广告网](https://tmhzz.com/sites/4a%E5%B9%BF%E5%91%8A%E7%BD%91.html): 汇集国内外经典品牌广告提案、创意文案、公关事件与年度营销复盘案例。 | 官网: https://www.4aqq.com/
+- [Behance](https://tmhzz.com/sites/behance.html): Adobe 旗下全球顶级创意设计与品牌视觉作品集平台，寻找国际化视觉灵感。 | 官网: https://www.behance.net/
+- [Dribbble](https://tmhzz.com/sites/dribbble.html): 全球知名设计师作品社区，涵盖品牌 VI、海报视觉、UI 交互与插画创意参考。 | 官网: https://dribbble.com/
+- [Pinterest](https://tmhzz.com/sites/pinterest.html): 全球视觉灵感与情绪板收集平台，做品牌视觉定位、电商详情页与包装设计必备。 | 官网: https://www.pinterest.com/
 
 ### 行业报告/数据报告
 - [【发现报告】专业研报平台丨收录海量行业报告/券商研报丨免费分享行业研报](https://tmhzz.com/sites/%E3%80%90%E5%8F%91%E7%8E%B0%E6%8A%A5%E5%91%8A%E3%80%91%E4%B8%93%E4%B8%9A%E7%A0%94%E6%8A%A5%E5%B9%B3%E5%8F%B0%E4%B8%A8%E6%94%B6%E5%BD%95%E6%B5%B7%E9%87%8F%E8%A1%8C%E4%B8%9A%E6%8A%A5%E5%91%8A-%E5%88%B8.html): 【发现报告】专业研报平台丨收录海量行业报告/券商研报丨免费分享行业研报 | 官网: https://www.fxbaogao.com/rp/?order=2&nop=-1
@@ -118,6 +150,11 @@
 - [亿欧智库](https://tmhzz.com/sites/%E4%BA%BF%E6%AC%A7%E6%99%BA%E5%BA%93.html): 亿欧智库是国内知名的行业研究与咨询平台，聚焦科技、消费、医疗等领域，提供权威行业报告、市场趋势分析和创新案例研究。助力企业洞察市场动态，制定科学决策，是企业战略规划与行业研究的首选平台。 | 官网: https://www.iyiou.com/research
 - [互联网数据资讯网199it](https://tmhzz.com/sites/%E4%BA%92%E8%81%94%E7%BD%91%E6%95%B0%E6%8D%AE%E8%B5%84%E8%AE%AF%E7%BD%91.html): 互联网数据资讯网199it | 官网: http://www.199it.com/
 - [艾瑞网](https://tmhzz.com/sites/%E8%89%BE%E7%91%9E%E7%BD%91.html): 艾瑞网是领先的行业研究与商业资讯平台，提供权威的市场报告、数据洞察及消费趋势分析，涵盖互联网经济、科技创新、数字营销等领域。为企业、投资者和研究人员提供深度解读和决策支持，是行业洞察的不二选择。 | 官网: https://report.iresearch.cn/
+- [QuestMobile](https://tmhzz.com/sites/questmobile.html): 中国移动互联网大数据权威机构，定期发布 APP 活跃榜、人群洞察与行业全景报告。 | 官网: https://www.questmobile.com.cn/
+- [头豹研究院](https://tmhzz.com/sites/%E5%A4%B4%E8%B1%B9%E7%A0%94%E7%A9%B6%E9%99%A2.html): 覆盖消费、科技、大健康、电商等细分赛道的专业行研与产业链深度报告平台。 | 官网: https://www.leadleo.com/
+- [腾讯研究院](https://tmhzz.com/sites/%E8%85%BE%E8%AE%AF%E7%A0%94%E7%A9%B6%E9%99%A2.html): 腾讯官方智库，持续输出 AI 趋势、数字经济、内容生态与社会消费前沿研究报告。 | 官网: https://www.tisi.org/
+- [萝卜投研](https://tmhzz.com/sites/%E8%90%9D%E5%8D%9C%E6%8A%95%E7%A0%94.html): 免费查阅券商研报、行业深度报告与上市公司财报数据的智能投研平台。 | 官网: https://robo.datayes.com/
+- [易观分析](https://tmhzz.com/sites/%E6%98%93%E8%A7%82%E5%88%86%E6%9E%90.html): 专注数字经济、零售电商与互联网用户行为分析的第三方数据研究机构。 | 官网: https://www.analysys.cn/
 
 ### 营销工具
 - [阿里巴巴矢量图标库](https://tmhzz.com/sites/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%9F%A2%E9%87%8F%E5%9B%BE%E6%A0%87%E5%BA%93.html): 阿里巴巴矢量图标库是一个广泛使用的资源平台，提供了大量免费和付费的矢量图标资源。这些图标涵盖了各种领域和用途，包括UI设计、网页开发、移动应用、商业项目等。阿里巴巴矢量图标库的特点是图标质量高、多样性 | 官网: https://www.iconfont.cn/collections/index?spm=a313x.7781069.1998910419.4
@@ -126,6 +163,13 @@
 - [undraw](https://tmhzz.com/sites/undraw.html): unDraw是一个免费开源的插画资源平台，提供丰富的可定制插画素材，涵盖科技、商业、教育等多个主题。所有插画均可免费下载并适用于个人和商业项目，为设计师和开发者提供灵感与实用资源。 | 官网: https://undraw.co/illustrations
 - [Flat Icon Design](https://tmhzz.com/sites/flat-icon-design.html): Flat Icon Design是一个专注于提供扁平化风格图标的设计平台，拥有丰富的免费高质量图标素材，适用于网页设计、移动应用和品牌创意项目。所有图标均可免费下载，为设计师提供灵感和便捷的创意工具。 | 官网: http://flat-icon-design.com/?continueFlag=cac3a9f5f3de0ea1d7b89abed75b1093
 - [dryicons](https://tmhzz.com/sites/dryicons.html): DryIcons是一个提供高质量免费图标和矢量素材的平台，涵盖多种风格和主题，适用于网页设计、应用开发及其他创意项目。所有资源均可免费下载，为设计师和开发者提供便捷的图形设计支持。 | 官网: https://dryicons.com/?continueFlag=cac3a9f5f3de0ea1d7b89abed75b1093
+- [草料二维码](https://tmhzz.com/sites/%E8%8D%89%E6%96%99%E4%BA%8C%E7%BB%B4%E7%A0%81.html): 国内最好用的在线活码、宣传单码、表单码与社群活码生成及扫码统计工具。 | 官网: https://cli.im/
+- [秀米 XIUMI](https://tmhzz.com/sites/%E7%A7%80%E7%B1%B3-xiumi.html): 微信公众号与新媒体人高频使用的图文排版与 H5 视觉设计工具。 | 官网: https://xiumi.us/
+- [135编辑器](https://tmhzz.com/sites/135%E7%BC%96%E8%BE%91%E5%99%A8.html): 提供海量节日模板、样式组件与一键同步的公众号图文排版工具。 | 官网: https://www.135editor.com/
+- [腾讯问卷](https://tmhzz.com/sites/%E8%85%BE%E8%AE%AF%E9%97%AE%E5%8D%B7.html): 免费稳定的在线调研问卷、用户反馈收集与活动报名统计工具，支持微信无缝填写。 | 官网: https://wj.qq.com/
+- [金数据](https://tmhzz.com/sites/%E9%87%91%E6%95%B0%E6%8D%AE.html): 专业的营销获客表单、活动报名、客户线索收集与 CRM 自动化管理工具。 | 官网: https://jinshuju.net/
+- [ProcessOn](https://tmhzz.com/sites/processon.html): 免费在线流程图、思维导图、营销漏斗图与用户旅程图协作绘制工具。 | 官网: https://www.processon.com/
+- [飞书多维表格](https://tmhzz.com/sites/%E9%A3%9E%E4%B9%A6%E5%A4%9A%E7%BB%B4%E8%A1%A8%E6%A0%BC.html): 运营人管理达人建联表、投放排期表、选题库与自动看板的效率神器。 | 官网: https://www.feishu.cn/product/base
 
 ### 高清图片素材网站
 - [Pexels](https://tmhzz.com/sites/pexels.html): Pexels是一个提供高质量免费素材图片和视频的平台，适合个人和商业使用。海量图片资源涵盖自然、科技、生活等多领域，所有素材均可免费下载，助力创意设计、广告制作和内容创作的无限灵感来源。 | 官网: https://www.pexels.com/zh-cn/
@@ -152,6 +196,9 @@
 - [造字工房](https://tmhzz.com/sites/%E9%80%A0%E5%AD%97%E5%B7%A5%E6%88%BF.html): 造字工房是国内知名的字体设计品牌，专注于中文字体的创新与研发，提供多种风格的字体资源，包括商用字体和创意定制服务。广泛应用于品牌设计、广告制作和出版物，是字体创作的优质选择。 | 官网: https://www.makefont.com/fonts.html?yishu
 - [汉仪字体](https://tmhzz.com/sites/%E6%B1%89%E4%BB%AA%E5%AD%97%E4%BD%93.html): 免费字体，汉仪字库（Han Yi Fonts）是中国领先的字体设计和开发公司之一，专注于中文字体的研发和推广。汉仪字库提供了丰富的中文字体系列，涵盖了传统、现代、艺术等多种风格，适用于各种设计和排版需 | 官网: https://www.hanyi.com.cn/
 - [qiuziti](https://tmhzz.com/sites/qiuziti.html): 求字体网是一款专业的字体识别和下载平台，提供字体识别、匹配和丰富的字体资源库，支持快速上传图片识别字体。为设计师和创意工作者解决字体查找难题，是寻找字体素材的理想工具。 | 官网: https://www.qiuziti.com/
+- [字由](https://tmhzz.com/sites/%E5%AD%97%E7%94%B1.html): 设计师与运营常用字体管理工具，清晰标注免费可商用字体，避免字体版权踩坑。 | 官网: https://www.hellofont.cn/
+- [Google Fonts](https://tmhzz.com/sites/google-fonts.html): Google 官方开源免费商用字体库，涵盖思源黑体、思源宋体等高质量中英文字体。 | 官网: https://fonts.google.com/
+- [猫啃网](https://tmhzz.com/sites/%E7%8C%AB%E5%95%83%E7%BD%91.html): 专注整理国内外免费可商用中文字体下载与授权说明的良心字体导航站。 | 官网: https://www.maoken.com/
 
 ### 作图网站
 - [创客贴](https://tmhzz.com/sites/%E5%88%9B%E5%AE%A2%E8%B4%B4.html): 创客贴是一个在线的图文编辑平台，用户可以在上面创建和编辑各种富媒体内容，包括海报、宣传册、电子书、演示文稿等。它提供了丰富的模板和素材库，支持用户自由设计和排版，无需编程技能即可制作专业水平的视觉内容 | 官网: https://www.chuangkit.com/designtools/designindex
@@ -162,6 +209,10 @@
 - [稿定设计](https://tmhzz.com/sites/%E7%A8%BF%E5%AE%9A%E8%AE%BE%E8%AE%A1.html): 稿定设计是一站式在线设计平台，提供丰富的模板和素材，涵盖海报、社交媒体图片、短视频制作等多种场景。支持图片编辑、智能抠图、视频剪辑等功能，操作简单，助力设计高效完成，是内容创作者的优质选择。 | 官网: https://www.gaoding.com/
 - [Fotor懒设计](https://tmhzz.com/sites/fotor%E6%87%92%E8%AE%BE%E8%AE%A1.html): Fotor懒设计是一款多功能的在线设计工具，提供海报、名片、社交媒体图片、简历等多种设计模板，同时支持图片编辑和美化。无需专业技能，即可轻松完成高质量设计，是设计新手和内容创作者的优选平台。 | 官网: https://www.fotor.com.cn/
 - [Canva](https://tmhzz.com/sites/canva.html): Canva是一款强大的在线设计工具，提供丰富的模板和素材，适用于海报、社交媒体图像、演示文稿和品牌设计。操作简单，无需专业技能即可轻松创建高质量视觉内容，是设计师和创意工作者的理想选择。 | 官网: https://www.canva.com/zh_cn/
+- [Figma](https://tmhzz.com/sites/figma.html): 全球最主流的在线协作界面与平面设计工具，支持海报、Banner、社媒配图与原型设计。 | 官网: https://www.figma.com/
+- [即时设计](https://tmhzz.com/sites/%E5%8D%B3%E6%97%B6%E8%AE%BE%E8%AE%A1.html): 国内流畅免梯子的在线 UI 与营销海报协作设计工具，内置海量中文设计资源。 | 官网: https://js.design/
+- [Remove.bg](https://tmhzz.com/sites/remove.bg.html): 一键 AI 智能抠图去背景工具，5 秒钟搞定电商产品图与人物主图抠像。 | 官网: https://www.remove.bg/zh
+- [美图设计室](https://tmhzz.com/sites/%E7%BE%8E%E5%9B%BE%E8%AE%BE%E8%AE%A1%E5%AE%A4.html): 专注电商商品图、AI 商拍、小红书封面与营销海报的智能作图平台。 | 官网: https://www.designkit.com/
 
 ### PPT模板
 - [Office Plus](https://tmhzz.com/sites/office-plus.html): 作为微软官方提供的Office模板和素材库，不仅包括了PPT模板，还有Word文档、Excel表格等多种资源。模板设计专业且实用，适合各种办公场景。 | 官网: https://www.officeplus.cn
@@ -191,6 +242,11 @@
 - [Ahrefs](https://tmhzz.com/sites/ahrefs.html): Ahrefs是全球领先的SEO分析工具，专注于关键词研究、反向链接分析、网站审计和流量监控。通过详细的数据报告和实用的优化建议，帮助企业提升搜索引擎排名、优化内容策略，是SEO从业者的必备平台。 | 官网: https://ahrefs.com/
 - [bing站长](https://tmhzz.com/sites/bing%E7%AB%99%E9%95%BF.html): 必应站长工具（Bing Webmaster Tools）是微软提供的免费SEO优化平台，帮助站长分析网站流量、检测问题并优化搜索引擎排名。支持关键词分析、索引提交和性能监控，是提升网站SEO效果的理想 | 官网: https://www.bing.com/webmasters/home
 - [中国科学技术大学测速网站](https://tmhzz.com/sites/%E4%B8%AD%E5%9B%BD%E7%A7%91%E5%AD%A6%E6%8A%80%E6%9C%AF%E5%A4%A7%E5%AD%A6%E6%B5%8B%E9%80%9F%E7%BD%91%E7%AB%99.html): 中国科学技术大学测速网站 | 官网: https://test.ustc.edu.cn/
+- [Cloudflare](https://tmhzz.com/sites/cloudflare.html): 全球顶级免费 CDN、DNS 解析与 Cloudflare Pages 静态网站托管平台，零成本建站必备。 | 官网: https://www.cloudflare.com/
+- [GitHub](https://tmhzz.com/sites/github.html): 全球最大的代码托管与开源协作平台，配合 Cloudflare Pages/Vercel 实现免费自动部署。 | 官网: https://github.com/
+- [Vercel](https://tmhzz.com/sites/vercel.html): 现代前端与全栈网站托管平台，支持 GitHub 一键部署、自动 HTTPS 与全球边缘加速。 | 官网: https://vercel.com/
+- [百度搜索资源平台](https://tmhzz.com/sites/%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2%E8%B5%84%E6%BA%90%E5%B9%B3%E5%8F%B0.html): 百度官方站长工具，支持提交网站 Sitemap、查看收录状态与搜索关键词流量分析。 | 官网: https://ziyuan.baidu.com/
+- [Similarweb](https://tmhzz.com/sites/similarweb.html): 全球权威网站流量与竞品渠道分析工具，一键查看同行网站的流量来源、关键词与受众。 | 官网: https://www.similarweb.com/
 
 ### 广告营销案例网站
 - [新片场](https://tmhzz.com/sites/%E6%96%B0%E7%89%87%E5%9C%BA.html): 新片场 - 发现全球优质视频与创作人，与百万创作人一起成长 | 官网: https://www.xinpianchang.com/square
