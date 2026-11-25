@@ -77,6 +77,10 @@
       ]
     },
     {
+      "label": "营销日历",
+      "href": "/calendar/"
+    },
+    {
       "label": "资料下载",
       "href": "/资料下载/"
     },
@@ -109,10 +113,6 @@
     }
   ],
   "friendLinks": [
-    {
-      "label": "Stirling PDF",
-      "url": "https://pdfhelp.xyz/?lang=zh_CN"
-    },
     {
       "label": "HAIMA美股投资理财",
       "url": "https://www.vooqqqm.com/"

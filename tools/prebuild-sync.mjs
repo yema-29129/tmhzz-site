@@ -31,7 +31,15 @@ const tools = fs.existsSync(path.join(DATA, 'tools.json')) ? readJson('tools.jso
 const siteMap = new Map(sites.map((s) => [s.id, s]));
 
 // 1. Rebuild public/search-index.json
-const searchIndex = [];
+const searchIndex = [
+  {
+    type: '工具',
+    title: '2026~2027 全年营销热点日历（借势选题/电商大促排期）',
+    desc: '覆盖1-12月电商大促、传统节日、潮流节点与二十四节气，附品牌借势文案角度与CSV导出。',
+    url: '/calendar/',
+    tags: '营销日历 2026营销日历 2027营销日历 热点日历 电商大促 借势文案',
+  },
+];
 for (const t of tools) {
   searchIndex.push({
     type: '工具',
@@ -95,6 +103,7 @@ const lines = [
   '',
   '## 核心栏目',
   `- [首页网址导航](${BASE}/): 精选 ${sites.length} 个营销工具、AI 工具、违禁词查询、媒介渠道数据平台、广告创意案例、行业报告、高清图片与字体作图网站。`,
+  `- [2026~2027 全年营销热点日历](${BASE}/calendar/): 覆盖全年 1~12 月电商大促、传统节日、潮流营销节点与二十四节气借势文案指南，支持按月筛选与一键导出排期表。`,
   `- [「天马黑珍珠」营销笔记](${enc('/「天马黑珍珠」营销笔记/')}): 原创营销笔记、思维认知、渠道流量与转化实战文章（共 ${posts.length} 篇）。`,
   `- [资料下载与行业报告](${enc('/资料下载/')}): 精选消费、电商、宠物、年轻人趋势等行业研究报告（共 ${apps.length} 份）。`,
   `- [好书好物推荐](${BASE}/books/): 营销经典书籍与个人精选好物清单（共 ${books.length} 项）。`,
