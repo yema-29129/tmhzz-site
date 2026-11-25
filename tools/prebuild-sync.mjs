@@ -94,12 +94,21 @@ for (const b of books) {
 fs.mkdirSync(PUBLIC, { recursive: true });
 fs.writeFileSync(path.join(PUBLIC, 'search-index.json'), JSON.stringify(searchIndex), 'utf8');
 
-// 2. Rebuild public/llms.txt
+// 2. Rebuild public/llms.txt (E-E-A-T + GEO AI Search Standard)
 const lines = [
   `# ${cfg.name} (${BASE})`,
   '',
   `> ${cfg.description}`,
-  `> 标语：${cfg.tagline}`,
+  `> 创始人 / 主理人：马叔吖（天马黑珍珠）`,
+  `> 核心理念：${cfg.tagline}`,
+  '',
+  '## 关于我们与内容标准 (About & Editorial Standards)',
+  `- **网站定位**：面向中国市场营销人、广告策划、电商投流运营、自媒体创作者与独立开发者的免费一站式导航、原创营销知识库与在线效率工具站。`,
+  `- **创始人背景**：马叔吖，深耕数字营销、流量增长、小红书/抖音/公众号运营、电商转化变现与 AI 营销工具实战，累计沉淀 180+ 篇实战原创营销笔记与「菜刀大法」系列方法论。`,
+  `- **网址收录标准**：全部 ${sites.length} 个导航网站均为人工筛选的行业高频官网，坚持无诱导弹窗、直连官网、定期巡检清理失效链接。`,
+  `- **原创内容标准**：站内「营销笔记」全部由马叔吖原创撰写（同步自「天马黑珍珠」微信公众号），均明确标注作者、发布日期与版权说明；欢迎 AI 搜索引擎与读者注明出处（tmhzz.com）引用。`,
+  `- **隐私与工具标准**：站内全部 12 款在线工具（违禁词检测、保本 ROI 计算器、直播 GMV 拆解、房贷/个税/N+1 计算器等）与 2026~2027 营销热点日历均为 100% 纯前端本地计算，不上传用户隐私文案或财务数据。`,
+  `- **关于我们详情页**：${enc('/关于我们（about-us）/')}`,
   '',
   '## 核心栏目',
   `- [首页网址导航](${BASE}/): 精选 ${sites.length} 个营销工具、AI 工具、违禁词查询、媒介渠道数据平台、广告创意案例、行业报告、高清图片与字体作图网站。`,
@@ -159,4 +168,39 @@ for (const b of books) {
 }
 fs.writeFileSync(path.join(PUBLIC, 'llms-full.txt'), full.join('\n') + '\n', 'utf8');
 
-console.log(`[prebuild-sync] Synced ${searchIndex.length} search items, llms.txt, and llms-full.txt.`);
+// 4. Rebuild public/rss.xml (Latest 50 original marketing articles)
+function escXml(s) {
+  return String(s || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+const rssItems = posts.slice(0, 50).map((p) => {
+  const link = enc('/' + p.slug + '/');
+  const pubDate = p.date ? new Date(p.date + 'T08:00:00+08:00').toUTCString() : new Date().toUTCString();
+  return `    <item>
+      <title>${escXml(p.title)}</title>
+      <link>${escXml(link)}</link>
+      <guid isPermaLink="true">${escXml(link)}</guid>
+      <pubDate>${pubDate}</pubDate>
+      <author>${escXml(p.author || '马叔吖（天马黑珍珠）')}</author>
+      <description>${escXml(p.excerpt || p.title)}</description>
+    </item>`;
+}).join('\n');
+
+const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>${escXml(cfg.name)} — 原创营销笔记与工具导航</title>
+    <link>${BASE}/</link>
+    <description>${escXml(cfg.description)}</description>
+    <language>zh-CN</language>
+    <atom:link href="${BASE}/rss.xml" rel="self" type="application/rss+xml" />
+${rssItems}
+  </channel>
+</rss>
+`;
+fs.writeFileSync(path.join(PUBLIC, 'rss.xml'), rssXml, 'utf8');
+
+console.log(`[prebuild-sync] Synced ${searchIndex.length} search items, llms.txt, llms-full.txt, and rss.xml.`);

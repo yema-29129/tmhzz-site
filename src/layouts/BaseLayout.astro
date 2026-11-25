@@ -32,7 +32,7 @@ const baseSchemas = [
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: siteConfig.name,
-    alternateName: 'tmhzz',
+    alternateName: ['tmhzz', '天马黑珍珠营销导航', '天马黑珍珠AI工具站'],
     url: siteConfig.siteUrl,
     description: siteConfig.description,
     inLanguage: 'zh-CN',
@@ -43,6 +43,14 @@ const baseSchemas = [
     name: siteConfig.name,
     url: siteConfig.siteUrl,
     logo: new URL(siteConfig.logo, siteConfig.siteUrl).href,
+    founder: {
+      '@type': 'Person',
+      name: '马叔吖',
+      alternateName: '天马黑珍珠',
+      url: 'https://tmhzz.com/关于我们（about-us）/',
+      jobTitle: '营销实战博主 / 独立产品创作者',
+      knowsAbout: ['数字营销', '小红书运营', '抖音投流', 'AI营销工具', '品牌策划', '转化率优化', '自媒体增长'],
+    },
     sameAs: [siteConfig.weiboUrl],
   },
 ];
@@ -55,14 +63,18 @@ const allSchemas = [...baseSchemas, ...extraSchemas];
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="applicable-device" content="pc,mobile" />
   <title>{pageTitle}</title>
   <meta name="description" content={description} />
   <meta name="keywords" content={keywords} />
+  <meta name="author" content="马叔吖（天马黑珍珠）" />
+  <meta name="copyright" content="天马黑珍珠 tmhzz.com" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="baidu-site-verification" content="codeva-8C8bUcsVv6" />
   <meta name="yandex-verification" content="e0f2285214d03852" />
   <meta name="theme-color" content="#f9f9f9" />
   <link rel="canonical" href={canonicalUrl} />
+  <link rel="alternate" type="application/rss+xml" title="天马黑珍珠原创营销笔记 RSS" href="/rss.xml" />
   <link rel="alternate" type="text/plain" title="LLMs.txt" href="/llms.txt" />
 
   <!-- Open Graph & Social Cards -->

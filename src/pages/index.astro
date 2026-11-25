@@ -7,8 +7,12 @@ import AdSenseBlock from '../components/AdSenseBlock.astro';
 import siteConfig from '../data/site-config.json';
 import sections from '../data/sections.json';
 import sites from '../data/sites.json';
+import tools from '../data/tools.json';
+import posts from '../data/posts.json';
 
 const siteMap = new Map(sites.map((s) => [s.id, s]));
+const latestPosts = posts.slice(0, 6);
+const hotTools = tools.slice(0, 6);
 ---
 
 <BaseLayout activeNav="首页">
@@ -46,6 +50,39 @@ const siteMap = new Map(sites.map((s) => [s.id, s]));
 
     <!-- Right Main Content: Categorized Site Cards -->
     <main class="main-content">
+      <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
+        天马黑珍珠 — 营销导航、广告人导航、AI工具站、营销热点日历与原创营销笔记
+      </h1>
+
+      <!-- Quick Value Hub: Tools + Marketing Calendar (Boosts Internal SEO & User Retention) -->
+      <section class="nav-section" style="margin-bottom:24px;">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fas fa-bolt" style="color:var(--brand);"></i>
+            <span>高频免费工具 & 2026~2027 营销热点日历</span>
+          </h2>
+          <a href="/tools/" class="section-more">全部 12 款工具 →</a>
+        </div>
+        <div class="site-grid">
+          <a href="/calendar/" class="site-card" style="border-color:rgba(241,64,75,0.28);">
+            <div class="site-icon-box" style="background:var(--brand);color:#fff;"><i class="far fa-calendar-alt"></i></div>
+            <div class="site-card-info">
+              <div class="site-card-title">2026~2027 营销热点日历</div>
+              <div class="site-card-desc">133个全年大促/节气借势月历</div>
+            </div>
+          </a>
+          {hotTools.map((t) => (
+            <a href={t.path} class="site-card">
+              <div class="site-icon-box"><i class={t.icon}></i></div>
+              <div class="site-card-info">
+                <div class="site-card-title">{t.shortTitle}</div>
+                <div class="site-card-desc">{t.desc}</div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
       {sections.map((sec) => {
         const cards = sec.siteIds.map((id) => siteMap.get(id)).filter(Boolean);
         return (
@@ -68,6 +105,29 @@ const siteMap = new Map(sites.map((s) => [s.id, s]));
           </section>
         );
       })}
+
+      <!-- Latest Original Marketing Notes (SEO Internal Links) -->
+      <section class="nav-section" style="margin-top:32px;">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fas fa-feather-alt" style="color:var(--brand);"></i>
+            <span>最新原创营销笔记（共 {posts.length} 篇）</span>
+          </h2>
+          <a href="/「天马黑珍珠」营销笔记/" class="section-more">查看全部原创笔记 →</a>
+        </div>
+        <div class="article-grid">
+          {latestPosts.map((p) => (
+            <a href={`/${p.slug}/`} class="article-card" style="padding:16px;">
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+                <span style="background:var(--brand);color:#fff;font-size:11px;font-weight:700;padding:1px 6px;border-radius:4px;">原创</span>
+                <span style="font-size:12px;color:var(--text-muted);">{p.date}</span>
+              </div>
+              <h3 class="article-title" style="margin:0 0 6px;font-size:14.5px;">{p.title}</h3>
+              <p class="article-excerpt" style="margin:0;">{p.excerpt}</p>
+            </a>
+          ))}
+        </div>
+      </section>
     </main>
   </div>
 
