@@ -77,7 +77,7 @@ const pageJsonLd =
         description: post.excerpt,
         datePublished: post.date,
         dateModified: post.modified || post.date,
-        author: { '@type': 'Organization', name: '天马黑珍珠', url: 'https://tmhzz.com' },
+        author: { '@type': 'Person', name: post.author || '马叔吖（天马黑珍珠）', url: 'https://tmhzz.com' },
         publisher: { '@type': 'Organization', name: '天马黑珍珠', url: 'https://tmhzz.com' },
         inLanguage: 'zh-CN',
       }
@@ -117,6 +117,19 @@ const pageJsonLd =
       <>
         <article class="panel">
           <header style="margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border-color);">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
+              {post.isOriginal !== false && (
+                <span style="display:inline-flex;align-items:center;gap:4px;background:var(--brand);color:#fff;font-size:12px;font-weight:700;padding:2px 9px;border-radius:4px;">
+                  <i class="fas fa-feather-alt" style="font-size:11px;"></i> 原创
+                </span>
+              )}
+              <span style="font-size:13px;font-weight:600;color:var(--text-secondary);">
+                作者：{post.author || '马叔吖（天马黑珍珠）'}
+              </span>
+              {post.source && (
+                <span style="font-size:12.5px;color:var(--text-muted);">· 首发于 {post.source}</span>
+              )}
+            </div>
             <h1 style="margin:0 0 12px;font-size:26px;line-height:1.35;">{post.title}</h1>
             <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:13px;color:var(--text-muted);">
               <span><i class="far fa-calendar-alt" style="margin-right:4px;"></i>{post.date}</span>
@@ -130,6 +143,11 @@ const pageJsonLd =
           </header>
 
           <div class="prose" set:html={post.contentHtml} />
+
+          <div style="margin-top:28px;padding:16px 18px;border-radius:10px;background:var(--bg-subtle);border-left:4px solid var(--brand);font-size:13px;line-height:1.8;color:var(--text-secondary);">
+            <div><strong>原创版权声明：</strong>本文为 <strong>{post.author || '马叔吖（天马黑珍珠）'}</strong> 原创内容{post.source ? `，同步收录自「${post.source}」` : ''}，发布于 {post.date}。</div>
+            <div>如需转载或引用，请注明作者及出处 <a href={`https://tmhzz.com/${post.slug}/`} style="color:var(--brand);">tmhzz.com</a>，未经授权禁止商业洗稿或搬运。</div>
+          </div>
         </article>
 
         <AdSenseBlock />
@@ -206,14 +224,31 @@ const pageJsonLd =
       </div>
     )}
 
-    {/* ===== 4. Marketing Notes Index Page (18 posts + category filter) ===== */}
+    {/* ===== 4. Marketing Notes Index Page (all original posts + year/category/search filter) ===== */}
     {isNotesPage && (
       <>
         <div class="panel">
-          <h1 style="margin:0 0 10px;font-size:24px;">{page.title}</h1>
-          <p style="margin:0 0 18px;color:var(--text-secondary);">
-            共收录 {posts.length} 篇营销笔记与实战思考，支持按分类快速筛选。
-          </p>
+          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:16px;">
+            <div>
+              <h1 style="margin:0 0 8px;font-size:24px;">{page.title}</h1>
+              <p style="margin:0;color:var(--text-secondary);">
+                共收录 <strong>{posts.length} 篇</strong> 原创营销笔记与商业实战思考（作者：马叔吖 / 天马黑珍珠），支持按年份、分类与关键词筛选。
+              </p>
+            </div>
+            <input
+              type="text"
+              id="notes-search-input"
+              placeholder="搜索原创文章标题或关键词..."
+              style="padding:8px 12px;border-radius:8px;border:1px solid rgba(128,128,128,0.25);background:var(--bg-body);color:var(--text-primary);font-size:13.5px;min-width:240px;"
+            />
+          </div>
+
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;" id="post-year-filters">
+            <button type="button" class="btn btn-primary" data-year="ALL" style="padding:5px 13px;font-size:12.5px;">全部年份</button>
+            <button type="button" class="btn btn-outline" data-year="2026" style="padding:5px 13px;font-size:12.5px;">2026年</button>
+            <button type="button" class="btn btn-outline" data-year="2025" style="padding:5px 13px;font-size:12.5px;">2025年</button>
+            <button type="button" class="btn btn-outline" data-year="2024" style="padding:5px 13px;font-size:12.5px;">2024年</button>
+          </div>
 
           <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;" id="post-cat-filters">
             <button type="button" class="btn btn-primary" data-cat="ALL" style="padding:6px 14px;font-size:13px;">全部 ({posts.length})</button>
@@ -228,18 +263,24 @@ const pageJsonLd =
                 href={`/${p.slug}/`}
                 class="article-card"
                 data-cats={p.categories.map((c) => c.name).join(',')}
+                data-year={(p.date || '').slice(0, 4)}
+                data-title={`${p.title} ${p.excerpt}`.toLowerCase()}
               >
                 {p.thumbnail && (
                   <div class="article-cover">
-                    <img src={p.thumbnail} alt={p.title} loading="lazy" />
+                    <img src={p.thumbnail} alt={p.title} loading="lazy" referrerpolicy="no-referrer" />
                   </div>
                 )}
                 <div class="article-body">
+                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+                    <span style="background:var(--brand);color:#fff;font-size:11px;font-weight:700;padding:1px 6px;border-radius:4px;">原创</span>
+                    <span style="font-size:11.5px;color:var(--text-muted);">{p.categories[1]?.name || p.categories[0]?.name || '营销笔记'}</span>
+                  </div>
                   <h2 class="article-title">{p.title}</h2>
                   <p class="article-excerpt">{p.excerpt}</p>
                   <div class="article-meta">
                     <span>{p.date}</span>
-                    <span>{p.categories[0]?.name || '营销笔记'}</span>
+                    <span>{p.author || '马叔吖'}</span>
                   </div>
                 </div>
               </a>
@@ -253,23 +294,50 @@ const pageJsonLd =
 
         <script is:inline>
           (function () {
-            var btns = document.querySelectorAll('#post-cat-filters button');
+            var activeCat = 'ALL';
+            var activeYear = 'ALL';
+            var query = '';
+            var catBtns = document.querySelectorAll('#post-cat-filters button');
+            var yearBtns = document.querySelectorAll('#post-year-filters button');
             var cards = document.querySelectorAll('#posts-grid .article-card');
-            btns.forEach(function (btn) {
+            var searchInp = document.getElementById('notes-search-input');
+
+            function applyFilter() {
+              cards.forEach(function (card) {
+                var cats = (card.getAttribute('data-cats') || '').split(',');
+                var yr = card.getAttribute('data-year') || '';
+                var hay = card.getAttribute('data-title') || '';
+                var okC = activeCat === 'ALL' || cats.indexOf(activeCat) !== -1;
+                var okY = activeYear === 'ALL' || yr === activeYear;
+                var okQ = !query || hay.indexOf(query) !== -1;
+                card.style.display = (okC && okY && okQ) ? '' : 'none';
+              });
+            }
+
+            catBtns.forEach(function (btn) {
               btn.addEventListener('click', function () {
-                btns.forEach(function (b) {
-                  b.classList.remove('btn-primary');
-                  b.classList.add('btn-outline');
-                });
-                btn.classList.remove('btn-outline');
-                btn.classList.add('btn-primary');
-                var cat = btn.getAttribute('data-cat');
-                cards.forEach(function (card) {
-                  var cats = (card.getAttribute('data-cats') || '').split(',');
-                  card.style.display = (cat === 'ALL' || cats.indexOf(cat) !== -1) ? '' : 'none';
-                });
+                catBtns.forEach(function (b) { b.classList.remove('btn-primary'); b.classList.add('btn-outline'); });
+                btn.classList.remove('btn-outline'); btn.classList.add('btn-primary');
+                activeCat = btn.getAttribute('data-cat');
+                applyFilter();
               });
             });
+
+            yearBtns.forEach(function (btn) {
+              btn.addEventListener('click', function () {
+                yearBtns.forEach(function (b) { b.classList.remove('btn-primary'); b.classList.add('btn-outline'); });
+                btn.classList.remove('btn-outline'); btn.classList.add('btn-primary');
+                activeYear = btn.getAttribute('data-year');
+                applyFilter();
+              });
+            });
+
+            if (searchInp) {
+              searchInp.addEventListener('input', function () {
+                query = (searchInp.value || '').trim().toLowerCase();
+                applyFilter();
+              });
+            }
           })();
         </script>
       </>
