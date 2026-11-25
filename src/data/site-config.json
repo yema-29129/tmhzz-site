@@ -1,7 +1,7 @@
 {
   "name": "天马黑珍珠",
   "tagline": "人生在世，不是在营销，就是被营销。",
-  "description": "天马黑珍珠营销导航与营销笔记：精选AI工具、违禁词查询、媒介渠道数据平台、广告创意案例、行业报告与营销工具导航。",
+  "description": "天马黑珍珠营销导航与广告创意工具站：精选 718+ 营销导航、AI工具、违禁词查询、广告创意案例、国际广告奖项、创意热店、媒介渠道数据平台、行业报告下载、营销工具与免费在线计算器。",
   "siteUrl": "https://tmhzz.com",
   "logo": "/wp-content/uploads/2026/10/1792244490-tmhzz-logo-300.webp",
   "favicon": "/wp-content/uploads/2024/12/cropped-1735383887-WechatIMG454-192x192.png",
@@ -509,6 +509,24 @@
       "href": "#term-612",
       "label": "广告营销案例网站",
       "icon": "fas fa-th-large",
+      "children": []
+    },
+    {
+      "href": "#term-701",
+      "label": "广告奖项/创意热店",
+      "icon": "fas fa-trophy icon-fw",
+      "children": []
+    },
+    {
+      "href": "#term-702",
+      "label": "创意短片/国潮文创",
+      "icon": "fas fa-film icon-fw",
+      "children": []
+    },
+    {
+      "href": "#term-703",
+      "label": "广告营销经典书单",
+      "icon": "fas fa-book icon-fw",
       "children": []
     }
   ]
