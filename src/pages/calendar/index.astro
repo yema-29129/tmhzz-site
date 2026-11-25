@@ -1,96 +1,21 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import AdSenseBlock from '../../components/AdSenseBlock.astro';
-
-const EVENTS = [
-  // 1月
-  { m: 1, d: '01-01', name: '元旦 / 新年开局', type: '传统节日', level: 'S', tags: '全品类/总结/新年立Flag', idea: '围绕“新年第一件事、年度重启、仪式感清单”做品牌态度海报、联名礼盒与跨年福利抽奖。' },
-  { m: 1, d: '01-05', name: '小寒 / 年货节预热', type: '电商大促', level: 'S', tags: '食品/礼盒/家电/服饰', idea: '提前启动年货节种草，主打“回家伴手礼、给父母的体面礼、提前囤年货不涨价”。' },
-  { m: 1, d: '01-20', name: '大寒 / 年终总结季', type: '节气热点', level: 'B', tags: '职场/养生/茶饮/家居', idea: '切入冬日保暖、年末慰劳自己、年度账单与职场年终奖花钱攻略。' },
-  { m: 1, d: '01-26', name: '腊八节', type: '传统节日', level: 'A', tags: '餐饮/生鲜/养生/国潮', idea: '“过了腊八就是年”，启动春节回家倒计时，发布温情返乡短视频与年味海报。' },
-
-  // 2月
-  { m: 2, d: '02-04', name: '立春', type: '节气热点', level: 'A', tags: '美妆/服饰/茶饮/文旅', idea: '主打“春日上新、换季焕新、春天第一杯/第一套穿搭”，视觉全面切换清新明快色调。' },
-  { m: 2, d: '02-06', name: '春节（2027年2月6日 / 2026年2月17日）', type: '传统节日', level: 'S', tags: '全品类/送礼/文旅/游戏', idea: '全年流量峰值！布局贺岁微电影、微信红包封面、新年好运签互动 H5 与春节不打烊攻略。' },
-  { m: 2, d: '02-14', name: '西方情人节', type: '潮流营销', level: 'S', tags: '美妆/珠宝/鲜花/餐饮/数码', idea: '围绕“送礼不踩雷清单、情侣仪式感、单身悦己经济”三线出击，重点投放小红书搜索词。' },
-  { m: 2, d: '02-21', name: '元宵节（正月十五）', type: '传统节日', level: 'A', tags: '食品/餐饮/文旅/本地生活', idea: '猜灯谜互动赢优惠券、汤圆/元宵趣味玩法、节后开工收心指南。' },
-
-  // 3月
-  { m: 3, d: '03-01', name: '38 焕新周 / 节前蓄水', type: '电商大促', level: 'S', tags: '美妆/个护/服饰/家居/母婴', idea: '上半年第一场核心电商大促，提前 7 天铺设达人种草笔记与实测对比，主打“悦己升级”。' },
-  { m: 3, d: '03-08', name: '三八国际妇女节（女神节）', type: '潮流营销', level: 'S', tags: '她经济/全品类/职场/健康', idea: '避开刻板赞美，聚焦“女性独立、不被定义、真实松弛感”话题，引发高共鸣自发转发。' },
-  { m: 3, d: '03-12', name: '植树节', type: '节气热点', level: 'B', tags: '环保/ESG/户外/茶饮', idea: '借势绿色可持续、低碳包装、春日露营与植物系新品联名。' },
-  { m: 3, d: '03-15', name: '315 国际消费者权益日', type: '节气热点', level: 'A', tags: '品牌公关/质检/口碑/售后', idea: '透明工厂溯源直播、展示质检报告与售后承诺，将 315 转化为品牌信任背书日。' },
-  { m: 3, d: '03-21', name: '世界睡眠日 / 春分', type: '节气热点', level: 'A', tags: '家居/床品/保健/助眠/香薰', idea: '直击打工人失眠痛点，推出睡眠质量自测、助眠白噪音与卧室好物改造指南。' },
-
-  // 4月
-  { m: 4, d: '04-01', name: '愚人节', type: '潮流营销', level: 'A', tags: '消费品/互联网/零食/潮玩', idea: '发布脑洞“概念新品”整活海报或反转短视频，低成本撬动社交平台玩梗讨论。' },
-  { m: 4, d: '04-05', name: '清明节 / 春日踏青小长假', type: '传统节日', level: 'A', tags: '文旅/户外/防晒/食品/汽车', idea: '切入短途自驾、露营装备清单、青团时令美食与春日防晒穿搭种草。' },
-  { m: 4, d: '04-20', name: '谷雨', type: '节气热点', level: 'B', tags: '茶饮/护肤/养生/文旅', idea: '谷雨新茶上新、春夏交替敏感肌修护、梅雨季除湿防潮好物推荐。' },
-  { m: 4, d: '04-22', name: '世界地球日', type: '节气热点', level: 'A', tags: '环保/服饰/咖啡/新能源', idea: '自带杯立减、旧物回收换购、品牌环保理念海报，提升年轻群体品牌好感度。' },
-  { m: 4, d: '04-23', name: '世界读书日', type: '节气热点', level: 'A', tags: '知识付费/教育/文创/咖啡', idea: '发布行业必读书单、品牌金句书签、联合书店/播客开展共读打卡活动。' },
-
-  // 5月
-  { m: 5, d: '05-01', name: '五一劳动节 / 黄金周出游', type: '传统节日', level: 'S', tags: '文旅/酒店/数码/防晒/出行', idea: '提前两周布局“五一避坑攻略、出行打包清单、拍照出片神器”，抢占搜索流量。' },
-  { m: 5, d: '05-04', name: '五四青年节', type: '节气热点', level: 'A', tags: '全品类/数码/运动/职场', idea: '主打年轻人态度发声、反内耗、副业成长故事与青年专属折扣。' },
-  { m: 5, d: '05-05', name: '立夏', type: '节气热点', level: 'A', tags: '冰饮/减肥/防晒/家电/服饰', idea: '开启夏季刚需品类周期：防晒、空调/风扇、轻食减脂、清凉穿搭全面上量。' },
-  { m: 5, d: '05-10', name: '母亲节（5月第二个周日）', type: '潮流营销', level: 'S', tags: '健康/美妆/家电/鲜花/珠宝', idea: '走心情感短片 + “给妈妈的实用礼物清单”，重点覆盖解放双手的家居好物与体检/保健。' },
-  { m: 5, d: '05-20', name: '520 网络情人节', type: '电商大促', level: 'S', tags: '美妆/奢侈品/数码/餐饮/礼盒', idea: '礼赠高峰！推出限定告白礼盒、定制刻字服务与 520 顺丰次日达急单兜底攻略。' },
-  { m: 5, d: '05-25', name: '618 年中大促预售启动', type: '电商大促', level: 'S', tags: '全品类/电商/投流/直播', idea: '全年第二大电商战役！提前做好小红书/知乎横评种草、保本 ROI 测算与大促机制图。' },
-
-  // 6月
-  { m: 6, d: '06-01', name: '六一儿童节 / 大小孩节', type: '潮流营销', level: 'S', tags: '母婴/零食/潮玩/餐饮/游戏', idea: '既打亲子送礼，更打“成年人的童心未泯”怀旧营销，联名经典动漫 IP 极易出圈。' },
-  { m: 6, d: '06-07', name: '全国高考 / 毕业季', type: '节气热点', level: 'A', tags: '数码3C/文旅/驾校/医美/配镜', idea: '聚焦考后释放消费：手机电脑全家桶、毕业旅行攻略、租房与职场第一套装备。' },
-  { m: 6, d: '06-18', name: '618 年中大促狂欢日', type: '电商大促', level: 'S', tags: '全品类/直播电商/货架电商', idea: '全渠道冲刺收割！直播间发放限时大额券、抄作业必买清单与最后 4 小时倒计时提醒。' },
-  { m: 6, d: '06-19', name: '端午节（农历五月初五）', type: '传统节日', level: 'A', tags: '食品/礼盒/文旅/国潮', idea: '新奇口味粽子测评、龙舟/艾草文创周边、端午小长假周边游攻略。' },
-  { m: 6, d: '06-21', name: '父亲节（6月第三个周日） / 夏至', type: '潮流营销', level: 'A', tags: '酒茶/数码/剃须刀/汽车/保健', idea: '“沉默的父爱”反差感文案，主打实用型礼物清单，避开泛泛煽情更易转化。' },
-
-  // 7月
-  { m: 7, d: '07-01', name: '暑期档开启 / 建党节', type: '节气热点', level: 'A', tags: '文旅/亲子/教育/影视/游泳', idea: '暑假带娃去哪儿、研学旅行、防晒戏水装备与学生党暑假技能提升清单。' },
-  { m: 7, d: '07-07', name: '小暑 / 三伏天养生季', type: '节气热点', level: 'A', tags: '养生/茶饮/冰品/家电', idea: '借势“三伏天祛湿、晒背、冬病夏治”健康热潮，带火养生茶饮、艾灸与清凉好物。' },
-  { m: 7, d: '07-23', name: '大暑 / 高温避暑经济', type: '节气热点', level: 'B', tags: '家电/饮品/夜经济/户外', idea: '聚焦避暑纳凉、夜宵经济、车载降温神器与夏日续命冷饮 DIY。' },
-
-  // 8月
-  { m: 8, d: '08-07', name: '立秋', type: '节气热点', level: 'S', tags: '奶茶/餐饮/服饰/美妆', idea: '自带热搜体质的“秋天的第一杯奶茶”！餐饮借势团购，服饰美妆启动早秋上新与保湿修护。' },
-  { m: 8, d: '08-08', name: '全民健身日 / 88会员节', type: '电商大促', level: 'A', tags: '运动/健身/健康/电商', idea: '居家健身打卡、运动装备测评、配合淘宝 88VIP 与平台会员日拉升复购。' },
-  { m: 8, d: '08-19', name: '七夕节（农历七月初七）', type: '传统节日', level: 'S', tags: '美妆/珠宝/奢侈品/鲜花/酒店', idea: '中国传统情人节！主打中式浪漫美学、七夕限定礼盒与“不敷衍的高级感送礼指南”。' },
-  { m: 8, d: '08-25', name: '开学季大促 / 军训季', type: '电商大促', level: 'S', tags: '数码/文具/箱包/防晒/宿舍好物', idea: '大一新生必备清单、宿舍改造神器、军训防晒与学习平板/笔记本电脑横评。' },
-
-  // 9月
-  { m: 9, d: '09-01', name: '开学日 / 99划算节预热', type: '电商大促', level: 'A', tags: '教育/母婴/文具/全品类', idea: '“神兽归笼”家长共鸣话题 + 99 划算节换季囤货种草。' },
-  { m: 9, d: '09-10', name: '教师节', type: '潮流营销', level: 'A', tags: '鲜花/茶饮/护嗓/文创/知识', idea: '感念师恩轻礼赠、护嗓润喉/肩颈舒缓实用好物、行业导师致敬海报。' },
-  { m: 9, d: '09-25', name: '中秋节（农历八月十五）', type: '传统节日', level: 'S', tags: '月饼/酒茶/大闸蟹/企业采购/文旅', idea: '提前 1 个月启动 B 端企业定制礼盒 + C 端送长辈体面礼，主打团圆赏月与国风设计。' },
-
-  // 10月
-  { m: 10, d: '10-01', name: '国庆节 / 十一黄金周', type: '传统节日', level: 'S', tags: '文旅/酒店/汽车/婚礼/餐饮', idea: '长途旅游、婚礼旺季（伴手礼/新婚家电）与高速/景区实用攻略内容井喷。' },
-  { m: 10, d: '10-18', name: '重阳节（农历九月初九）', type: '传统节日', level: 'B', tags: '银发经济/健康/体检/旅游', idea: '关注中老年健康关怀、适老化家居好物与秋日登高赏秋攻略。' },
-  { m: 10, d: '10-20', name: '双 11 狂欢节抢先购 / 预售开启', type: '电商大促', level: 'S', tags: '全品类/电商/投流/达人种草', idea: '全年最重磅战役！提前 15 天占领“双11必买清单、满减攻略、同款平替横评”核心词。' },
-  { m: 10, d: '10-31', name: '万圣节', type: '潮流营销', level: 'A', tags: '餐饮/美妆/游乐园/派对/潮玩', idea: '变装妆容教程、搞怪限定包装、线下门店打卡活动，极易在小红书/抖音出片传播。' },
-
-  // 11月
-  { m: 11, d: '11-07', name: '立冬', type: '节气热点', level: 'A', tags: '餐饮/保暖服饰/取暖家电/养生', idea: '冬日第一顿火锅/饺子、羽绒服保暖测评、泡脚桶/暖风机等冬日幸福感好物。' },
-  { m: 11, d: '11-11', name: '双 11 全球狂欢节', type: '电商大促', level: 'S', tags: '全品类/直播带货/私域收割', idea: '全年 GMV 巅峰日！做好私域社群红包雨、老客复购专属券与大促战报公关传播。' },
-  { m: 11, d: '11-26', name: '感恩节 / 黑色星期五（出海大促）', type: '电商大促', level: 'S', tags: '跨境出海/独立站/SaaS/老客回馈', idea: '国内借感恩节做老客答谢与口碑征集；跨境/SaaS/VPS 迎来全年最大黑五促销节点！' },
-
-  // 12月
-  { m: 12, d: '12-12', name: '双 12 年终好价节', type: '电商大促', level: 'A', tags: '服饰/家居/日百/年终清仓', idea: '承接双 11 遗漏需求，主打冬季保暖刚需补货、年终尾货福利与会员积分清零提醒。' },
-  { m: 12, d: '12-21', name: '冬至', type: '传统节日', level: 'A', tags: '餐饮/生鲜/养生/家居', idea: '经典南北“饺子 vs 汤圆”互动话题投票，顺带推广冬至进补与保暖好物。' },
-  { m: 12, d: '12-25', name: '圣诞节', type: '潮流营销', level: 'S', tags: '美妆/潮玩/咖啡/餐饮/礼盒', idea: '圣诞倒数日历、红绿金氛围感礼盒、线下圣诞树打卡与交换礼物攻略。' },
-  { m: 12, d: '12-31', name: '跨年夜 / 年度盘点', type: '潮流营销', level: 'S', tags: '全品类/年度报告/内容总结', idea: '发布品牌年度回顾、用户年度关键词报告、跨年倒计时活动，为新年造势蓄水。' },
-];
+import EVENTS from '../../data/marketing-calendar.json';
 
 const calSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  name: '2026~2027 全年营销热点日历',
-  description: '覆盖全年 1~12 月电商大促、传统节日、潮流营销节点与二十四节气借势文案指南，支持按月筛选、关键词搜索与一键导出排期表。',
+  name: '2026~2027 全年营销热点日历（日历视图 + 借势文案排期表）',
+  description: `覆盖全年 1~12 月共 ${EVENTS.length} 个电商大促、传统节日、潮流营销节点与二十四节气借势文案指南，支持月历网格视图与列表视图切换、关键词搜索与一键导出 Excel/CSV。`,
   url: 'https://tmhzz.com/calendar/',
   inLanguage: 'zh-CN',
 };
 ---
 
 <BaseLayout
-  title="2026~2027 全年营销热点日历（借势选题与电商大促排期表）"
-  description="免费在线查询 2026~2027 全年 1~12 月营销热点日历：涵盖春节、38焕新周、618、七夕、双11、黑五、传统节日与二十四节气借势文案切入点，支持按月筛选与一键导出 CSV 排期。"
+  title="2026~2027 全年营销热点日历（月历视图 + 借势选题与电商大促排期表）"
+  description={`免费在线查询 2026~2027 全年 ${EVENTS.length} 个营销热点日历：支持日历网格视图与列表视图一键切换，涵盖春节、38、618、七夕、双11、黑五、全24节气及国际潮流营销日，附品牌借势文案方向与 CSV 导出。`}
   keywords="2026营销日历,2027营销日历,全年营销热点日历,品牌借势日历,电商大促时间表,新媒体选题日历,节气借势文案"
   jsonLd={calSchema}
   activeNav="营销日历"
@@ -103,98 +28,188 @@ const calSchema = {
     </nav>
 
     <div class="panel">
+      <!-- Header -->
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:18px;">
         <div>
           <h1 style="margin:0 0 8px;font-size:25px;line-height:1.3;">2026~2027 全年营销热点日历</h1>
           <p style="margin:0;color:var(--text-secondary);font-size:14px;">
-            精选全年 <strong>{EVENTS.length} 个</strong> 核心营销节点，含电商大促、传统节日、潮流热点与节气借势文案方向，建议收藏到书签栏随时查排期。
+            已收录全年 <strong>{EVENTS.length} 个</strong> 核心营销节点（含全部 24 节气、电商大促、传统节日与潮流热点），支持<strong>日历视图 / 列表视图</strong>自由切换。
           </p>
         </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <button type="button" class="btn btn-primary" id="cal-export-csv" style="padding:8px 15px;font-size:13px;">
-            <i class="fas fa-file-excel"></i> 导出 Excel / CSV 排期表
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+          <div style="display:inline-flex;background:var(--bg-subtle);padding:3px;border-radius:10px;border:1px solid var(--border-color);">
+            <button type="button" id="view-btn-grid" class="btn btn-primary" style="padding:6px 14px;font-size:13px;border-radius:8px;">
+              <i class="far fa-calendar-alt"></i> 日历视图
+            </button>
+            <button type="button" id="view-btn-list" class="btn btn-outline" style="padding:6px 14px;font-size:13px;border:none;border-radius:8px;">
+              <i class="fas fa-list-ul"></i> 列表视图
+            </button>
+          </div>
+          <button type="button" class="btn btn-outline" id="cal-export-csv" style="padding:7px 14px;font-size:13px;">
+            <i class="fas fa-file-excel"></i> 导出 CSV
           </button>
         </div>
       </div>
 
       <!-- Upcoming Highlight Banner -->
-      <div id="next-event-banner" style="padding:14px 18px;border-radius:12px;background:var(--brand-soft);border:1px solid rgba(241,64,75,0.22);margin-bottom:18px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;">
+      <div id="next-event-banner" style="padding:13px 18px;border-radius:12px;background:var(--brand-soft);border:1px solid rgba(241,64,75,0.22);margin-bottom:18px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;">
         <div>
-          <span style="font-size:12px;font-weight:700;color:var(--brand);text-transform:uppercase;letter-spacing:0.5px;">近期重点筹备提醒</span>
-          <div id="next-event-title" style="font-size:15.5px;font-weight:700;margin-top:2px;">正在计算近期热点...</div>
+          <span style="font-size:12px;font-weight:700;color:var(--brand);">近期重点筹备提醒</span>
+          <div id="next-event-title" style="font-size:15px;font-weight:700;margin-top:2px;">正在计算近期热点...</div>
         </div>
         <div id="next-event-days" style="font-size:14px;font-weight:700;color:var(--brand);"></div>
       </div>
 
-      <!-- Month Filter Bar -->
-      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;" id="month-filters">
-        <button type="button" class="btn btn-primary cal-m-btn" data-m="0" style="padding:6px 12px;font-size:13px;">全年 ({EVENTS.length})</button>
-        {[1,2,3,4,5,6,7,8,9,10,11,12].map((m) => (
-          <button type="button" class="btn btn-outline cal-m-btn" data-m={m} style="padding:6px 11px;font-size:13px;">{m}月</button>
-        ))}
+      <!-- Shared Controls: Year / Month / Type / Search -->
+      <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin-bottom:14px;">
+        <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;" id="month-filters">
+          <select id="cal-year-select" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--bg-body);color:var(--text-primary);font-weight:700;font-size:13px;cursor:pointer;">
+            <option value="2026">2026年</option>
+            <option value="2027">2027年</option>
+          </select>
+          <button type="button" class="btn btn-outline" id="btn-prev-month" style="padding:6px 10px;font-size:13px;" title="上一月"><i class="fas fa-chevron-left"></i></button>
+          <button type="button" class="btn btn-outline" id="btn-next-month" style="padding:6px 10px;font-size:13px;" title="下一月"><i class="fas fa-chevron-right"></i></button>
+          <button type="button" class="btn btn-outline" id="btn-today-month" style="padding:6px 11px;font-size:12.5px;">回到本月</button>
+          <span style="width:1px;height:18px;background:var(--border-color);margin:0 4px;"></span>
+          <button type="button" class="btn btn-outline cal-m-btn" data-m="0" id="btn-all-months" style="padding:6px 11px;font-size:12.5px;display:none;">全年 ({EVENTS.length})</button>
+          {[1,2,3,4,5,6,7,8,9,10,11,12].map((m) => (
+            <button type="button" class="btn btn-outline cal-m-btn" data-m={m} style="padding:5px 10px;font-size:12.5px;">{m}月</button>
+          ))}
+        </div>
       </div>
 
-      <!-- Type & Search Filter -->
-      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:20px;">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:18px;">
         <div style="display:flex;flex-wrap:wrap;gap:6px;" id="type-filters">
-          <button type="button" class="tag-pill cal-t-btn active-tag" data-t="ALL" style="cursor:pointer;border:none;background:var(--brand);color:#fff;">全部类型</button>
+          <button type="button" class="tag-pill cal-t-btn" data-t="ALL" style="cursor:pointer;border:none;background:var(--brand);color:#fff;">全部类型</button>
           <button type="button" class="tag-pill cal-t-btn" data-t="电商大促" style="cursor:pointer;border:none;">电商大促</button>
           <button type="button" class="tag-pill cal-t-btn" data-t="传统节日" style="cursor:pointer;border:none;">传统节日</button>
           <button type="button" class="tag-pill cal-t-btn" data-t="潮流营销" style="cursor:pointer;border:none;">潮流营销</button>
           <button type="button" class="tag-pill cal-t-btn" data-t="节气热点" style="cursor:pointer;border:none;">节气热点</button>
         </div>
-        <input type="text" id="cal-search" placeholder="搜索节日、大促或适合品类（如：美妆、618、送礼）..." style="padding:8px 12px;border-radius:8px;border:1px solid rgba(128,128,128,0.25);background:var(--bg-body);color:var(--text-primary);font-size:13.5px;min-width:260px;flex:1;max-width:340px;" />
+        <input type="text" id="cal-search" placeholder="搜索节日、大促或品类（如：美妆、618、立冬）..." style="padding:8px 12px;border-radius:8px;border:1px solid rgba(128,128,128,0.25);background:var(--bg-body);color:var(--text-primary);font-size:13.5px;min-width:250px;flex:1;max-width:340px;" />
       </div>
 
-      <!-- Events Grid -->
-      <div id="cal-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;">
-        {EVENTS.map((ev) => (
-          <article
-            class="cal-card"
-            data-m={ev.m}
-            data-t={ev.type}
-            data-search={`${ev.name} ${ev.type} ${ev.tags} ${ev.idea}`.toLowerCase()}
-            style="background:var(--bg-body);border:1px solid var(--border-color);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;"
-          >
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
-              <span style="font-weight:800;font-size:15px;color:var(--brand);">{ev.d}</span>
-              <div style="display:flex;gap:6px;align-items:center;">
-                <span class="tag-pill" style="font-size:11.5px;">{ev.type}</span>
-                <span style={`font-size:11px;font-weight:700;padding:2px 7px;border-radius:4px;${ev.level === 'S' ? 'background:#f1404b;color:#fff;' : ev.level === 'A' ? 'background:#f59e0b;color:#fff;' : 'background:var(--bg-subtle);color:var(--text-secondary);'}`}>
-                  {ev.level}级
-                </span>
-              </div>
-            </div>
-            <h2 style="margin:0;font-size:16px;line-height:1.35;">{ev.name}</h2>
-            <div style="font-size:12px;color:var(--text-muted);">适合品类：{ev.tags}</div>
-            <p style="margin:0;font-size:13px;color:var(--text-secondary);line-height:1.65;flex:1;">{ev.idea}</p>
-            <div style="display:flex;justify-content:flex-end;margin-top:4px;">
-              <button
-                type="button"
-                class="btn btn-outline cal-copy-btn"
-                data-copy={`【${ev.d} ${ev.name}】(${ev.type}/${ev.level}级)\n适合品类：${ev.tags}\n借势方向：${ev.idea}`}
-                style="padding:4px 10px;font-size:12px;"
-              >
-                <i class="far fa-copy"></i> 复制策划要点
-              </button>
-            </div>
-          </article>
-        ))}
+      <!-- ===== VIEW 1: MONTH CALENDAR GRID ===== -->
+      <div id="calendar-grid-view">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+          <h2 id="cal-grid-heading" style="margin:0;font-size:18px;">2026年 11月 营销日历</h2>
+          <div style="display:flex;gap:12px;font-size:12px;color:var(--text-muted);">
+            <span><i class="fas fa-circle" style="color:#f1404b;font-size:9px;margin-right:4px;"></i>S级大促/顶流</span>
+            <span><i class="fas fa-circle" style="color:#f59e0b;font-size:9px;margin-right:4px;"></i>A级重点节点</span>
+            <span><i class="fas fa-circle" style="color:#64748b;font-size:9px;margin-right:4px;"></i>B级日常借势</span>
+          </div>
+        </div>
+
+        <div class="cal-weekdays">
+          <div>周一</div><div>周二</div><div>周三</div><div>周四</div><div>周五</div><div style="color:var(--brand);">周六</div><div style="color:var(--brand);">周日</div>
+        </div>
+        <div id="cal-month-cells" class="cal-month-cells"></div>
+        <p style="margin:10px 0 0;font-size:12.5px;color:var(--text-muted);">
+          <i class="far fa-hand-pointer"></i> 点击日历格子中的任意营销节点标签，即可查看该节点的<strong>适合品类</strong>与<strong>品牌借势文案方向</strong>并一键复制。
+        </p>
+      </div>
+
+      <!-- ===== VIEW 2: LIST CARDS ===== -->
+      <div id="calendar-list-view" style="display:none;">
+        <div id="cal-list-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;"></div>
       </div>
     </div>
 
     <AdSenseBlock />
   </main>
 
+  <!-- Event Detail Modal (when clicking a calendar pill) -->
+  <div class="modal-backdrop" id="cal-detail-modal">
+    <div class="modal-card" style="max-width:500px;">
+      <button class="modal-close" data-close-modal aria-label="关闭"><i class="fas fa-times"></i></button>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span id="cm-date" style="font-weight:800;font-size:16px;color:var(--brand);"></span>
+        <span id="cm-type" class="tag-pill"></span>
+        <span id="cm-level" style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;"></span>
+      </div>
+      <h3 id="cm-name" style="margin:0 0 10px;font-size:20px;"></h3>
+      <div style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">
+        <strong>适合品类：</strong><span id="cm-tags"></span>
+      </div>
+      <div style="padding:14px;border-radius:10px;background:var(--bg-subtle);font-size:14px;line-height:1.75;color:var(--text-primary);margin-bottom:16px;">
+        <div style="font-size:12px;font-weight:700;color:var(--brand);margin-bottom:4px;">品牌借势文案 & 选题切入方向</div>
+        <div id="cm-idea"></div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:10px;">
+        <button type="button" class="btn btn-primary" id="cm-copy-btn"><i class="far fa-copy"></i> 一键复制策划要点</button>
+      </div>
+    </div>
+  </div>
+
+  <style is:global>
+    .cal-weekdays {
+      display: grid; grid-template-columns: repeat(7, minmax(0, 1fr));
+      background: var(--bg-subtle); border: 1px solid var(--border-color);
+      border-radius: 10px 10px 0 0; text-align: center; font-size: 13px; font-weight: 700;
+      color: var(--text-secondary); padding: 10px 0;
+    }
+    .cal-month-cells {
+      display: grid; grid-template-columns: repeat(7, minmax(0, 1fr));
+      border-left: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);
+      border-radius: 0 0 10px 10px; overflow: hidden;
+    }
+    .cal-cell {
+      min-height: 108px; padding: 8px; background: var(--bg-card);
+      border-right: 1px solid var(--border-color); border-top: 1px solid var(--border-color);
+      display: flex; flex-direction: column; gap: 5px; min-width: 0;
+    }
+    .cal-cell.empty { background: var(--bg-subtle); opacity: 0.45; }
+    .cal-cell.today { background: rgba(241, 64, 75, 0.04); }
+    .cal-day-num {
+      font-size: 13px; font-weight: 700; color: var(--text-secondary);
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px; border-radius: 50%;
+    }
+    .cal-cell.today .cal-day-num { background: var(--brand); color: #fff; }
+    .cal-pill {
+      display: block; width: 100%; text-align: left; border: none; cursor: pointer;
+      padding: 4px 7px; border-radius: 6px; font-size: 12px; font-weight: 600;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      transition: transform 0.14s ease, opacity 0.14s ease;
+    }
+    .cal-pill:hover { transform: translateY(-1px); opacity: 0.92; }
+    .cal-pill.lv-S { background: #f1404b; color: #fff; }
+    .cal-pill.lv-A { background: rgba(245, 158, 11, 0.16); color: #b45309; border: 1px solid rgba(245, 158, 11, 0.35); }
+    .cal-pill.lv-B { background: var(--bg-subtle); color: var(--text-secondary); border: 1px solid var(--border-color); }
+    html.dark .cal-pill.lv-A { background: rgba(245, 158, 11, 0.22); color: #fbbf24; }
+    @media (max-width: 768px) {
+      .cal-cell { min-height: 78px; padding: 4px; }
+      .cal-pill { font-size: 11px; padding: 3px 4px; }
+    }
+  </style>
+
   <script is:inline define:vars={{ EVENTS }}>
     (function () {
-      var activeM = 0;
-      var activeT = 'ALL';
-      var cards = Array.prototype.slice.call(document.querySelectorAll('#cal-grid .cal-card'));
-      var searchInp = document.getElementById('cal-search');
-
-      // Calculate upcoming nearest event relative to today
       var now = new Date();
+      var state = {
+        view: 'grid', // 'grid' | 'list'
+        year: now.getFullYear() === 2027 ? 2027 : 2026,
+        month: now.getMonth() + 1, // 1..12 (or 0 for all in list mode)
+        type: 'ALL',
+        q: ''
+      };
+
+      var yearSel = document.getElementById('cal-year-select');
+      var searchInp = document.getElementById('cal-search');
+      var gridView = document.getElementById('calendar-grid-view');
+      var listView = document.getElementById('calendar-list-view');
+      var gridBtn = document.getElementById('view-btn-grid');
+      var listBtn = document.getElementById('view-btn-list');
+      var allMonthsBtn = document.getElementById('btn-all-months');
+      var cellsWrap = document.getElementById('cal-month-cells');
+      var listGrid = document.getElementById('cal-list-grid');
+      var heading = document.getElementById('cal-grid-heading');
+      var modal = document.getElementById('cal-detail-modal');
+      var currentModalCopy = '';
+
+      yearSel.value = String(state.year);
+
+      // Nearest upcoming event banner
       var todayMD = (now.getMonth() + 1) * 100 + now.getDate();
       var upcoming = null;
       var minDiff = 9999;
@@ -215,29 +230,196 @@ const calSchema = {
         document.getElementById('next-event-days').textContent = minDiff === 0 ? '就是今天！' : ('还有 ' + minDiff + ' 天');
       }
 
-      function applyFilters() {
-        var q = (searchInp.value || '').trim().toLowerCase();
-        cards.forEach(function (c) {
-          var cm = Number(c.getAttribute('data-m'));
-          var ct = c.getAttribute('data-t');
-          var hay = c.getAttribute('data-search') || '';
-          var okM = activeM === 0 || cm === activeM;
-          var okT = activeT === 'ALL' || ct === activeT;
-          var okQ = !q || hay.indexOf(q) !== -1;
-          c.style.display = (okM && okT && okQ) ? '' : 'none';
+      function matchEvent(ev) {
+        if (state.type !== 'ALL' && ev.type !== state.type) return false;
+        if (state.q) {
+          var hay = (ev.name + ' ' + ev.type + ' ' + ev.tags + ' ' + ev.idea + ' ' + ev.d).toLowerCase();
+          if (hay.indexOf(state.q) === -1) return false;
+        }
+        return true;
+      }
+
+      function openEventModal(ev) {
+        document.getElementById('cm-date').textContent = state.year + '-' + ev.d;
+        document.getElementById('cm-type').textContent = ev.type;
+        var lvEl = document.getElementById('cm-level');
+        lvEl.textContent = ev.level + '级热点';
+        lvEl.style.background = ev.level === 'S' ? '#f1404b' : (ev.level === 'A' ? '#f59e0b' : 'var(--bg-subtle)');
+        lvEl.style.color = ev.level === 'B' ? 'var(--text-secondary)' : '#fff';
+        document.getElementById('cm-name').textContent = ev.name;
+        document.getElementById('cm-tags').textContent = ev.tags;
+        document.getElementById('cm-idea').textContent = ev.idea;
+        currentModalCopy = '【' + ev.d + ' ' + ev.name + '】(' + ev.type + '/' + ev.level + '级)\n适合品类：' + ev.tags + '\n借势方向：' + ev.idea;
+        modal.classList.add('open');
+      }
+
+      document.getElementById('cm-copy-btn').addEventListener('click', function () {
+        var btn = this;
+        if (navigator.clipboard && currentModalCopy) {
+          navigator.clipboard.writeText(currentModalCopy).then(function () {
+            btn.innerHTML = '<i class="fas fa-check"></i> 已复制';
+            setTimeout(function () { btn.innerHTML = '<i class="far fa-copy"></i> 一键复制策划要点'; }, 1500);
+          });
+        }
+      });
+
+      function syncMonthButtons() {
+        document.querySelectorAll('.cal-m-btn').forEach(function (btn) {
+          var m = Number(btn.getAttribute('data-m'));
+          var active = m === state.month;
+          btn.classList.toggle('btn-primary', active);
+          btn.classList.toggle('btn-outline', !active);
         });
       }
 
+      function renderCalendarGrid() {
+        var m = state.month || (now.getMonth() + 1);
+        state.month = m;
+        var y = state.year;
+        var monthEvents = EVENTS.filter(function (ev) { return ev.m === m && matchEvent(ev); });
+        heading.textContent = y + '年 ' + m + '月 营销日历（本月 ' + monthEvents.length + ' 个节点）';
+
+        var firstDay = new Date(y, m - 1, 1).getDay(); // 0=Sun..6=Sat
+        var offset = (firstDay + 6) % 7; // Convert to Mon=0..Sun=6
+        var daysInMonth = new Date(y, m, 0).getDate();
+        var totalCells = Math.ceil((offset + daysInMonth) / 7) * 7;
+
+        var byDay = {};
+        monthEvents.forEach(function (ev) {
+          var day = parseInt(ev.d.split('-')[1], 10);
+          if (!byDay[day]) byDay[day] = [];
+          byDay[day].push(ev);
+        });
+
+        var html = '';
+        for (var i = 0; i < totalCells; i++) {
+          var dayNum = i - offset + 1;
+          if (dayNum < 1 || dayNum > daysInMonth) {
+            html += '<div class="cal-cell empty"></div>';
+          } else {
+            var isToday = (y === now.getFullYear() && m === (now.getMonth() + 1) && dayNum === now.getDate());
+            var evs = byDay[dayNum] || [];
+            var pills = evs.map(function (ev) {
+              var idx = EVENTS.indexOf(ev);
+              return '<button type="button" class="cal-pill lv-' + ev.level + '" data-ev-idx="' + idx + '" title="' + ev.name + '：' + ev.idea + '">' + ev.name + '</button>';
+            }).join('');
+            html += '<div class="cal-cell' + (isToday ? ' today' : '') + '">' +
+              '<span class="cal-day-num">' + dayNum + '</span>' + pills + '</div>';
+          }
+        }
+        cellsWrap.innerHTML = html;
+
+        cellsWrap.querySelectorAll('[data-ev-idx]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var ev = EVENTS[Number(btn.getAttribute('data-ev-idx'))];
+            if (ev) openEventModal(ev);
+          });
+        });
+      }
+
+      function renderListView() {
+        var filtered = EVENTS.filter(function (ev) {
+          if (state.month !== 0 && ev.m !== state.month) return false;
+          return matchEvent(ev);
+        });
+        if (!filtered.length) {
+          listGrid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:30px;color:var(--text-muted);">当前筛选条件下暂无匹配节点</div>';
+          return;
+        }
+        listGrid.innerHTML = filtered.map(function (ev) {
+          var idx = EVENTS.indexOf(ev);
+          var lvStyle = ev.level === 'S'
+            ? 'background:#f1404b;color:#fff;'
+            : (ev.level === 'A' ? 'background:#f59e0b;color:#fff;' : 'background:var(--bg-subtle);color:var(--text-secondary);');
+          return '<article style="background:var(--bg-body);border:1px solid var(--border-color);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;">' +
+            '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">' +
+              '<span style="font-weight:800;font-size:15px;color:var(--brand);">' + ev.d + '</span>' +
+              '<div style="display:flex;gap:6px;align-items:center;">' +
+                '<span class="tag-pill" style="font-size:11.5px;">' + ev.type + '</span>' +
+                '<span style="font-size:11px;font-weight:700;padding:2px 7px;border-radius:4px;' + lvStyle + '">' + ev.level + '级</span>' +
+              '</div>' +
+            '</div>' +
+            '<h2 style="margin:0;font-size:16px;line-height:1.35;">' + ev.name + '</h2>' +
+            '<div style="font-size:12px;color:var(--text-muted);">适合品类：' + ev.tags + '</div>' +
+            '<p style="margin:0;font-size:13px;color:var(--text-secondary);line-height:1.65;flex:1;">' + ev.idea + '</p>' +
+            '<div style="display:flex;justify-content:flex-end;margin-top:4px;">' +
+              '<button type="button" class="btn btn-outline list-copy-btn" data-ev-idx="' + idx + '" style="padding:4px 10px;font-size:12px;"><i class="far fa-copy"></i> 复制策划要点</button>' +
+            '</div></article>';
+        }).join('');
+
+        listGrid.querySelectorAll('.list-copy-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var ev = EVENTS[Number(btn.getAttribute('data-ev-idx'))];
+            if (!ev || !navigator.clipboard) return;
+            var txt = '【' + ev.d + ' ' + ev.name + '】(' + ev.type + '/' + ev.level + '级)\n适合品类：' + ev.tags + '\n借势方向：' + ev.idea;
+            navigator.clipboard.writeText(txt).then(function () {
+              btn.innerHTML = '<i class="fas fa-check"></i> 已复制';
+              setTimeout(function () { btn.innerHTML = '<i class="far fa-copy"></i> 复制策划要点'; }, 1500);
+            });
+          });
+        });
+      }
+
+      function render() {
+        syncMonthButtons();
+        if (state.view === 'grid') {
+          gridView.style.display = '';
+          listView.style.display = 'none';
+          allMonthsBtn.style.display = 'none';
+          gridBtn.className = 'btn btn-primary';
+          listBtn.className = 'btn btn-outline';
+          listBtn.style.border = 'none';
+          renderCalendarGrid();
+        } else {
+          gridView.style.display = 'none';
+          listView.style.display = '';
+          allMonthsBtn.style.display = '';
+          listBtn.className = 'btn btn-primary';
+          gridBtn.className = 'btn btn-outline';
+          gridBtn.style.border = 'none';
+          renderListView();
+        }
+      }
+
+      gridBtn.addEventListener('click', function () {
+        state.view = 'grid';
+        if (state.month === 0) state.month = now.getMonth() + 1;
+        render();
+      });
+
+      listBtn.addEventListener('click', function () {
+        state.view = 'list';
+        render();
+      });
+
+      yearSel.addEventListener('change', function () {
+        state.year = Number(yearSel.value);
+        render();
+      });
+
+      document.getElementById('btn-prev-month').addEventListener('click', function () {
+        if (state.month <= 1) { state.month = 12; state.year = Math.max(2026, state.year - 1); yearSel.value = String(state.year); }
+        else state.month--;
+        render();
+      });
+
+      document.getElementById('btn-next-month').addEventListener('click', function () {
+        if (state.month >= 12 || state.month === 0) { state.month = 1; state.year = Math.min(2027, state.year + 1); yearSel.value = String(state.year); }
+        else state.month++;
+        render();
+      });
+
+      document.getElementById('btn-today-month').addEventListener('click', function () {
+        state.year = now.getFullYear() === 2027 ? 2027 : 2026;
+        state.month = now.getMonth() + 1;
+        yearSel.value = String(state.year);
+        render();
+      });
+
       document.querySelectorAll('.cal-m-btn').forEach(function (btn) {
         btn.addEventListener('click', function () {
-          document.querySelectorAll('.cal-m-btn').forEach(function (b) {
-            b.classList.remove('btn-primary');
-            b.classList.add('btn-outline');
-          });
-          btn.classList.remove('btn-outline');
-          btn.classList.add('btn-primary');
-          activeM = Number(btn.getAttribute('data-m'));
-          applyFilters();
+          state.month = Number(btn.getAttribute('data-m'));
+          render();
         });
       });
 
@@ -249,23 +431,19 @@ const calSchema = {
           });
           btn.style.background = 'var(--brand)';
           btn.style.color = '#fff';
-          activeT = btn.getAttribute('data-t');
-          applyFilters();
+          state.type = btn.getAttribute('data-t');
+          render();
         });
       });
 
-      searchInp.addEventListener('input', applyFilters);
-
-      document.querySelectorAll('.cal-copy-btn').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var txt = btn.getAttribute('data-copy');
-          if (navigator.clipboard && txt) {
-            navigator.clipboard.writeText(txt).then(function () {
-              btn.innerHTML = '<i class="fas fa-check"></i> 已复制';
-              setTimeout(function () { btn.innerHTML = '<i class="far fa-copy"></i> 复制策划要点'; }, 1500);
-            });
-          }
-        });
+      searchInp.addEventListener('input', function () {
+        state.q = (searchInp.value || '').trim().toLowerCase();
+        if (state.q && state.view === 'grid') {
+          // Auto switch to list view across all months when searching a keyword
+          state.view = 'list';
+          state.month = 0;
+        }
+        render();
       });
 
       document.getElementById('cal-export-csv').addEventListener('click', function () {
@@ -279,10 +457,12 @@ const calSchema = {
         var url = URL.createObjectURL(blob);
         var a = document.createElement('a');
         a.href = url;
-        a.download = '2026-2027天马黑珍珠全年营销热点日历.csv';
+        a.download = '2026-2027天马黑珍珠全年营销热点日历(' + EVENTS.length + '节点).csv';
         a.click();
         URL.revokeObjectURL(url);
       });
+
+      render();
     })();
   </script>
 </BaseLayout>
